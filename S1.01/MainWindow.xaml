@@ -7,6 +7,36 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Rectangle
+            x:Name="jetonj1"
+            Width="61"
+            Height="65"
+            Margin="100,57,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Fill="Red"
+            RenderTransformOrigin="0.493,0.511"
+            Stroke="Black" />
+        <Rectangle
+            x:Name="jetonj2"
+            Width="61"
+            Height="65"
+            Margin="100,57,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Fill="Blue"
+            RenderTransformOrigin="0.493,0.511"
+            Stroke="Black" />
+
+        <Rectangle
+            x:Name="plateau"
+            Canvas.Left="37"
+            Canvas.Top="33"
+            Width="710"
+            Height="368"
+            Fill="#FFC3BFBF"
+            Stroke="Black" />
+
 
     </Grid>
 </Window>
