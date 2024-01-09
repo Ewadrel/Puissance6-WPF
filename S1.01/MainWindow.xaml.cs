@@ -102,20 +102,27 @@ namespace S1._01
             
             for (int i = 0; i < tab.GetLength(0); i++)
             {
-               
-                if (tab[i, n] != 0)
-                    {
 
-                        compteur += 1;
-                    for (int j = 0; j < 6; i++)
+                do {
+                    int j = 0;
+                    if (tab[i, n] != 0)
                     {
-                        if (tab[i, j]== tab[i, n])
+                        
+                        compteur += 1;
+                        for (j = 0; j < 6; j++)
                         {
-                            gagnant = tab[i, j];
+                            if (tab[i, j] == tab[i, n])
+                            {
+                                gagnant = tab[i, j].ToString();
+                            }
+                            else
+                            {
+                                n = j;
+                            }
                         }
                     }
 
-                    }
+                    }while (j < 9) ;
                         
                 
             }

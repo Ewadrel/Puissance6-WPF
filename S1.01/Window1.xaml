@@ -1,17 +1,49 @@
-﻿<Window x:Class="S1._01.Window1"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:S1._01"
-        mc:Ignorable="d"
-        Title="choix" Height="250" Width="400">
+﻿<Window
+    x:Class="S1._01.Window1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:S1._01"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="choix"
+    Width="400"
+    Height="250"
+    mc:Ignorable="d">
     <Grid>
 
-        <Button Content="" Height="80" Width="60" HorizontalAlignment="Left" Margin="43,84,0,0" VerticalAlignment="Top" BorderBrush="Black" Foreground="#FF947BC3" OpacityMask="#FF947BC3" Background="#FF947BC3"/>
-        <Button Content="" Height="80" Width="60" HorizontalAlignment="Center" Margin="0,84,0,0" VerticalAlignment="Top" Background="#FFEF9595"/>
-        <Button Content="" Height="80" Width="60" HorizontalAlignment="Left" Margin="291,84,0,0" VerticalAlignment="Top" BorderBrush="Black" Background="#FF7DC88C"/>
-        <Label Content="choisissez votre couleur" HorizontalAlignment="Center" Margin="0,26,0,0" VerticalAlignment="Top"/>
+        <Button
+            Width="60"
+            Height="80"
+            Margin="43,84,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="#FF947BC3"
+            BorderBrush="Black"
+            Content=""
+            Foreground="#FF947BC3"
+            OpacityMask="#FF947BC3" />
+        <Button
+            Width="60"
+            Height="80"
+            Margin="0,84,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Background="#FFEF9595"
+            Content="" />
+        <Button
+            Width="60"
+            Height="80"
+            Margin="291,84,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="#FF7DC88C"
+            BorderBrush="Black"
+            Content="" />
+        <Label
+            Margin="0,26,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Content="choisissez votre couleur" />
 
     </Grid>
 </Window>
