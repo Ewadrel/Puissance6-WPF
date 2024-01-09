@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:S1._01"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="1150" Width="1300">
     <Grid>
         <Rectangle
             x:Name="jetonj1"
@@ -32,8 +32,8 @@
             x:Name="plateau"
             Canvas.Left="37"
             Canvas.Top="33"
-            Width="710"
-            Height="368"
+            Width="1200"
+            Height="1062"
             Fill="#FFC3BFBF"
             Stroke="Black" />
 
