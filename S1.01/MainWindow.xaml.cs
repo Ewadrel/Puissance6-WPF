@@ -20,8 +20,8 @@ namespace S1._01
     /// </summary>
     public partial class MainWindow : Window
     {
-        private int[] COORDONNEX =[1, 2, 3, 4, 5, 6, 7, 8, 9];
-        private int[] COORDONNEY = [1, 2, 3, 4, 5, 6, 7, 8] ;
+        private double[] COORDONNEX = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        private double[] COORDONNEY = { 1, 2, 3, 4, 5, 6, 7, 8 } ;
         private string CHOIXJETON = ChoixDuJeton(1);
         private ImageBrush jeton1 = new ImageBrush();
         private ImageBrush jeton2 = new ImageBrush();
@@ -76,19 +76,49 @@ namespace S1._01
         }
         public int[] PointBonus( int[,] tab)
         {
-            int[] bonus = [0,0];
-            for (int i=0; i < tab.GetLength(0); i++)
+            int[] bonus = { 0, 0 };
+            for (int i=0; i < tab.GetLength(0)-2; i++)
             {
                 for (int j = 1; j < tab.GetLength(1)-1; j++)
                 { 
                     if (tab[i,j]==1 && tab[i+1,j-1]==1 && tab[i + 1, j + 1]==1 && tab[i + 2, j ] == 1)
                     {
-                        bonus += VALBONUS;
+                        bonus[0] += VALBONUS;
+                    }
+                    if (tab[i, j] == 2 && tab[i + 1, j - 1] == 2 && tab[i + 1, j + 1] == 2 && tab[i + 2, j] == 2)
+                    {
+                        bonus[1] += VALBONUS;
                     }
                 }
             }
-            bonus = [0, 0];
+            
             return bonus;
+        }
+        public string LIGNE(int[,] tab)
+        {
+            string gagnant = "";
+            int compteur = 0;
+            int n = 0;
+            
+            for (int i = 0; i < tab.GetLength(0); i++)
+            {
+               
+                if (tab[i, n] != 0)
+                    {
+
+                        compteur += 1;
+                    for (int j = 0; j < 6; i++)
+                    {
+                        if (tab[i, j]== tab[i, n])
+                        {
+                            gagnant = tab[i, j];
+                        }
+                    }
+
+                    }
+                        
+                
+            }
         }
     }
     
