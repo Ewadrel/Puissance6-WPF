@@ -23,5 +23,10 @@ namespace S1._01
         {
             InitializeComponent();
         }
+
+        private void Canvas_SourceUpdated(object sender, DataTransferEventArgs e)
+        {
+
+        }
     }
 }

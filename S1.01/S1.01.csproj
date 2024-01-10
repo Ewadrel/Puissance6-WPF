@@ -9,6 +9,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="fond.jpeg" />
+    <None Remove="rose.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="fond.jpeg" />
+    <Resource Include="rose.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="img\fond.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="img\puissance4x9x8.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
