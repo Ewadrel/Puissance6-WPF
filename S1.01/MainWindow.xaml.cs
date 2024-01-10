@@ -22,7 +22,7 @@ namespace S1._01
     {
         private double[] COORDONNEX = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         private double[] COORDONNEY = { 1, 2, 3, 4, 5, 6, 7, 8 } ;
-        //private string CHOIXJETON = ChoixDuJeton(1);
+        private string CHOIXJETON = ChoixDuJeton(1);
         private ImageBrush jeton1 = new ImageBrush();
         private ImageBrush jeton2 = new ImageBrush();
         private ImageBrush fond = new ImageBrush();
@@ -33,11 +33,11 @@ namespace S1._01
         {
             InitializeComponent();
             fond.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/puissance4x9x8.png"));
-           // jeton1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/violet.png"));
-           // jeton2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/vert.png"));
+            jeton1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/violet.png"));
+            jeton2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/vert.png"));
 
-           // jetonj1.Fill = jeton1;
-           // jetonj2.Fill = jeton2;
+            jetonj1.Fill = jeton1;
+            jetonj2.Fill = jeton2;
             plateau.Fill = fond;
         }
         
@@ -54,17 +54,17 @@ namespace S1._01
                         Tag = j,
                         //stockage
                     };
-                    //bouton.Click += Colonne_Click;
-                    //Grille.Children.Add(bouton);
+                    bouton.Click += Colonne_Click;
+                    Grille.Children.Add(bouton);
                     // lorsqu'une colonne est cliquée
                 }
             }
         }
         public string ChoixDuJeton(int choix)
         {
-            // modifier le type et les valeur if de choix en fonction de ce que renverra la fenêtre de question
+             //modifier le type et les valeur if de choix en fonction de ce que renverra la fenêtre de question
             string choixj = " ";
-           // if //(choix = 0)
+            if (choix = 0)
             {
                 choixj = "img/rose.png";
             }
@@ -93,8 +93,8 @@ namespace S1._01
             
             return bonus;
         }
-       // public string LIGNE(int[,] tab)
-       /* {
+        public string LIGNE(int[,] tab)
+        {
             string gagnant = "";
             int compteur = 0;
             int n = 0;
@@ -103,7 +103,7 @@ namespace S1._01
             {
                
                 if (tab[i, n] != 0)
-                    {
+                {
 
                         compteur += 1;
                     for (int j = 0; j < 6; i++)
@@ -114,10 +114,10 @@ namespace S1._01
                         }
                     }
 
-                    }
+                }
                         
                 
             }
-       }*/
+        }
     }   
 }
