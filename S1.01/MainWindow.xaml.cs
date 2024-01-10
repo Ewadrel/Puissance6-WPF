@@ -20,8 +20,12 @@ namespace S1._01
     /// </summary>
     public partial class MainWindow : Window
     {
-        private double[] COORDONNEX = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        private double[] COORDONNEY = { 1, 2, 3, 4, 5, 6, 7, 8 } ;
+        private int tourDuJoueur = 1;
+        Point position = new Point(0, 0);
+        private readonly double[] COORDONNEX = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        private readonly double[] COORDONNEY = { 1, 2, 3, 4, 5, 6, 7, 8 } ;
+        private int[,] grille = new int[8,9];
+        
         //private string CHOIXJETON = ChoixDuJeton(1);
         private ImageBrush jeton1 = new ImageBrush();
         private ImageBrush jeton2 = new ImageBrush();
@@ -33,12 +37,13 @@ namespace S1._01
         {
             InitializeComponent();
             fond.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/puissance4x9x8.png"));
-           // jeton1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/violet.png"));
-           // jeton2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/vert.png"));
+            //jeton1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/violet.png"));
+            //jeton2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/vert.png"));
 
-           // jetonj1.Fill = jeton1;
-           // jetonj2.Fill = jeton2;
+            //jetonj1.Fill = jeton1;
+            //jetonj2.Fill = jeton2;
             plateau.Fill = fond;
+           
         }
         
         private void InitialisationGrille()
@@ -60,11 +65,11 @@ namespace S1._01
                 }
             }
         }
-        public string ChoixDuJeton(int choix)
+        /*public string ChoixDuJeton(int choix)
         {
-            // modifier le type et les valeur if de choix en fonction de ce que renverra la fenêtre de question
+            //modifier le type et les valeur if de choix en fonction de ce que renverra la fenêtre de question
             string choixj = " ";
-           // if //(choix = 0)
+            if (choix = 0)
             {
                 choixj = "img/rose.png";
             }
@@ -73,6 +78,7 @@ namespace S1._01
             return choixj;
 
         }
+        */
         public int[] PointBonus( int[,] tab)
         {
             int[] bonus = { 0, 0 };
@@ -93,38 +99,89 @@ namespace S1._01
             
             return bonus;
         }
-       // public string LIGNE(int[,] tab)
-       /* {
-            string gagnant = "";
-            int compteur = 0;
-            int n = 0;
-            
+        public bool LIGNE(int[,] tab)
+        {
+            int g = 0;
+            int[] compteur = { 0, 0, 0,0,0 };
+
+
             for (int i = 0; i < tab.GetLength(0); i++)
             {
 
-                do {
-                    int j = 0;
-                    if (tab[i, n] != 0)
+                for (int j = 0; j < tab.GetLength(1) - 3; j++)
+                {
+                    if (tab[i, j] != 0)
                     {
-                        
-                        compteur += 1;
-                        for (j = 0; j < 6; j++)
+                        for (int h = 0; h < 6; h++)
                         {
-                            if (tab[i, j] == tab[i, n])
+                            if (tab[i, j] == tab[i+h, j ])
                             {
-                                gagnant = tab[i, j].ToString();
-                            }
-                            else
-                            {
-                                n = j;
-                            }
-                        }
-                    }
+                                compteur[j] += 1;
 
-                    }while (j < 9) ;
-                        
-                
+                            }
+
+
+                        }
+
+                    }
+                }
+
+
+
+
             }
-       }*/
+            for (int i = 0; i < compteur.Length; i++)
+            {
+                if (compteur[i] == 4)
+
+                    g += 1;
+
+            }
+            if (g >= 1)
+            {
+                return true;
+            }
+            return false;
+           
+        }
+        public int colonneoccupe(int[,] tab,int indicej)
+        {
+            int indice = 0;
+            for (int i = 0; i < tab.GetLength(0); i++)
+            {
+                if (tab[i, indicej] == 0)
+                {
+                    indice += 1;
+                }
+
+            }
+            indice -= 1;
+            return indice;
+
+        }
+
+        private void plateau_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+            position = e.GetPosition(plateau);
+            double x=position.X;
+            double min = x;
+            int indice = 0;
+            for (int i = 0; i < COORDONNEX.Length; i++)
+            {
+                if (COORDONNEX[i] - x < min)
+                {
+                    indice = i;
+                    min = COORDONNEX[i]-x;
+                }
+
+            }
+            grille[colonneoccupe(grille, indice), indice] = tourDuJoueur;
+            
+
+
+        }
+
+       
     }   
 }
