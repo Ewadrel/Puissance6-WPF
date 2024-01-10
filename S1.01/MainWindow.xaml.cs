@@ -59,8 +59,8 @@ namespace S1._01
                         Tag = j,
                         //stockage
                     };
-                    //bouton.Click += Colonne_Click;
-                    //Grille.Children.Add(bouton);
+                    bouton.Click += Colonne_Click;
+                    Grille.Children.Add(bouton);
                     // lorsqu'une colonne est cliquée
                 }
             }
