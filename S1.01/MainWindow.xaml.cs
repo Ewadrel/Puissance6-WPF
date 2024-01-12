@@ -63,11 +63,16 @@ namespace S1._01
                         Tag = j,
                         //stockage
                     };
-                    //bouton.Click += Colonne_Click;
-                    //Grille.Children.Add(bouton);
+                    bouton.Click += Colonne_Click;
+                    //grille.Children.Add(bouton);
                     // lorsqu'une colonne est cliquée
                 }
             }
+        }
+        private void Colonne_Click(object sender, RoutedEventArgs e)
+        {
+            var button = (Button)sender;
+            int column = (int)button.Tag; // Récupérer la colonne à partir du Tag du bouton
         }
         /*public string ChoixDuJeton(int choix)
         {

@@ -9,19 +9,27 @@
     Width="1300"
     Height="1150"
     mc:Ignorable="d">
-    <Grid >
-        <Canvas x:Name="fond" Opacity="0.7">
+    <Grid>
+        <Canvas x:Name="fond">
+            <Image
+                Margin="328,109,328,775"
+                Source="/img/puissance6.png"
+                Stretch="Fill" />
+            <Button
+                x:Name="boutonjouer"
+                Canvas.Left="321"
+                Canvas.Top="604"
+                Width="658"
+                Height="171"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Background="Black"
+                BorderBrush="White"
+                BorderThickness="5"
+                Content="" />
             <Canvas.Background>
-                <ImageBrush ImageSource="/fond.jpeg"/>
+                <ImageBrush ImageSource="/fond.jpeg" />
             </Canvas.Background>
-            <Button Canvas.Left="266" Canvas.Top="640" Height="232" Width="768" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <Button.Background>
-                    <ImageBrush ImageSource="/rose.png"/>
-                </Button.Background>
-            </Button>
         </Canvas>
-
-        <Image Margin="328,109,328,775" Source="/img/puissance6.png" Stretch="Fill"/>
-
     </Grid>
 </Window>
