@@ -22,8 +22,8 @@ namespace S1._01
     {
         private int tourDuJoueur = 1;
         Point position = new Point(0, 0);
-        private readonly double[] COORDONNEX = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        private readonly double[] COORDONNEY = { 1, 2, 3, 4, 5, 6, 7, 8 } ;
+        private readonly double[] COORDONNEX = { 65, 190, 400, 500, 600, 700, 800, 900, 1000 };
+        private readonly double[] COORDONNEY = { 65, 190, 400, 500, 600,700, 800, 910 } ;
         private int[,] grille = new int[8,9];
         
         //private string CHOIXJETON = ChoixDuJeton(1);
@@ -41,13 +41,13 @@ namespace S1._01
             Window1 choixCouleur = new Window1();
             choixCouleur.ShowDialog();
             fond.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/puissance4x9x8.png"));
-            //jeton1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/violet.png"));
-            //jeton2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/vert.png"));
+            jeton1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/violet.png"));
+            jeton2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/vert.png"));
 
-            //jetonj1.Fill = jeton1;
-            //jetonj2.Fill = jeton2;
-            plateau.Fill = fond;
+            
+            plateau.Background = fond;
            
+            
         }
         
         private void InitialisationGrille()
@@ -169,11 +169,11 @@ namespace S1._01
 
         }
 
-        private void plateau_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
 
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
             position = e.GetPosition(plateau);
-            double x=position.X;
+            double x = position.X;
             double min = x;
             int indice = 0;
             for (int i = 0; i < COORDONNEX.Length; i++)
@@ -181,16 +181,25 @@ namespace S1._01
                 if (COORDONNEX[i] - x < min)
                 {
                     indice = i;
-                    min = COORDONNEX[i]-x;
+                    min = COORDONNEX[i] - x;
                 }
 
             }
             grille[colonneoccupe(grille, indice), indice] = tourDuJoueur;
-            
+
+            Rectangle jeton = new Rectangle();
+            jeton.Width = 110;
+            jeton.Height = 110;
+            jeton.Fill = jeton1;
+
+            Canvas.SetTop(jeton, COORDONNEY[colonneoccupe(grille, indice)]);
+            Canvas.SetLeft(jeton, COORDONNEX[indice]);
+            plateau.Children.Add(jeton);
+
+            MessageBox.Show("jeton");
+
 
 
         }
-
-       
     }   
 }

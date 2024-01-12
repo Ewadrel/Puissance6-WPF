@@ -8,39 +8,7 @@
     Title="MainWindow"
     Width="1300"
     Height="1150"
+    MouseLeftButtonDown="Window_MouseLeftButtonDown"
     mc:Ignorable="d">
-    <Grid>
-        <Rectangle
-            x:Name="jetonj1"
-            Width="61"
-            Height="65"
-            Margin="100,57,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Fill="Red"
-            RenderTransformOrigin="0.493,0.511"
-            Stroke="Black" />
-        <Rectangle
-            x:Name="jetonj2"
-            Width="61"
-            Height="65"
-            Margin="100,57,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Fill="Blue"
-            RenderTransformOrigin="0.493,0.511"
-            Stroke="Black" />
-
-        <Rectangle
-            x:Name="plateau"
-            Canvas.Left="37"
-            Canvas.Top="33"
-            Width="1200"
-            Height="1062"
-            Fill="#FFC3BFBF"
-            MouseLeftButtonDown="plateau_MouseLeftButtonDown"
-            Stroke="Black" />
-
-
-    </Grid>
+    <Canvas x:Name="plateau" />
 </Window>
