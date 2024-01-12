@@ -36,6 +36,10 @@ namespace S1._01
         public MainWindow()
         {
             InitializeComponent();
+            Jouer jouer = new Jouer();
+            jouer.ShowDialog();
+            Window1 choixCouleur = new Window1();
+            choixCouleur.ShowDialog();
             fond.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/puissance4x9x8.png"));
             jeton1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/violet.png"));
             jeton2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/vert.png"));

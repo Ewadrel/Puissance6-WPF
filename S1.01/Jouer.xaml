@@ -9,5 +9,19 @@
     Width="1300"
     Height="1150"
     mc:Ignorable="d">
-    <Grid />
+    <Grid >
+        <Canvas x:Name="fond" Opacity="0.7">
+            <Canvas.Background>
+                <ImageBrush ImageSource="/fond.jpeg"/>
+            </Canvas.Background>
+            <Button Canvas.Left="266" Canvas.Top="640" Height="232" Width="768" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Button.Background>
+                    <ImageBrush ImageSource="/rose.png"/>
+                </Button.Background>
+            </Button>
+        </Canvas>
+
+        <Image Margin="328,109,328,775" Source="/img/puissance6.png" Stretch="Fill"/>
+
+    </Grid>
 </Window>
