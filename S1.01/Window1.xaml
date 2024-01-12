@@ -29,6 +29,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Background="#FFEF9595"
+            BorderBrush="Black"
             Content="" />
         <Button
             Width="60"
