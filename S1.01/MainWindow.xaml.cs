@@ -22,8 +22,8 @@ namespace S1._01
     {
         private int tourDuJoueur = 1;
         Point position = new Point(0, 0);
-        private readonly double[] COORDONNEX = { 65, 190, 400, 500, 600, 700, 800, 900, 1000 };
-        private readonly double[] COORDONNEY = { 65, 190, 400, 500, 600,700, 800, 910 } ;
+        private readonly double[] COORDONNEX = { 133, 266,399 , 533,665, 798, 931, 1064 ,1197};
+        private readonly double[] COORDONNEY = { 11,132.75, 265.5, 398.25,531,663.75,796.5, 929.25 } ;
         private int[,] grille = new int[8,9];
         
         //private string CHOIXJETON = ChoixDuJeton(1);
@@ -47,7 +47,8 @@ namespace S1._01
             jeton2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/vert.png"));
 
             
-            plateau.Background = fond;
+            plateau.Fill = fond;
+            Canvas.SetZIndex(plateau, 1);
            
             
         }
@@ -176,29 +177,36 @@ namespace S1._01
         {
             position = e.GetPosition(plateau);
             double x = position.X;
-            double min = x;
             int indice = 0;
             for (int i = 0; i < COORDONNEX.Length; i++)
             {
-                if (COORDONNEX[i] - x < min)
+                if ( COORDONNEX[i]  < x)
                 {
                     indice = i;
-                    min = COORDONNEX[i] - x;
+                    
                 }
 
             }
             grille[colonneoccupe(grille, indice), indice] = tourDuJoueur;
 
             Rectangle jeton = new Rectangle();
-            jeton.Width = 110;
-            jeton.Height = 110;
+            jeton.Width = 120;
+            jeton.Height = 120;
             jeton.Fill = jeton1;
+            Canvas.SetZIndex(jeton, 0);
+            if (colonneoccupe(grille,indice) > grille.GetLength(0))
+            { 
+                MessageBox.Show("coup impossible"); 
+            }
+            else
+            {
+                Canvas.SetTop(jeton, COORDONNEY[colonneoccupe(grille, indice)]);
+                Canvas.SetLeft(jeton, COORDONNEX[indice]-50);
+                main.Children.Add(jeton);
+            }
+            
 
-            Canvas.SetTop(jeton, COORDONNEY[colonneoccupe(grille, indice)]);
-            Canvas.SetLeft(jeton, COORDONNEX[indice]);
-            plateau.Children.Add(jeton);
-
-            MessageBox.Show("jeton");
+            //MessageBox.Show("jeton");
 
 
 

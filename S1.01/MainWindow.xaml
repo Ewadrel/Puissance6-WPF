@@ -10,5 +10,7 @@
     Height="1150"
     MouseLeftButtonDown="Window_MouseLeftButtonDown"
     mc:Ignorable="d">
-    <Canvas x:Name="plateau" />
+    <Canvas x:Name="main" >
+        <Rectangle  x:Name="plateau" Height="1124" Canvas.Left="10" Stroke="Black" Canvas.Top="10" Width="1280"/>
+    </Canvas>
 </Window>
