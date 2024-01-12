@@ -6,45 +6,45 @@
     xmlns:local="clr-namespace:S1._01"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="choix"
-    Width="400"
-    Height="250"
+    Width="1300"
+    Height="1150"
     mc:Ignorable="d">
     <Grid>
-
-        <Button
-            Width="60"
-            Height="80"
-            Margin="43,84,0,0"
+        <Canvas Margin="0,10,0,-10">
+            <Button
+            Width="198"
+            Height="268"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#FF947BC3"
             BorderBrush="Black"
             Content=""
             Foreground="#FF947BC3"
-            OpacityMask="#FF947BC3" />
-        <Button
-            Width="60"
-            Height="80"
-            Margin="0,84,0,0"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
+            OpacityMask="#FF947BC3" Canvas.Left="551" Canvas.Top="376" />
+            <Button
+            Width="198"
+            Height="268"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
             Background="#FFEF9595"
             BorderBrush="Black"
-            Content="" />
-        <Button
-            Width="60"
-            Height="80"
-            Margin="291,84,0,0"
+            Content="" Canvas.Left="933" Canvas.Top="376" />
+            <Button
+            Width="198"
+            Height="268"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#FF7DC88C"
             BorderBrush="Black"
-            Content="" />
-        <Label
-            Margin="0,26,0,0"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            Content="choisissez votre couleur" />
-
+            Content="" Canvas.Left="161" Canvas.Top="374" RenderTransformOrigin="-1.733,0.626" />
+            <TextBlock Canvas.Left="321" TextWrapping="Wrap" Text="Choisissez votre couleur" Canvas.Top="66" Height="232" Width="658" Background="Black" Foreground="White" FontSize="75" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center"/>
+            <Label x:Name="Choixcouleur"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Content="" Canvas.Left="320" Canvas.Top="66" Height="232" Width="659" BorderBrush="White" BorderThickness="5"/>
+            <Canvas.Background>
+                <ImageBrush ImageSource="/fond.jpeg" />
+            </Canvas.Background>
+        </Canvas>
     </Grid>
 </Window>

@@ -19,9 +19,12 @@ namespace S1._01
     /// </summary>
     public partial class Jouer : Window
     {
+        private ImageBrush titre = new ImageBrush();
         public Jouer()
         {
             InitializeComponent();
+            titre.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/puissance6.png"));
+            titre1.Fill = titre;
         }
 
         private void Canvas_SourceUpdated(object sender, DataTransferEventArgs e)

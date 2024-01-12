@@ -15,12 +15,11 @@ using System.Windows.Shapes;
 namespace S1._01
 {
     /// <summary>
-    /// Logique d'interaction pour Window1.xaml
+    /// Logique d'interaction pour nbrjoueur.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class nbrjoueur : Window
     {
-        
-        public Window1()
+        public nbrjoueur()
         {
             InitializeComponent();
         }

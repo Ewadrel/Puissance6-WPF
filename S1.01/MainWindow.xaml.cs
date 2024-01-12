@@ -38,6 +38,8 @@ namespace S1._01
             InitializeComponent();
             Jouer jouer = new Jouer();
             jouer.ShowDialog();
+            nbrjoueur nbrjoueur = new nbrjoueur();
+            nbrjoueur.ShowDialog();
             Window1 choixCouleur = new Window1();
             choixCouleur.ShowDialog();
             fond.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/puissance4x9x8.png"));

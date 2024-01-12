@@ -11,14 +11,10 @@
     mc:Ignorable="d">
     <Grid>
         <Canvas x:Name="fond">
-            <Image
-                Margin="328,109,328,775"
-                Source="/img/puissance6.png"
-                Stretch="Fill" />
             <Button
                 x:Name="boutonjouer"
                 Canvas.Left="321"
-                Canvas.Top="604"
+                Canvas.Top="660"
                 Width="658"
                 Height="171"
                 HorizontalAlignment="Center"
@@ -26,7 +22,8 @@
                 Background="Black"
                 BorderBrush="White"
                 BorderThickness="5"
-                Content="" />
+                Content="JOUER" FontWeight="Bold" FontSize="75" Foreground="White" />
+            <Rectangle x:Name="titre1" Height="250" Canvas.Left="328" Canvas.Top="158" Width="644" HorizontalAlignment="Center" VerticalAlignment="Top"/>
             <Canvas.Background>
                 <ImageBrush ImageSource="/fond.jpeg" />
             </Canvas.Background>
