@@ -20,32 +20,40 @@ namespace S1._01
     /// </summary>
     public partial class MainWindow : Window
     {
+        private int compteur=0;
         private int tourDuJoueur = 1;
         Point position = new Point(0, 0);
-        private readonly double[] COORDONNEX = { 133, 266,399 , 533,665, 798, 931, 1064 ,1197};
+        private readonly double[] COORDONNEX = { 0,153, 286,419 , 553,686, 819, 952, 1085, 1218};
         private readonly double[] COORDONNEY = { 11,132.75, 265.5, 398.25,531,663.75,796.5, 929.25 } ;
         private int[,] grille = new int[8,9];
-        
+        private bool testeligne=false;
+        private bool testecolonne = false;
+        private bool testedigonale = false;
+
+
         //private string CHOIXJETON = ChoixDuJeton(1);
         private ImageBrush jeton1 = new ImageBrush();
         private ImageBrush jeton2 = new ImageBrush();
         private ImageBrush fond = new ImageBrush();
         private bool TourJoueur1 = true;
         private int VALBONUS = 3;
+        
         //variable pour le tour du joueur
         public MainWindow()
         {
             InitializeComponent();
+            /*
             Jouer jouer = new Jouer();
             jouer.ShowDialog();
             nbrjoueur nbrjoueur = new nbrjoueur();
             nbrjoueur.ShowDialog();
             Window1 choixCouleur = new Window1();
             choixCouleur.ShowDialog();
+            */
             fond.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/puissance4x9x8.png"));
             jeton1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/violet.png"));
             jeton2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/vert.png"));
-
+            
             
             plateau.Fill = fond;
             Canvas.SetZIndex(plateau, 1);
@@ -111,25 +119,31 @@ namespace S1._01
             
             return bonus;
         }
-        public bool LIGNE(int[,] tab)
+        public bool Colonne(int[,] tab)
         {
             int g = 0;
-            int[] compteur = { 0, 0, 0,0,0 };
+            int[] compteur = { 0, 0, 0, 0,0,0 };
 
 
-            for (int i = 0; i < tab.GetLength(0); i++)
+            for (int i = 0; i < tab.GetLength(0) - 5; i++)
             {
 
-                for (int j = 0; j < tab.GetLength(1) - 3; j++)
+                for (int j = 0; j < tab.GetLength(1); j++)
                 {
                     if (tab[i, j] != 0)
                     {
                         for (int h = 0; h < 6; h++)
                         {
-                            if (tab[i, j] == tab[i+h, j ])
+                            if (tab[i, j] == tab[i + h, j])
                             {
-                                compteur[j] += 1;
+                                compteur[i] += 1;
+                                for (int k = 0; k < compteur.Length; k++)
+                                {
+                                    if (compteur[k] == 6)
 
+                                        g += 1;
+
+                                }
                             }
 
 
@@ -142,13 +156,52 @@ namespace S1._01
 
 
             }
-            for (int i = 0; i < compteur.Length; i++)
+            if (g >= 1)
             {
-                if (compteur[i] == 4)
+                return true;
+            }
+            return false;
 
-                    g += 1;
+        }
+            public bool LIGNE(int[,] tab)
+        {
+            int g = 0;
+            int[] compteur = { 0, 0, 0, 0,0,0 };
+
+
+            for (int i = 0; i < tab.GetLength(0); i++)
+            {
+
+                for (int j = 0; j < tab.GetLength(1) - 5; j++)
+                {
+                    if (tab[i, j] != 0)
+                    {
+                        for (int h = 0; h < 6; h++)
+                        {
+                            if (tab[i, j] == tab[i, j + h])
+                            {
+                                compteur[j] += 1;
+                                for (int k = 0; k < compteur.Length; k++)
+                                {
+                                    if (compteur[k] == 6)
+
+                                        g += 1;
+
+                                }
+                            }
+
+
+                        }
+
+                    }
+                }
+
+
+
 
             }
+
+            
             if (g >= 1)
             {
                 return true;
@@ -175,6 +228,16 @@ namespace S1._01
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            if (compteur%2==0)
+            {
+                tourDuJoueur = 1;
+                
+            }
+            else
+            {
+                tourDuJoueur = 2;
+            }
+            
             position = e.GetPosition(plateau);
             double x = position.X;
             int indice = 0;
@@ -190,21 +253,37 @@ namespace S1._01
             grille[colonneoccupe(grille, indice), indice] = tourDuJoueur;
 
             Rectangle jeton = new Rectangle();
-            jeton.Width = 120;
-            jeton.Height = 120;
-            jeton.Fill = jeton1;
+            jeton.Width = 130;
+            jeton.Height = 130;
+            if (compteur % 2 == 0)
+            {
+                jeton.Fill = jeton1;
+
+            }
+            else
+            {
+                jeton.Fill = jeton2;
+            }
+            
             Canvas.SetZIndex(jeton, 0);
-            if (colonneoccupe(grille,indice) > grille.GetLength(0))
+            if (grille[0,indice]!=0)
             { 
                 MessageBox.Show("coup impossible"); 
             }
             else
             {
-                Canvas.SetTop(jeton, COORDONNEY[colonneoccupe(grille, indice)]);
-                Canvas.SetLeft(jeton, COORDONNEX[indice]-50);
+                Canvas.SetTop(jeton, COORDONNEY[colonneoccupe(grille, indice)]+50);
+                Canvas.SetLeft(jeton, COORDONNEX[indice]);
                 main.Children.Add(jeton);
+                compteur += 1;
             }
-            
+            if (LIGNE(grille)==true || testecolonne==true || testedigonale == true )
+            {
+                MessageBox.Show("coup gagnant");
+            }
+
+
+
 
             //MessageBox.Show("jeton");
 
