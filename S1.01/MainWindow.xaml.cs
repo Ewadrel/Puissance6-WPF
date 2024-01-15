@@ -243,7 +243,14 @@ namespace S1._01
                 MessageBox.Show("coup gagnant");
             }
 
-
+            /*for (int i=0;i<grille.GetLength(0);i++) 
+            {
+                for(int j=0; j < grille.GetLength(1); j++)
+                {
+                    Console.Write(grille[i, j]);
+                }
+                Console.WriteLine();
+            }*/
 
 
             //MessageBox.Show("jeton");
