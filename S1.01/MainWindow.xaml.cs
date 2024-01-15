@@ -135,22 +135,22 @@ namespace S1._01
                         for (int h = 0; h < 6; h++)
                         {
                             if (tab[i, j] == tab[i + h, j])
-                            {
+                {
                                 compteur[i] += 1;
                                 for (int k = 0; k < compteur.Length; k++)
-                                {
+                    {
                                     if (compteur[k] == 6)
 
                                         g += 1;
 
                                 }
-                            }
+                                }
 
 
                         }
 
                     }
-                }
+                    }
 
 
 
@@ -193,22 +193,22 @@ namespace S1._01
 
                         }
 
-                    }
                 }
+                                }
 
 
 
 
-            }
+                        }
 
             
             if (g >= 1)
             {
                 return true;
-            }
+                }
             return false;
-           
-        }
+
+            }
         public int colonneoccupe(int[,] tab,int indicej)
         {
             int indice = 0;
@@ -251,7 +251,7 @@ namespace S1._01
 
             }
             grille[colonneoccupe(grille, indice), indice] = tourDuJoueur;
-
+               
             Rectangle jeton = new Rectangle();
             jeton.Width = 130;
             jeton.Height = 130;
@@ -264,7 +264,7 @@ namespace S1._01
             {
                 jeton.Fill = jeton2;
             }
-            
+
             Canvas.SetZIndex(jeton, 0);
             if (grille[0,indice]!=0)
             { 
