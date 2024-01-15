@@ -23,7 +23,7 @@ namespace S1._01
         private int compteur=0;
         private int tourDuJoueur = 1;
         Point position = new Point(0, 0);
-        private readonly double[] COORDONNEX = { 0,153, 286,419 , 553,686, 819, 952, 1085, 1218};
+        private readonly double[] COORDONNEX = { 0,153, 286,419 , 553,686, 819, 952, 1085, 1218 };
         private readonly double[] COORDONNEY = { 11,132.75, 265.5, 398.25,531,663.75,796.5, 929.25 } ;
         private int[,] grille = new int[8,9];
         private bool testeligne=false;
@@ -60,7 +60,6 @@ namespace S1._01
            
             
         }
-        
         private void InitialisationGrille()
         //initialisation grille 
         {
@@ -99,6 +98,7 @@ namespace S1._01
 
         }
         */
+
         public int[] PointBonus( int[,] tab)
         {
             int[] bonus = { 0, 0 };
@@ -119,96 +119,67 @@ namespace S1._01
             
             return bonus;
         }
-        public bool Colonne(int[,] tab)
+        public bool Colonne(int[,] tab, int[]point)
         {
-            int g = 0;
-            int[] compteur = { 0, 0, 0, 0,0,0 };
-
-
-            for (int i = 0; i < tab.GetLength(0) - 5; i++)
-            {
-
-                for (int j = 0; j < tab.GetLength(1); j++)
-                {
-                    if (tab[i, j] != 0)
-                    {
-                        for (int h = 0; h < 6; h++)
-                        {
-                            if (tab[i, j] == tab[i + h, j])
-                {
-                                compteur[i] += 1;
-                                for (int k = 0; k < compteur.Length; k++)
-                    {
-                                    if (compteur[k] == 6)
-
-                                        g += 1;
-
-                                }
-                                }
-
-
-                        }
-
-                    }
-                    }
-
-
-
-
-            }
-            if (g >= 1)
-            {
-                return true;
-            }
-            return false;
-
-        }
-            public bool LIGNE(int[,] tab)
-        {
-            int g = 0;
-            int[] compteur = { 0, 0, 0, 0,0,0 };
-
-
+            int compte1 = 0;
+            int compte2 = 0;
             for (int i = 0; i < tab.GetLength(0); i++)
             {
 
-                for (int j = 0; j < tab.GetLength(1) - 5; j++)
+                if (tab[i, point[1]] == 1)
                 {
-                    if (tab[i, j] != 0)
-                    {
-                        for (int h = 0; h < 6; h++)
-                        {
-                            if (tab[i, j] == tab[i, j + h])
-                            {
-                                compteur[j] += 1;
-                                for (int k = 0; k < compteur.Length; k++)
-                                {
-                                    if (compteur[k] == 6)
-
-                                        g += 1;
-
-                                }
-                            }
-
-
-                        }
-
+                    compte1++;
                 }
-                                }
-
-
-
-
-                        }
-
-            
-            if (g >= 1)
-            {
-                return true;
+                if (tab[i, point[0]] == 2)
+                {
+                    compte2++;
                 }
-            return false;
+                Console.WriteLine(tab[i, point[0]]);
 
             }
+
+            if (compte1 == 6 || compte2 == 6)
+            {
+                return true;;
+            }
+             return false;
+            
+            
+            
+            
+
+        }
+            public bool LIGNE(int[,] tab, int[]point)
+        {
+            
+
+            int compte1 = 0;
+            int compte2 = 0;
+            for (int i = 0; i < tab.GetLength(1); i++)
+            {
+
+                if (tab[point[0], i] == 1)
+                {
+                    compte1++;
+                }
+                if (tab[point[0], i] == 2)
+                {
+                    compte2++;
+                }
+                Console.WriteLine(tab[point[0], i]);
+
+            }
+
+            if (compte1 == 6 || compte2 == 6)
+            {
+                return true;
+            }
+            return false;
+            
+
+            
+           
+        }
         public int colonneoccupe(int[,] tab,int indicej)
         {
             int indice = 0;
@@ -228,15 +199,7 @@ namespace S1._01
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (compteur%2==0)
-            {
-                tourDuJoueur = 1;
-                
-            }
-            else
-            {
-                tourDuJoueur = 2;
-            }
+            
             
             position = e.GetPosition(plateau);
             double x = position.X;
@@ -250,42 +213,47 @@ namespace S1._01
                 }
 
             }
-            grille[colonneoccupe(grille, indice), indice] = tourDuJoueur;
-               
-            Rectangle jeton = new Rectangle();
-            jeton.Width = 130;
-            jeton.Height = 130;
-            if (compteur % 2 == 0)
-            {
-                jeton.Fill = jeton1;
-
-            }
-            else
-            {
-                jeton.Fill = jeton2;
-            }
-
-            Canvas.SetZIndex(jeton, 0);
+            
             if (grille[0,indice]!=0)
             { 
                 MessageBox.Show("coup impossible"); 
             }
             else
             {
-                Canvas.SetTop(jeton, COORDONNEY[colonneoccupe(grille, indice)]+50);
+               
+                Rectangle jeton = new Rectangle();
+                jeton.Width = 130;
+                jeton.Height = 130;
+                if (compteur % 2 == 0)
+                {
+                    jeton.Fill = jeton1;
+                    tourDuJoueur = 1;
+                }
+                else
+                {
+                    jeton.Fill = jeton2;
+                    tourDuJoueur = 2;
+                }
+                Canvas.SetZIndex(jeton, 0);
+
+                grille[colonneoccupe(grille, indice), indice] = tourDuJoueur;
+
+                Canvas.SetTop(jeton, COORDONNEY[colonneoccupe(grille, indice)]);
                 Canvas.SetLeft(jeton, COORDONNEX[indice]);
                 main.Children.Add(jeton);
                 compteur += 1;
+                
             }
-            if (LIGNE(grille)==true || testecolonne==true || testedigonale == true )
+            int[]point = new int[] { colonneoccupe(grille, indice), indice};
+            if (LIGNE(grille,point) ==true|| Colonne(grille, point) == true)
             {
                 MessageBox.Show("coup gagnant");
             }
 
+           
 
 
-
-            //MessageBox.Show("jeton");
+            
 
 
 
