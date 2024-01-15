@@ -37,7 +37,7 @@
             VerticalAlignment="Top"
             Background="#FF7DC88C"
             BorderBrush="Black"
-            Content="" Canvas.Left="161" Canvas.Top="374" RenderTransformOrigin="-1.733,0.626" />
+            Content="" Canvas.Left="161" Canvas.Top="374" RenderTransformOrigin="-1.733,0.626" Click="Button_Click" />
             <TextBlock Canvas.Left="321" TextWrapping="Wrap" Text="Choisissez votre couleur" Canvas.Top="66" Height="232" Width="658" Background="Black" Foreground="White" FontSize="75" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center"/>
             <Label x:Name="Choixcouleur"
             HorizontalAlignment="Left"

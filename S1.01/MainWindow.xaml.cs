@@ -24,7 +24,7 @@ namespace S1._01
         private int tourDuJoueur = 1;
         Point position = new Point(0, 0);
         private readonly double[] COORDONNEX = {10, 134, 258, 382, 506, 630, 754, 878, 1002};
-        private readonly double[] COORDONNEY = {3, 124, 245, 366, 487, 608, 729, 850};
+        private readonly double[] COORDONNEY = { 124, 245, 366, 487, 608, 729, 850,971};
         private int[,] grille = new int[8,9];
         private bool testeligne=false;
         private bool testecolonne = false;
@@ -42,10 +42,10 @@ namespace S1._01
         public MainWindow()
         {
             InitializeComponent();
-            /*
+            
             Jouer jouer = new Jouer();
             jouer.ShowDialog();
-            nbrjoueur nbrjoueur = new nbrjoueur();
+            /*nbrjoueur nbrjoueur = new nbrjoueur();
             nbrjoueur.ShowDialog();
             Window1 choixCouleur = new Window1();
             choixCouleur.ShowDialog();
@@ -185,8 +185,8 @@ namespace S1._01
             {
                
                 Rectangle jeton = new Rectangle();
-                jeton.Width = 130;
-                jeton.Height = 130;
+                jeton.Width = 110;
+                jeton.Height = 110;
                 if (compteur % 2 == 0)
                 {
                     jeton.Fill = jeton1;
@@ -211,6 +211,14 @@ namespace S1._01
             if (LIGNE(grille,point) ==true|| Colonne(grille, point) == true)
             {
                 MessageBox.Show("coup gagnant");
+            }
+            for (int i=0; i < grille.GetLength(0); i++) 
+            {
+                for( int j=0; j < grille.GetLength(1);    j++)
+                {
+                    Console.WriteLine(grille[i, j]);
+                }
+                Console.WriteLine();
             }
 
            
