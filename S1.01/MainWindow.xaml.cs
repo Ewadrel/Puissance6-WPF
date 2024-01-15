@@ -23,12 +23,12 @@ namespace S1._01
         private int compteur=0;
         private int tourDuJoueur = 1;
         Point position = new Point(0, 0);
-        private readonly double[] COORDONNEX = { 0,153, 286,419 , 553,686, 819, 952, 1085, 1218};
-        private readonly double[] COORDONNEY = { 11,132.75, 265.5, 398.25,531,663.75,796.5, 929.25 } ;
+        private readonly double[] COORDONNEX = {10, 134, 258, 382, 506, 630, 754, 878, 1002};
+        private readonly double[] COORDONNEY = {3, 124, 245, 366, 487, 608, 729, 850};
         private int[,] grille = new int[8,9];
         private bool testeligne=false;
         private bool testecolonne = false;
-        private bool testedigonale = false;
+        private bool testediagonale = false;
 
 
         //private string CHOIXJETON = ChoixDuJeton(1);
@@ -42,8 +42,8 @@ namespace S1._01
         public MainWindow()
         {
             InitializeComponent();
-            /*
-            Jouer jouer = new Jouer();
+            
+           /* Jouer jouer = new Jouer();
             jouer.ShowDialog();
             nbrjoueur nbrjoueur = new nbrjoueur();
             nbrjoueur.ShowDialog();
@@ -57,48 +57,9 @@ namespace S1._01
             
             plateau.Fill = fond;
             Canvas.SetZIndex(plateau, 1);
-           
-            
         }
         
-        private void InitialisationGrille()
-        //initialisation grille 
-        {
-            for (int i = 0; i < 8; i++)
-            {
-                for (int j = 0; j < 9; j++)
-                {
-                    var bouton = new Button
-                    {
-                        Content = "",
-                        Tag = j,
-                        //stockage
-                    };
-                    bouton.Click += Colonne_Click;
-                    //grille.Children.Add(bouton);
-                    // lorsqu'une colonne est cliquée
-                }
-            }
-        }
-        private void Colonne_Click(object sender, RoutedEventArgs e)
-        {
-            var button = (Button)sender;
-            int column = (int)button.Tag; // Récupérer la colonne à partir du Tag du bouton
-        }
-        /*public string ChoixDuJeton(int choix)
-        {
-            //modifier le type et les valeur if de choix en fonction de ce que renverra la fenêtre de question
-            string choixj = " ";
-            if (choix = 0)
-            {
-                choixj = "img/rose.png";
-            }
-            
-            
-            return choixj;
-
-        }
-        */
+        
         public int[] PointBonus( int[,] tab)
         {
             int[] bonus = { 0, 0 };
@@ -253,8 +214,8 @@ namespace S1._01
             grille[colonneoccupe(grille, indice), indice] = tourDuJoueur;
 
             Rectangle jeton = new Rectangle();
-            jeton.Width = 130;
-            jeton.Height = 130;
+            jeton.Width = 110;
+            jeton.Height = 110;
             if (compteur % 2 == 0)
             {
                 jeton.Fill = jeton1;
@@ -272,12 +233,12 @@ namespace S1._01
             }
             else
             {
-                Canvas.SetTop(jeton, COORDONNEY[colonneoccupe(grille, indice)]+50);
+                Canvas.SetTop(jeton, COORDONNEY[colonneoccupe(grille, indice)]);
                 Canvas.SetLeft(jeton, COORDONNEX[indice]);
                 main.Children.Add(jeton);
                 compteur += 1;
             }
-            if (LIGNE(grille)==true || testecolonne==true || testedigonale == true )
+            if (LIGNE(grille)==true || testecolonne==true || testediagonale == true )
             {
                 MessageBox.Show("coup gagnant");
             }
