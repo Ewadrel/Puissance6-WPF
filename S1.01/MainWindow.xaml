@@ -22,7 +22,7 @@
             VerticalAlignment="Top"
             Opacity="0.5" />
         <Canvas.Background>
-            <ImageBrush ImageSource="img/fm.jpeg" />
+            <ImageBrush ImageSource="fm.jpeg" />
         </Canvas.Background>
     </Canvas>
 </Window>
