@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:S1._01"
         mc:Ignorable="d"
-        Title="nbrjoueur" Height="1150" Width="1300">
+        Title="nbrjoueur" Height="1150" Width="1300"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Canvas>
             <Button x:Name="_1joueur" Content="1 Joueur" HorizontalAlignment="Left" Margin="198,506,0,0" VerticalAlignment="Top" Height="300" Width="350" Background="White" FontSize="50" FontWeight="Bold" BorderBrush="Black" BorderThickness="5"/>

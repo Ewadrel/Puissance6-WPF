@@ -6,11 +6,17 @@
     xmlns:local="clr-namespace:S1._01"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="MainWindow"
-    Width="1300"
-    Height="1150"
+    Width="1142"
+    Height="1000"
     MouseLeftButtonDown="Window_MouseLeftButtonDown"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
-    <Canvas x:Name="main" >
-        <Rectangle  x:Name="plateau" Height="1124" Canvas.Left="10" Stroke="Black" Canvas.Top="10" Width="1280"/>
+    <Canvas x:Name="main">
+        <Rectangle
+            x:Name="plateau"
+            Canvas.Top="-20"
+            Width="1142"
+            Height="1000" HorizontalAlignment="Center" Canvas.Left="-8" VerticalAlignment="Top"
+          />
     </Canvas>
 </Window>

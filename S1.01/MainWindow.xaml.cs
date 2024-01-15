@@ -23,8 +23,8 @@ namespace S1._01
         private int compteur=0;
         private int tourDuJoueur = 1;
         Point position = new Point(0, 0);
-        private readonly double[] COORDONNEX = { 0,153, 286,419 , 553,686, 819, 952, 1085, 1218 };
-        private readonly double[] COORDONNEY = { 11,132.75, 265.5, 398.25,531,663.75,796.5, 929.25 } ;
+        private readonly double[] COORDONNEX = {10, 134, 258, 382, 506, 630, 754, 878, 1002};
+        private readonly double[] COORDONNEY = {3, 124, 245, 366, 487, 608, 729, 850};
         private int[,] grille = new int[8,9];
         private bool testeligne=false;
         private bool testecolonne = false;
@@ -60,45 +60,8 @@ namespace S1._01
            
             
         }
-        private void InitialisationGrille()
-        //initialisation grille 
-        {
-            for (int i = 0; i < 8; i++)
-            {
-                for (int j = 0; j < 9; j++)
-                {
-                    var bouton = new Button
-                    {
-                        Content = "",
-                        Tag = j,
-                        //stockage
-                    };
-                    bouton.Click += Colonne_Click;
-                    //grille.Children.Add(bouton);
-                    // lorsqu'une colonne est cliquée
-                }
-            }
-        }
-        private void Colonne_Click(object sender, RoutedEventArgs e)
-        {
-            var button = (Button)sender;
-            int column = (int)button.Tag; // Récupérer la colonne à partir du Tag du bouton
-        }
-        /*public string ChoixDuJeton(int choix)
-        {
-            //modifier le type et les valeur if de choix en fonction de ce que renverra la fenêtre de question
-            string choixj = " ";
-            if (choix = 0)
-            {
-                choixj = "img/rose.png";
-            }
-            
-            
-            return choixj;
-
-        }
-        */
-
+        
+        
         public int[] PointBonus( int[,] tab)
         {
             int[] bonus = { 0, 0 };

@@ -31,5 +31,10 @@ namespace S1._01
         {
 
         }
+        private void boutonjouer_Click() 
+        { 
+            nbrjoueur sw = new nbrjoueur();
+            sw.Show();
+        }
     }
 }
