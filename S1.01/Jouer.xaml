@@ -6,25 +6,25 @@
     xmlns:local="clr-namespace:S1._01"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Jouer"
-    Width="1300"
-    Height="1150"
+    Width="1142"
+    Height="1000"
     mc:Ignorable="d"
     WindowStartupLocation="CenterScreen">
     <Grid>
         <Canvas x:Name="fond">
             <Button
                 x:Name="boutonjouer"
-                Canvas.Left="321"
+                Canvas.Left="242"
                 Canvas.Top="660"
                 Width="658"
                 Height="171"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
                 Background="Black"
                 BorderBrush="White"
                 BorderThickness="5"
                 Content="JOUER" FontWeight="Bold" FontSize="75" Foreground="White" />
-            <Rectangle x:Name="titre1" Height="250" Canvas.Left="328" Canvas.Top="158" Width="644" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <Rectangle x:Name="titre1" Height="250" Canvas.Left="249" Canvas.Top="161" Width="644" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <Canvas.Background>
                 <ImageBrush ImageSource="/fond.jpeg" />
             </Canvas.Background>

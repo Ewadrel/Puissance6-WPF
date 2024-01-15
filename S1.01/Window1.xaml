@@ -6,8 +6,8 @@
     xmlns:local="clr-namespace:S1._01"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="choix"
-    Width="1300"
-    Height="1150"
+    Width="1142"
+    Height="1000"
     mc:Ignorable="d"
     WindowStartupLocation="CenterScreen">
     <Grid>
@@ -21,7 +21,7 @@
             BorderBrush="Black"
             Content=""
             Foreground="#FF947BC3"
-            OpacityMask="#FF947BC3" Canvas.Left="551" Canvas.Top="376" />
+            OpacityMask="#FF947BC3" Canvas.Left="472" Canvas.Top="492" />
             <Button
             Width="198"
             Height="268"
@@ -29,7 +29,7 @@
             VerticalAlignment="Center"
             Background="#FFEF9595"
             BorderBrush="Black"
-            Content="" Canvas.Left="933" Canvas.Top="376" />
+            Content="" Canvas.Left="827" Canvas.Top="492" />
             <Button
             Width="198"
             Height="268"
@@ -37,12 +37,12 @@
             VerticalAlignment="Top"
             Background="#FF7DC88C"
             BorderBrush="Black"
-            Content="" Canvas.Left="161" Canvas.Top="374" RenderTransformOrigin="-1.733,0.626" />
-            <TextBlock Canvas.Left="321" TextWrapping="Wrap" Text="Choisissez votre couleur" Canvas.Top="66" Height="232" Width="658" Background="Black" Foreground="White" FontSize="75" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center"/>
+            Content="" Canvas.Left="117" Canvas.Top="492" RenderTransformOrigin="-1.733,0.626" />
+            <TextBlock Canvas.Left="242" TextWrapping="Wrap" Text="Choisissez votre couleur" Canvas.Top="66" Height="232" Width="658" Background="Black" Foreground="White" FontSize="75" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Center"/>
             <Label x:Name="Choixcouleur"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Content="" Canvas.Left="320" Canvas.Top="66" Height="232" Width="659" BorderBrush="White" BorderThickness="5"/>
+            Content="" Canvas.Left="242" Canvas.Top="66" Height="232" Width="659" BorderBrush="White" BorderThickness="5"/>
             <Canvas.Background>
                 <ImageBrush ImageSource="/fond.jpeg" />
             </Canvas.Background>

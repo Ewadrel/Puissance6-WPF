@@ -24,7 +24,7 @@ namespace S1._01
         private int tourDuJoueur = 1;
         Point position = new Point(0, 0);
         private readonly double[] COORDONNEX = {10, 134, 258, 382, 506, 630, 754, 878, 1002};
-        private readonly double[] COORDONNEY = {3, 124, 245, 366, 487, 608, 729, 850};
+        private readonly double[] COORDONNEY = { 124, 245, 366, 487, 608, 729, 850};
         private int[,] grille = new int[8,9];
         private bool testeligne=false;
         private bool testecolonne = false;
@@ -35,6 +35,7 @@ namespace S1._01
         private ImageBrush jeton1 = new ImageBrush();
         private ImageBrush jeton2 = new ImageBrush();
         private ImageBrush fond = new ImageBrush();
+        private ImageBrush fm = new ImageBrush();
         private bool TourJoueur1 = true;
         private int VALBONUS = 3;
         
@@ -53,8 +54,8 @@ namespace S1._01
             fond.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/puissance4x9x8.png"));
             jeton1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/violet.png"));
             jeton2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/vert.png"));
-            
-            
+            fm.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/fm.jpeg"));
+
             plateau.Fill = fond;
             Canvas.SetZIndex(plateau, 1);
            
@@ -185,8 +186,8 @@ namespace S1._01
             {
                
                 Rectangle jeton = new Rectangle();
-                jeton.Width = 130;
-                jeton.Height = 130;
+                jeton.Width = 110;
+                jeton.Height = 110;
                 if (compteur % 2 == 0)
                 {
                     jeton.Fill = jeton1;

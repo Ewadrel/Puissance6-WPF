@@ -14,9 +14,15 @@
     <Canvas x:Name="main">
         <Rectangle
             x:Name="plateau"
+            Canvas.Left="-8"
             Canvas.Top="-20"
             Width="1142"
-            Height="1000" HorizontalAlignment="Center" Canvas.Left="-8" VerticalAlignment="Top"
-          />
+            Height="1000"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Opacity="0.5" />
+        <Canvas.Background>
+            <ImageBrush ImageSource="img/fm.jpeg" />
+        </Canvas.Background>
     </Canvas>
 </Window>
