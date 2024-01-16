@@ -27,7 +27,8 @@ namespace S1._01
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            MainWindow plateau = new MainWindow();
+            plateau.ShowDialog();
         }
     }
 }
