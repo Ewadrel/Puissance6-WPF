@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:S1._01"
         mc:Ignorable="d"
-        Title="nbrjoueur" Height="1150" Width="1300"
+        Title="nbrjoueur" Height="1000" Width="1142"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Canvas>
-            <Button x:Name="_1joueur" Content="1 Joueur" HorizontalAlignment="Left" Margin="198,506,0,0" VerticalAlignment="Top" Height="300" Width="350" Background="White" FontSize="50" FontWeight="Bold" BorderBrush="Black" BorderThickness="5" Click="_1joueur_Click"/>
-            <Button x:Name="_2joueurs" Content="2 Joueurs" HorizontalAlignment="Left" Margin="724,501,0,0" VerticalAlignment="Top" Height="300" Width="350" Background="White" FontSize="50" FontWeight="Bold" BorderBrush="Black" BorderThickness="5" Click="_2joueurs_Click"/>
-            <TextBlock Canvas.Left="321" TextWrapping="Wrap" Text="Choix du nombre de joueurs" Canvas.Top="143" Height="232" Width="658" Background="Black" Foreground="White" FontSize="75" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" TextAlignment="Center"/>
-            <Label Content="" Canvas.Left="321" Canvas.Top="143" Height="232" Width="658" BorderBrush="White" BorderThickness="5"/>
+            <Button x:Name="_1joueur" Content="1 Joueur" HorizontalAlignment="Center" VerticalAlignment="Center" Height="300" Width="350" Background="White" FontSize="50" FontWeight="Bold" BorderBrush="Black" BorderThickness="5" Canvas.Left="150" Canvas.Top="501"/>
+            <Button x:Name="_2joueurs" Content="2 Joueurs" HorizontalAlignment="Left" VerticalAlignment="Center" Height="300" Width="350" Background="White" FontSize="50" FontWeight="Bold" BorderBrush="Black" BorderThickness="5" Canvas.Left="638" Canvas.Top="501"/>
+            <TextBlock Canvas.Left="242" TextWrapping="Wrap" Text="Choix du nombre de joueurs" Canvas.Top="143" Height="232" Width="658" Background="Black" Foreground="White" FontSize="75" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Center"/>
+            <Label Content="" Canvas.Left="242" Canvas.Top="143" Height="232" Width="658" BorderBrush="White" BorderThickness="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             <Canvas.Background>
                 <ImageBrush ImageSource="/fond.jpeg" />
             </Canvas.Background>
