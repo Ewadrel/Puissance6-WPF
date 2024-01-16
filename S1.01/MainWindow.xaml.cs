@@ -84,77 +84,56 @@ namespace S1._01
         public bool Colonne(int[,] tab, int[]point)
         {
             int compte = 0;
-            int i = point[0];
-            while (i < tab.GetLength(0) &&tab[i, point[1]] == tab[point[0], point[1]]) 
+            for (int i = 0; i < tab.GetLength(0) - 5; i++)
             {
-
-                
-                compte++;
-                
-                i++;
-
+                if(tab[i , point[1]]!=0)
+                {
+                    for (int j = 0; j < 6; j++)
+                    {
+                        if (tab[i + j, point[1]] == tab[i, point[1]])
+                        {
+                            compte++;
+                        }
+                        if (compte == 6)
+                        {
+                            return true;
+                        }
+                    }
+                  
+                }
+                compte = 0;
             }
-            i = point[0];
-            while (i >0 && tab[i, point[1]] == tab[point[0], point[1]])
-            {
-
-
-                compte++;
-
-                i--;
-
-            }
-            
-
-            
-
-
-            
-        
-            if (compte == 6 )
-            {
-                return true;;
-            }
-             return false;
-            
-            
-            
-            
+            return false;  
         
         }
         public bool LIGNE(int[,] tab, int[]point)
         {
-            
+
 
             int compte = 0;
-           /*
-            for (int i = point[1]; i < tab.GetLength(1); i++)
+            for (int i = 0; i < tab.GetLength(1) - 5; i++)
             {
-
-                while (tab[point[0], i] == tab[point[0], point[1]])
+                if (tab[point[0],i ] != 0)
                 {
-                    compte++;
+                    for (int j = 0; j < 6; j++)
+                    {
+                        if (tab[point[0],i + j ] == tab[point[0], i])
+                        {
+                            compte++;
+                        }
+                        if (compte == 6)
+                        {
+                            return true;
+                        }
+                    }
+
                 }
-            }
-            for (int i = point[1]; i > 0; i--)
-            {
-
-                 while (tab[point[0], i] == tab[point[0], point[1]])
-                 {
-                        compte++;
-                 }
-
-            }*/
-
-            if (compte ==6 )
-            {
-                return true;
+                compte = 0;
             }
             return false;
-            
-        
-            
-           
+
+
+
         }
         
         public int colonneoccupe(int[,] tab,int indicej)
