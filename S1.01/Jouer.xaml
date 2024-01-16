@@ -23,7 +23,7 @@
                 Background="Black"
                 BorderBrush="White"
                 BorderThickness="5"
-                Content="JOUER" FontWeight="Bold" FontSize="75" Foreground="White" />
+                Content="JOUER" FontWeight="Bold" FontSize="75" Foreground="White" Click="boutonjouer_Click" />
             <Rectangle x:Name="titre1" Height="250" Canvas.Left="249" Canvas.Top="161" Width="644" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <Canvas.Background>
                 <ImageBrush ImageSource="/fond.jpeg" />

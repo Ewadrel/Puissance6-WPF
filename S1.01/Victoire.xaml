@@ -8,9 +8,11 @@
         Title="Victoire" Height="1000" Width="1142">
     <Grid>
         <Canvas>
-        <Canvas.Background>
-            <ImageBrush ImageSource="/fond.jpeg" />
-        </Canvas.Background>
+            <TextBlock x:Name="gagne" Canvas.Left="14" TextWrapping="Wrap" Text="" Canvas.Top="497" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1114" Height="290" FontSize="75" FontWeight="Bold" TextAlignment="Center"/>
+            <TextBlock Canvas.Left="142" TextWrapping="Wrap" Text="VICTOIRE" Canvas.Top="175" HorizontalAlignment="Center" VerticalAlignment="Top" Width="858" Height="210" FontSize="150" FontWeight="Bold" TextAlignment="Center" TextDecorations="Underline"/>
+            <Canvas.Background>
+                <ImageBrush ImageSource="/fond.jpeg" />
+            </Canvas.Background>
         </Canvas>
     </Grid>
 </Window>
