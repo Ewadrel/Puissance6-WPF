@@ -35,7 +35,6 @@ namespace S1._01
         private ImageBrush jeton1 = new ImageBrush();
         private ImageBrush jeton2 = new ImageBrush();
         private ImageBrush fond = new ImageBrush();
-        private ImageBrush fm = new ImageBrush();
         private bool TourJoueur1 = true;
         private int VALBONUS = 3;
         
@@ -54,7 +53,6 @@ namespace S1._01
             fond.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/puissance4x9x8.png"));
             jeton1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/violet.png"));
             jeton2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/vert.png"));
-            fm.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "fm.jpeg"));
 
             plateau.Fill = fond;
             Canvas.SetZIndex(plateau, 1);

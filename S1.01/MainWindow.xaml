@@ -20,9 +20,6 @@
             Height="1000"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            Opacity="0.5" />
-        <Canvas.Background>
-            <ImageBrush ImageSource="fm.jpeg" />
-        </Canvas.Background>
+            />
     </Canvas>
 </Window>
