@@ -23,5 +23,17 @@ namespace S1._01
         {
             InitializeComponent();
         }
+
+        private void _1joueur_Click(object sender, RoutedEventArgs e)
+        {
+            Window1 choixCouleur = new Window1();
+            choixCouleur.ShowDialog();
+        }
+
+        private void _2joueurs_Click(object sender, RoutedEventArgs e)
+        {
+            Window1 choixCouleur = new Window1();
+            choixCouleur.ShowDialog();
+        }
     }
 }
