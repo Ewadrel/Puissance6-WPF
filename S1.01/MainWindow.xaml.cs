@@ -24,8 +24,8 @@ namespace S1._01
         private int tourDuJoueur = 1;
         Point position = new Point(0, 0);
         private readonly double[] COORDONNEX = {10, 134, 258, 382, 506, 630, 754, 878, 1002};
-        private readonly double[] COORDONNEY = { 124, 245, 366, 487, 608, 729, 850 };
-        private int[,] grille = new int[8,9];
+        private readonly double[] COORDONNEY = {3, 124, 245, 366, 487, 608, 729, 850 };
+        private int[,] grille = new int[9,9];
         private bool testeligne=false;
         private bool testecolonne = false;
         private bool testedigonale = false;
@@ -173,7 +173,7 @@ namespace S1._01
 
             }
             //dernière ligne du tableau occupé
-            if (grille[0,indice]!=0)
+            if (grille[1,indice]!=0)
             { 
                 MessageBox.Show("coup impossible"); 
             }
@@ -198,7 +198,7 @@ namespace S1._01
                 //ajoue du pion dans le tableau
                 grille[colonneoccupe(grille, indice), indice] = tourDuJoueur;
                 //ajoue du pion dans le canvas
-                Canvas.SetBottom(jeton, COORDONNEY[colonneoccupe(grille, indice)]);
+                Canvas.SetTop(jeton, COORDONNEY[colonneoccupe(grille, indice)]);
                 Canvas.SetLeft(jeton, COORDONNEX[indice]);
                 main.Children.Add(jeton);
                 compteur += 1;
