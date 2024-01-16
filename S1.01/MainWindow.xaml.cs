@@ -24,7 +24,7 @@ namespace S1._01
         private int tourDuJoueur = 1;
         Point position = new Point(0, 0);
         private readonly double[] COORDONNEX = {10, 134, 258, 382, 506, 630, 754, 878, 1002};
-        private readonly double[] COORDONNEY = { 124, 245, 366, 487, 608, 729, 850,971};
+        private readonly double[] COORDONNEY = { 124, 245, 366, 487, 608, 729, 850 };
         private int[,] grille = new int[8,9];
         private bool testeligne=false;
         private bool testecolonne = false;
@@ -112,7 +112,7 @@ namespace S1._01
         
             if (compte == 6 )
             {
-                return true;;
+                return true;
             }
              return false;
             
@@ -218,8 +218,8 @@ namespace S1._01
                 Canvas.SetZIndex(jeton, 0);
                 //ajoue du pion dans le tableau
                 grille[colonneoccupe(grille, indice), indice] = tourDuJoueur;
-                //ajoue du piont dans le canevas
-                Canvas.SetTop(jeton, COORDONNEY[colonneoccupe(grille, indice)]);
+                //ajoue du pion dans le canvas
+                Canvas.SetBottom(jeton, COORDONNEY[colonneoccupe(grille, indice)]);
                 Canvas.SetLeft(jeton, COORDONNEX[indice]);
                 main.Children.Add(jeton);
                 compteur += 1;
@@ -242,8 +242,8 @@ namespace S1._01
                 Console.WriteLine();
             }
 
-           
-
+            Console.WriteLine(x) ;
+            Console.WriteLine(COORDONNEY[colonneoccupe(grille,indice)]) ;
 
             
 
