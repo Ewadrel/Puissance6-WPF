@@ -42,10 +42,9 @@ namespace S1._01
         public MainWindow()
         {
             InitializeComponent();
-            /*
+            
             Jouer jouer = new Jouer();
             jouer.ShowDialog();
-            */
            
             
             fond.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/puissance4x9x8.png"));
@@ -105,6 +104,7 @@ namespace S1._01
             return false;  
         
         }
+
         public bool LIGNE(int[,] tab, int[]point)
         {
 
