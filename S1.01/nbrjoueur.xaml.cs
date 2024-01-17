@@ -31,7 +31,7 @@ namespace S1._01
 
         private void _2joueurs_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult= false;
+            this.DialogResult = false;
         }
     }
 }

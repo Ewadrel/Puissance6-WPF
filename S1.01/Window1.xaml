@@ -21,7 +21,7 @@
             BorderBrush="Black"
             Content=""
             Foreground="#FF947BC3"
-            OpacityMask="#FF947BC3" Canvas.Left="472" Canvas.Top="492" />
+            OpacityMask="#FF947BC3" Canvas.Left="472" Canvas.Top="492" Click="Button_Click_1" />
             <Button
             Width="198"
             Height="268"
@@ -29,7 +29,7 @@
             VerticalAlignment="Center"
             Background="#FFEF9595"
             BorderBrush="Black"
-            Content="" Canvas.Left="827" Canvas.Top="492" />
+            Content="" Canvas.Left="827" Canvas.Top="492" Click="Button_Click_2" />
             <Button
             Width="198"
             Height="268"
@@ -37,7 +37,7 @@
             VerticalAlignment="Top"
             Background="#FF7DC88C"
             BorderBrush="Black"
-            Content="" Canvas.Left="117" Canvas.Top="492" RenderTransformOrigin="-1.733,0.626" />
+            Content="" Canvas.Left="117" Canvas.Top="492" RenderTransformOrigin="-1.733,0.626" Click="Button_Click" />
             <TextBlock Canvas.Left="242" TextWrapping="Wrap" Text="Choisissez votre couleur" Canvas.Top="66" Height="232" Width="658" Background="Black" Foreground="White" FontSize="75" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Center"/>
             <Label x:Name="Choixcouleur"
             HorizontalAlignment="Left"

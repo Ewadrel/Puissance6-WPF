@@ -38,6 +38,7 @@ namespace S1._01
         private ImageBrush fm = new ImageBrush();
         private bool TourJoueur1 = true, joueur;
         private int VALBONUS = 3;
+        private string A, B, C;
         
         //variable pour le tour du joueur
         public MainWindow()
@@ -53,13 +54,11 @@ namespace S1._01
                 if (joueur == true || joueur == false)
                 {
                     Window1 window1 = new Window1();
-                    window1.ShowDialog();
-
+                    bool couleur = (bool)window1.ShowDialog();
                 }
             }
+                     
             
-
-
             fond.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/puissance4x9x8.png"));
             jeton1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/violet.png"));
             jeton2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/vert.png"));
@@ -221,6 +220,18 @@ namespace S1._01
                 if (LIGNE(grille,point) ==true|| Colonne(grille, point) == true)
                 {
                     Victoire victoire = new Victoire();
+                    bool victory = (bool)victoire.ShowDialog();
+
+                    if (victory == true)
+                    {
+                        Nbrjoueur nbrjoueur1 = new Nbrjoueur();
+                        joueur = (bool)nbrjoueur1.ShowDialog();
+                        if (joueur == true || joueur == false)
+                        {
+                            Window1 window1 = new Window1();
+                            bool couleur = (bool)window1.ShowDialog();
+                        }
+                    }
                     this.Close();
                     if (tourDuJoueur % 2 == 0)
                     {
@@ -248,7 +259,6 @@ namespace S1._01
 
             Console.WriteLine(x) ;
             Console.WriteLine(COORDONNEY[colonneoccupe(grille,indice)]) ;
-                        
         }
     }   
 }

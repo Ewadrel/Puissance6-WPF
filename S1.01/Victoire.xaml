@@ -5,11 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:S1._01"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="Victoire" Height="1000" Width="1142">
     <Grid>
         <Canvas>
-            <TextBlock x:Name="gagne" Canvas.Left="14" TextWrapping="Wrap" Text="" Canvas.Top="497" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1114" Height="290" FontSize="75" FontWeight="Bold" TextAlignment="Center"/>
-            <TextBlock Canvas.Left="142" TextWrapping="Wrap" Text="VICTOIRE" Canvas.Top="175" HorizontalAlignment="Center" VerticalAlignment="Top" Width="858" Height="210" FontSize="150" FontWeight="Bold" TextAlignment="Center" TextDecorations="Underline"/>
+            <TextBlock x:Name="gagne" Canvas.Left="10" TextWrapping="Wrap" Text="" Canvas.Top="411" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1114" Height="290" FontSize="75" FontWeight="Bold" TextAlignment="Center"/>
+            <TextBlock Canvas.Left="142" TextWrapping="Wrap" Text="VICTOIRE" Canvas.Top="115" HorizontalAlignment="Center" VerticalAlignment="Top" Width="858" Height="210" FontSize="150" FontWeight="Bold" TextAlignment="Center" TextDecorations="Underline"/>
+            <Button Content="REJOUER" Canvas.Left="342" Canvas.Top="706" Height="170" Width="450" Background="Black" BorderBrush="White" FontSize="75" Foreground="White" FontWeight="Bold" Click="Button_Click" HorizontalAlignment="Center" VerticalAlignment="Top"/>
             <Canvas.Background>
                 <ImageBrush ImageSource="/fond.jpeg" />
             </Canvas.Background>
