@@ -26,11 +26,13 @@ namespace S1._01
 
         private void _1joueur_Click(object sender, RoutedEventArgs e)
         {
+            ((MainWindow)Application.Current.MainWindow).nombreJoueur = 1;
             this.DialogResult = true;
         }
 
         private void _2joueurs_Click(object sender, RoutedEventArgs e)
         {
+            ((MainWindow)Application.Current.MainWindow).nombreJoueur = 2;
             this.DialogResult = false;
         }
     }

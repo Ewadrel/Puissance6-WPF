@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace S1._01
 {
@@ -20,13 +21,13 @@ namespace S1._01
     /// </summary>
     public partial class MainWindow : Window
     {
-        private int compteur=0;
+        private int compteur = 0;
         private int tourDuJoueur = 1;
         Point position = new Point(0, 0);
-        private readonly double[] COORDONNEX = {10, 134, 258, 382, 506, 630, 754, 878, 1002};
-        private readonly double[] COORDONNEY = {3, 124, 245, 366, 487, 608, 729, 850 };
-        private int[,] grille = new int[9,9];
-        private bool testeligne=false;
+        private readonly double[] COORDONNEX = { 10, 134, 258, 382, 506, 630, 754, 878, 1002 };
+        private readonly double[] COORDONNEY = { 3, 124, 245, 366, 487, 608, 729, 850 };
+        private int[,] grille = new int[9, 9];
+        private bool testeligne = false;
         private bool testecolonne = false;
         private bool testedigonale = false;
 
@@ -34,12 +35,18 @@ namespace S1._01
         //private string CHOIXJETON = ChoixDuJeton(1);
         private ImageBrush jeton1 = new ImageBrush();
         private ImageBrush jeton2 = new ImageBrush();
+        private ImageBrush jeton3 = new ImageBrush();
         private ImageBrush fond = new ImageBrush();
         private ImageBrush fm = new ImageBrush();
         private bool TourJoueur1 = true, joueur;
         private int VALBONUS = 3;
-        private string A, B, C;
-        
+
+        public string[] couleurJoueur;
+        public int nombreJoueur;
+        private DispatcherTimer timer;
+        private DateTime startTime;
+
+
         //variable pour le tour du joueur
         public MainWindow()
         {
@@ -53,22 +60,31 @@ namespace S1._01
                 joueur = (bool)nbrjoueur1.ShowDialog();
                 if (joueur == true || joueur == false)
                 {
+                   couleurJoueur=new string[nombreJoueur];
                     Window1 window1 = new Window1();
                     bool couleur = (bool)window1.ShowDialog();
                 }
             }
-                     
             
             fond.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/puissance4x9x8.png"));
             jeton1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/violet.png"));
             jeton2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/vert.png"));
+            jeton3.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/rose.png"));
             fm.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/fm.jpg"));
             main.Background = fm;
 
             plateau.Fill = fond;
             Canvas.SetZIndex(plateau, 1);
 
-            
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += Timer_Tick;
+
+            // Démarrer le chronomètre dès que la fenêtre est chargée
+            Loaded += MainWindow_Ouverte;
+
+            // Arrêter le chronomètre lorsque la fenêtre est fermée
+            Activated += Victoire_Ouverte;
         }
         
         
@@ -196,16 +212,59 @@ namespace S1._01
                 Rectangle jeton = new Rectangle();
                 jeton.Width = 110;
                 jeton.Height = 110;
-                if (compteur % 2 == 0)
+
+                switch (nombreJoueur)
                 {
-                    jeton.Fill = jeton1;
-                    tourDuJoueur = 1;
+                    case 2:
+                        if (compteur % 2 == 0)
+                        {
+                            if (couleurJoueur[compteur % 2] == "violet")
+                            {
+                                jeton.Fill = jeton1;
+                            }
+                            else if (couleurJoueur[compteur % 2] == "vert")
+                            {
+                                jeton.Fill = jeton2;
+                            }
+                            else
+                            {
+                                jeton.Fill = jeton3;
+                            }
+                            tourDuJoueur = 1;
+                        }
+                        else
+                        {
+                            if (couleurJoueur[compteur % 2] == "violet")
+                            {
+                                jeton.Fill = jeton1;
+                            }
+                            else if (couleurJoueur[compteur % 2] == "vert")
+                            {
+                                jeton.Fill = jeton2;
+                            }
+                            else
+                            {
+                                jeton.Fill = jeton3;
+                            }
+                            tourDuJoueur = 2;
+                        }
+                        break;
+                    case 1:
+                        if (couleurJoueur[0] == "violet")
+                        {
+                            jeton.Fill = jeton1;
+                        }
+                        else if (couleurJoueur[0] == "vert")
+                        {
+                            jeton.Fill = jeton2;
+                        }
+                        else
+                        {
+                            jeton.Fill = jeton3;
+                        }
+                        break;
                 }
-                else
-                {
-                    jeton.Fill = jeton2;
-                    tourDuJoueur = 2;
-                }
+                
                 //jeton derriere la plateau
                 Canvas.SetZIndex(jeton, 0);
                 //ajoue du pion dans le tableau
@@ -215,34 +274,25 @@ namespace S1._01
                 Canvas.SetLeft(jeton, COORDONNEX[indice]);
                 main.Children.Add(jeton);
                 compteur += 1;
+                if (nombreJoueur == 1)
+                {
+                    //Appel du bot
+                }
                 //detection coup gagnant
                 int[]point = new int[] { colonneoccupe(grille, indice), indice};
                 if (LIGNE(grille,point) ==true|| Colonne(grille, point) == true)
                 {
                     Victoire victoire = new Victoire();
-                    bool victory = (bool)victoire.ShowDialog();
-
-                    if (victory == true)
-                    {
-                        Nbrjoueur nbrjoueur1 = new Nbrjoueur();
-                        joueur = (bool)nbrjoueur1.ShowDialog();
-                        if (joueur == true || joueur == false)
-                        {
-                            Window1 window1 = new Window1();
-                            bool couleur = (bool)window1.ShowDialog();
-                        }
-                    }
-                    this.Close();
-                    if (tourDuJoueur % 2 == 0)
-                    {
-                        victoire.gagne.Text = "Joueur 2";
-                    }
-                    else if (tourDuJoueur % 2 == 1)
+                    if (tourDuJoueur == 1)
                     {
                         victoire.gagne.Text = "Joueur 1";
                     }
+                    else if (tourDuJoueur == 2)
+                    {
+                        victoire.gagne.Text = "Joueur 2";
+                    }
                     else { victoire.gagne.Text = "IA"; }
-                    victoire.ShowDialog();
+                    bool victory = (bool)victoire.ShowDialog();
                 }
             }
             
@@ -257,8 +307,30 @@ namespace S1._01
                 Console.WriteLine();
             }
 
-            Console.WriteLine(x) ;
-            Console.WriteLine(COORDONNEY[colonneoccupe(grille,indice)]) ;
+        }
+
+           
+            private void Timer_Tick(object sender, EventArgs e)
+        {
+            TimeSpan elapsed = DateTime.Now - startTime;
+            UpdateTimerDisplay(elapsed);
+        }
+        private void UpdateTimerDisplay(TimeSpan elapsed)
+        {
+            txtChrono.Text = elapsed.ToString(@"hh\:mm\:ss");
+        }
+        private void MainWindow_Ouverte(object sender, RoutedEventArgs e)
+        {
+            // Enregistrez le moment où la page est chargée
+            startTime = DateTime.Now;
+
+            // Démarrer le chronomètre
+            timer.Start();
+        }
+        private void Victoire_Ouverte(object sender, EventArgs e)
+        {
+            // Arrêter le chronomètre lorsque la page est fermée
+            timer.Stop();
         }
     }   
 }

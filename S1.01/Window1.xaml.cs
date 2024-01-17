@@ -28,17 +28,64 @@ namespace S1._01
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = true;
+            if (((MainWindow)Application.Current.MainWindow).nombreJoueur == 1)
+            {
+                ((MainWindow)Application.Current.MainWindow).couleurJoueur[0] = "vert";
+                this.DialogResult = true;
+            } else
+            {
+                if (((MainWindow)Application.Current.MainWindow).couleurJoueur[0] == null)
+                {
+                    ((MainWindow)Application.Current.MainWindow).couleurJoueur[0] = "vert";
+                }
+                else
+                {
+                    ((MainWindow)Application.Current.MainWindow).couleurJoueur[1] = "vert";
+                    this.DialogResult = true;
+                }
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = false;
+            if (((MainWindow)Application.Current.MainWindow).nombreJoueur == 1)
+            {
+                ((MainWindow)Application.Current.MainWindow).couleurJoueur[0] = "violet";
+                this.DialogResult = true;
+            }
+            else
+            {
+                if (((MainWindow)Application.Current.MainWindow).couleurJoueur[0] == null)
+                {
+                    ((MainWindow)Application.Current.MainWindow).couleurJoueur[0] = "violet";
+                }
+                else
+                {
+                    ((MainWindow)Application.Current.MainWindow).couleurJoueur[1] = "violet";
+                    this.DialogResult = true;
+                }
+            }
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = false;
+            if (((MainWindow)Application.Current.MainWindow).nombreJoueur == 1)
+            {
+                ((MainWindow)Application.Current.MainWindow).couleurJoueur[0] = "rose";
+                this.DialogResult = true;
+            }
+            else
+            {
+                if (((MainWindow)Application.Current.MainWindow).couleurJoueur[0] == null)
+                {
+                    ((MainWindow)Application.Current.MainWindow).couleurJoueur[0] = "rose";
+                }
+                else
+                {
+                    ((MainWindow)Application.Current.MainWindow).couleurJoueur[1] = "rose";
+                    this.DialogResult = true;
+                }
+            }
         }
     }
 }

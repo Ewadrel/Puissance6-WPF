@@ -30,14 +30,14 @@
             Background="#FFEF9595"
             BorderBrush="Black"
             Content="" Canvas.Left="827" Canvas.Top="492" Click="Button_Click_2" />
-            <Button
+            <Button x:Name="boutonVert"
             Width="198"
             Height="268"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#FF7DC88C"
             BorderBrush="Black"
-            Content="" Canvas.Left="117" Canvas.Top="492" RenderTransformOrigin="-1.733,0.626" Click="Button_Click" />
+            Content="" Canvas.Left="117" Canvas.Top="492" RenderTransformOrigin="-1.733,0.626" Click="Button_Click" Foreground="#00000000" />
             <TextBlock Canvas.Left="242" TextWrapping="Wrap" Text="Choisissez votre couleur" Canvas.Top="66" Height="232" Width="658" Background="Black" Foreground="White" FontSize="75" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Center"/>
             <Label x:Name="Choixcouleur"
             HorizontalAlignment="Left"
