@@ -36,8 +36,10 @@ namespace S1._01
         private ImageBrush jeton1 = new ImageBrush();
         private ImageBrush jeton2 = new ImageBrush();
         private ImageBrush fond = new ImageBrush();
-        private bool TourJoueur1 = true;
+        private ImageBrush fm = new ImageBrush();
+        private bool TourJoueur1 = true, joueur;
         private int VALBONUS = 3;
+        private string A, B, C;
         
         //variable pour le tour du joueur
         public MainWindow()
@@ -45,17 +47,28 @@ namespace S1._01
             InitializeComponent();
             
             Jouer jouer = new Jouer();
-            jouer.ShowDialog();
-            
-           
+            bool resultatjouer=(bool)jouer.ShowDialog();
+            if (resultatjouer == true)
+            {
+                Nbrjoueur nbrjoueur1 = new Nbrjoueur();
+                joueur = (bool)nbrjoueur1.ShowDialog();
+                if (joueur == true || joueur == false)
+                {
+                    Window1 window1 = new Window1();
+                    bool couleur = (bool)window1.ShowDialog();
+                }
+            }
+                     
             
             fond.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/puissance4x9x8.png"));
             jeton1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/violet.png"));
             jeton2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/vert.png"));
+            fm.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/fm.jpg"));
+            main.Background = fm;
 
             plateau.Fill = fond;
             Canvas.SetZIndex(plateau, 1);
-           
+
             
         }
         
@@ -139,13 +152,13 @@ namespace S1._01
             {
                 if (tab[indice, i ] != 0)
                 {
-                    for (int j = 0; j < 6; j++)
+                    for (int j = 0; j < 5; j++)
                     {
                         if (tab[indice, i + j ] == tab[indice, i])
                         {
                             compte++;
                         }
-                        if (compte == 6)
+                        if (compte == 5)
                         {
                             return true;
                         }
@@ -232,7 +245,30 @@ namespace S1._01
                 
                 if (LIGNE(grille,point) ==true|| Colonne(grille, point) == true)
                 {
-                    MessageBox.Show("coup gagnant");
+                    Victoire victoire = new Victoire();
+                    bool victory = (bool)victoire.ShowDialog();
+
+                    if (victory == true)
+                    {
+                        Nbrjoueur nbrjoueur1 = new Nbrjoueur();
+                        joueur = (bool)nbrjoueur1.ShowDialog();
+                        if (joueur == true || joueur == false)
+                        {
+                            Window1 window1 = new Window1();
+                            bool couleur = (bool)window1.ShowDialog();
+                        }
+                    }
+                    this.Close();
+                    if (tourDuJoueur % 2 == 0)
+                    {
+                        victoire.gagne.Text = "Joueur 2";
+                    }
+                    else if (tourDuJoueur % 2 == 1)
+                    {
+                        victoire.gagne.Text = "Joueur 1";
+                    }
+                    else { victoire.gagne.Text = "IA"; }
+                    victoire.ShowDialog();
                 }
             }
             
@@ -252,7 +288,8 @@ namespace S1._01
 
 
 
-
+            Console.WriteLine(x) ;
+            Console.WriteLine(COORDONNEY[colonneoccupe(grille,indice)]) ;
 
 
 
@@ -260,3 +297,4 @@ namespace S1._01
         }
     }   
 }
+

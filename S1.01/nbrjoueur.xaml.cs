@@ -17,23 +17,21 @@ namespace S1._01
     /// <summary>
     /// Logique d'interaction pour nbrjoueur.xaml
     /// </summary>
-    public partial class nbrjoueur : Window
+    public partial class Nbrjoueur : Window
     {
-        public nbrjoueur()
+        public Nbrjoueur()
         {
             InitializeComponent();
         }
 
         private void _1joueur_Click(object sender, RoutedEventArgs e)
         {
-            Window1 choixCouleur = new Window1();
-            choixCouleur.ShowDialog();
+            this.DialogResult = true;
         }
 
         private void _2joueurs_Click(object sender, RoutedEventArgs e)
         {
-            Window1 choixCouleur = new Window1();
-            choixCouleur.ShowDialog();
+            this.DialogResult = false;
         }
     }
 }
