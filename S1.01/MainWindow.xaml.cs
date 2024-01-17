@@ -28,6 +28,7 @@ namespace S1._01
         private readonly double[] COORDONNEX = { 10, 134, 258, 382, 506, 630, 754, 878, 1002 };
         private readonly double[] COORDONNEY = { 3, 124, 245, 366, 487, 608, 729, 850 };
         private int[,] grille = new int[9, 9];
+        private int nombreGagant = 6;
         private bool testeligne = false;
         private bool testecolonne = false;
         private bool testedigonale = false;
@@ -113,17 +114,17 @@ namespace S1._01
         public bool Colonne(int[,] tab, int[]point)
         {
             int compte = 0;
-            for (int i = 0; i < tab.GetLength(0) - 5; i++)
+            for (int i = 0; i < tab.GetLength(0) - nombreGagant-1; i++)
             {
                 if(tab[i , point[1]]!=0)
                 {
-                    for (int j = 0; j < 6; j++)
+                    for (int j = 0; j < nombreGagant; j++)
                     {
                         if (tab[i + j, point[1]] == tab[i, point[1]])
                         {
                             compte++;
                         }
-                        if (compte == 6)
+                        if (compte == nombreGagant)
                         {
                             return true;
                         }
@@ -139,33 +140,60 @@ namespace S1._01
         {
             int compte = 0;
             int i = 0;
-            int j = 1;
-            int indice = point[0] + 1;
-            /*
-            do
+            for (int k = tab.GetLength(0) - 1; k >= nombreGagant-1; k--)
             {
-                if (tab[indice, point[1]] == tab[indice + i, point[1] + i])
+                for (int l = 0; l < tab.GetLength(1) - nombreGagant-1; l++)
                 {
-                    compte++;
-                    i++;
-                }
-            } while ((i + indice < tab.GetLength(0) && i + point[1] < tab.GetLength(1)));
 
-            do
-            {
-                if (tab[indice, point[1]] == tab[indice - j, point[1] - j])
-                {
-                    compte++;
-                    j++;
-                }
 
-            } while (j + indice > 0 && j + point[1] > 0);
-            */
-            if (compte == 6)
-            {
-                return true;
+                    if (tab[k, l] != 0)
+                    {
+
+                        compte = 0;
+                        i = 0;
+                        while (i < nombreGagant && tab[k, l] == tab[k - i, l + i])
+                        {
+                            i++;
+                            compte++;
+                        }
+                        if (compte == nombreGagant)
+                        {
+                             return true;;
+                        }
+                    }
+
+
+                }
             }
-           
+            
+            return false;
+
+        }
+        public bool Diagdescend(int[,] tab, int[] point)
+        {
+            int compte = 0;
+            int i = 0;
+            for (int k = tab.GetLength(0) - 1; k >= nombreGagant-1; k--)
+            {
+                for (int l = nombreGagant-1; l < tab.GetLength(1); l++)
+                {
+                    if (tab[k, l] != 0)
+                    {
+                        compte = 0;
+                        i = 0;
+                        while (i < nombreGagant && tab[k, l] == tab[k - i, l - i])
+                        {
+                            i++;
+                            compte++;
+                        }
+                        if (compte == nombreGagant)
+                        {
+                            return true; ;
+                        }
+                    }
+                }
+            }
+
             return false;
 
         }
@@ -175,11 +203,11 @@ namespace S1._01
 
             int indice = point[0] + 1;
             int compte = 0;
-            for (int i = 0; i < tab.GetLength(1) - 5; i++)
+            for (int i = 0; i < tab.GetLength(1) - nombreGagant-1; i++)
             {
                 if (tab[indice, i ] != 0)
                 {
-                    for (int j = 0; j < 5; j++)
+                    for (int j = 0; j < nombreGagant-1; j++)
                     {
                         if (tab[indice, i + j ] == tab[indice, i])
                         {
@@ -317,7 +345,7 @@ namespace S1._01
                 //detection coup gagnant
                 int[]point = new int[] { colonneoccupe(grille, indice), indice};
                 
-                if (LIGNE(grille,point) ==true|| Colonne(grille, point) == true|| Diagmonte(grille,point)==true)
+                if (LIGNE(grille,point) ==true|| Colonne(grille, point) == true|| Diagmonte(grille,point)==true|| Diagdescend(grille,point)==true)
                 {
                     Victoire victoire = new Victoire();
                     if (tourDuJoueur == 1)
