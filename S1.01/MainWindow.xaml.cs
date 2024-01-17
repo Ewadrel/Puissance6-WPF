@@ -119,26 +119,37 @@ namespace S1._01
             return false;  
         
         }
-        public bool Diag(int[,] tab, int[] point)
+        public bool Diagmonte(int[,] tab, int[] point)
         {
             int compte = 0;
-            if (point[0] < 6 || point[1]>tab.GetLength(1)-5)
+            int i = 0;
+            int j = 1;
+            int indice = point[0] + 1;
+            /*
+            do
             {
-                return false;
-            }
-            
-            while (point[0]>0|| point[1]<0)
-            {
-                int i = 0;
-                if (tab[point[0] - i, point[1] - i] == tab[point[0], point[1]])
+                if (tab[indice, point[1]] == tab[indice + i, point[1] + i])
                 {
                     compte++;
+                    i++;
                 }
-                if (compte == 6)
+            } while ((i + indice < tab.GetLength(0) && i + point[1] < tab.GetLength(1)));
+
+            do
+            {
+                if (tab[indice, point[1]] == tab[indice - j, point[1] - j])
                 {
-                    return true;
+                    compte++;
+                    j++;
                 }
+
+            } while (j + indice > 0 && j + point[1] > 0);
+            */
+            if (compte == 6)
+            {
+                return true;
             }
+           
             return false;
 
         }
@@ -243,7 +254,7 @@ namespace S1._01
                 //detection coup gagnant
                 int[]point = new int[] { colonneoccupe(grille, indice), indice};
                 
-                if (LIGNE(grille,point) ==true|| Colonne(grille, point) == true)
+                if (LIGNE(grille,point) ==true|| Colonne(grille, point) == true|| Diagmonte(grille,point)==true)
                 {
                     Victoire victoire = new Victoire();
                     bool victory = (bool)victoire.ShowDialog();
