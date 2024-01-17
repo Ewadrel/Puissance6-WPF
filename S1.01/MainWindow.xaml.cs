@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -134,18 +135,42 @@ namespace S1._01
             return false;  
         
         }
+        public bool Diag(int[,] tab, int[] point)
+        {
+            int compte = 0;
+            if (point[0] < 6 || point[1]>tab.GetLength(1)-5)
+            {
+                return false;
+            }
+            
+            while (point[0]>0|| point[1]<0)
+            {
+                int i = 0;
+                if (tab[point[0] - i, point[1] - i] == tab[point[0], point[1]])
+                {
+                    compte++;
+                }
+                if (compte == 6)
+                {
+                    return true;
+                }
+            }
+            return false;
+
+        }
+
         public bool LIGNE(int[,] tab, int[]point)
         {
 
-
+            int indice = point[0] + 1;
             int compte = 0;
             for (int i = 0; i < tab.GetLength(1) - 5; i++)
             {
-                if (tab[point[0],i ] != 0)
+                if (tab[indice, i ] != 0)
                 {
                     for (int j = 0; j < 5; j++)
                     {
-                        if (tab[point[0],i + j ] == tab[point[0], i])
+                        if (tab[indice, i + j ] == tab[indice, i])
                         {
                             compte++;
                         }
@@ -280,6 +305,7 @@ namespace S1._01
                 }
                 //detection coup gagnant
                 int[]point = new int[] { colonneoccupe(grille, indice), indice};
+                
                 if (LIGNE(grille,point) ==true|| Colonne(grille, point) == true)
                 {
                     Victoire victoire = new Victoire();
@@ -302,10 +328,15 @@ namespace S1._01
             {
                 for( int j=0; j < grille.GetLength(1); j++)
                 {
-                    Console.WriteLine(grille[i, j]);
+                    Console.Write(grille[i, j]);
                 }
                 Console.WriteLine();
             }
+            Console.WriteLine(colonneoccupe(grille, indice)) ;
+            Console.WriteLine(indice);
+
+
+
 
         }
 
