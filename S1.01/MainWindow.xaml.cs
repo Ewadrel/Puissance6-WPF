@@ -32,7 +32,6 @@ namespace S1._01
         private bool testeligne = false;
         private bool testecolonne = false;
         private bool testedigonale = false;
-        private int nombreGagant = 6;
 
         //private string CHOIXJETON = ChoixDuJeton(1);
         private ImageBrush jeton1 = new ImageBrush();
@@ -141,21 +140,89 @@ namespace S1._01
             int compte = 0;
             if (point[0] < 6 || point[1]>tab.GetLength(1)-5)
             {
-                return false;
+
+            } }
+
+            
+                if (tab[indice, i ] != 0)
+                for (int l = 0; l < tab.GetLength(1) - nombreGagant-1; l++)
+            {
+
+
+                    if (tab[k, l] != 0)
+                    {
+
+                        compte = 0;
+                        i = 0;
+                        while (i < 6 && tab[k, l] == tab[k - i, l + i])
+                        {
+                            i++;
+                            compte++;
+                        }
+                        if (compte == nombreGagant)
+                        {
+                             return true;;
+                        }
+                    }
+
+
+                }
             }
             
-            while (point[0]>0|| point[1]<0)
+            return false;
+
+        }
+        public bool Diagdescend(int[,] tab, int[] point)
+        {
+            int compte = 0;
+            int i = 0;
+            for (int k = tab.GetLength(0) - 1; k >= nombreGagant-1; k--)
             {
-                int i = 0;
-                if (tab[point[0] - i, point[1] - i] == tab[point[0], point[1]])
+                for (int l = nombreGagant-1; l < tab.GetLength(1); l++)
                 {
-                    compte++;
-                }
-                if (compte == 6)
-                {
-                    return true;
+                    if (tab[k, l] != 0)
+                    {
+                        compte = 0;
+                        i = 0;
+                        while (i < nombreGagant && tab[k, l] == tab[k - i, l - i])
+                        {
+                            i++;
+                            compte++;
+                        }
+                        if (compte == nombreGagant)
+                        {
+                            return true; ;
+                        }
+                    }
                 }
             }
+
+        public bool LIGNE(int[,] tab, int[]point)
+        {
+
+            int indice = point[0] + 1;
+            int compte = 0;
+            for (int i = 0; i < tab.GetLength(1) -5; i++)
+            {
+                if (tab[indice, i ] != 0)
+                {
+                    for (int j = 0; j < 6; j++)
+                    {
+                        if (tab[indice, i + j ] == tab[indice, i])
+                        {
+                            compte++;
+                        }
+                        if (compte == 6)
+                        {
+                            return true;
+                        }
+                    }
+
+                }
+                compte = 0;
+            }
+            }
+           
             return false;
 
 
