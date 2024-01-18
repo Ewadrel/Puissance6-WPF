@@ -173,7 +173,7 @@ namespace S1._01
             int i = 0;
             for (int k = tab.GetLength(0) - 1; k >= nombreGagant - 1; k--)
             {
-                for (int l = 0; l < tab.GetLength(1) - nombreGagant - 1; l++)
+                for (int l = 0; l < tab.GetLength(1) - 4; l++)
                 {
 
 
