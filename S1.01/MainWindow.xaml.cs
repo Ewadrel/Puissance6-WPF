@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using static System.Net.WebRequestMethods;
 
 namespace S1._01
 {
@@ -32,7 +33,7 @@ namespace S1._01
         private bool testeligne = false;
         private bool testecolonne = false;
         private bool testedigonale = false;
-
+        private int nombreGagant = 6;
 
         //private string CHOIXJETON = ChoixDuJeton(1);
         private ImageBrush jeton1 = new ImageBrush();
@@ -53,21 +54,21 @@ namespace S1._01
         public MainWindow()
         {
             InitializeComponent();
-            
+
             Jouer jouer = new Jouer();
-            bool resultatjouer=(bool)jouer.ShowDialog();
+            bool resultatjouer = (bool)jouer.ShowDialog();
             if (resultatjouer == true)
             {
                 Nbrjoueur nbrjoueur1 = new Nbrjoueur();
                 joueur = (bool)nbrjoueur1.ShowDialog();
                 if (joueur == true || joueur == false)
                 {
-                   couleurJoueur=new string[nombreJoueur];
+                    couleurJoueur = new string[nombreJoueur];
                     Window1 window1 = new Window1();
                     bool couleur = (bool)window1.ShowDialog();
                 }
             }
-            
+
             fond.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/puissance4x9x8.png"));
             jeton1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/violet.png"));
             jeton2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/vert.png"));
@@ -88,16 +89,16 @@ namespace S1._01
             // Arrêter le chronomètre lorsque la fenêtre est fermée
             Activated += Victoire_Ouverte;
         }
-        
-        
-        public int[] PointBonus( int[,] tab)
+
+
+        public int[] PointBonus(int[,] tab)
         {
             int[] bonus = { 0, 0 };
-            for (int i=0; i < tab.GetLength(0)-2; i++)
+            for (int i = 0; i < tab.GetLength(0) - 2; i++)
             {
-                for (int j = 1; j < tab.GetLength(1)-1; j++)
-                { 
-                    if (tab[i,j]==1 && tab[i+1,j-1]==1 && tab[i + 1, j + 1]==1 && tab[i + 2, j ] == 1)
+                for (int j = 1; j < tab.GetLength(1) - 1; j++)
+                {
+                    if (tab[i, j] == 1 && tab[i + 1, j - 1] == 1 && tab[i + 1, j + 1] == 1 && tab[i + 2, j] == 1)
                     {
                         bonus[0] += VALBONUS;
                     }
@@ -107,16 +108,16 @@ namespace S1._01
                     }
                 }
             }
-            
+
             return bonus;
         }
-        
-        public bool Colonne(int[,] tab, int[]point)
+
+        public bool Colonne(int[,] tab, int[] point)
         {
             int compte = 0;
             for (int i = 0; i < tab.GetLength(0) - nombreGagant-1; i++)
             {
-                if(tab[i , point[1]]!=0)
+                if (tab[i, point[1]] != 0)
                 {
                     for (int j = 0; j < nombreGagant; j++)
                     {
@@ -129,21 +130,29 @@ namespace S1._01
                             return true;
                         }
                     }
-                  
+
                 }
                 compte = 0;
             }
-            return false;  
-        
+            return false;
+
         }
-        public bool Diagmonte(int[,] tab, int[] point)
+
+        public bool LIGNE(int[,] tab, int[] point)
         {
+
+            int indice = point[0] + 1;
             int compte = 0;
-            int i = 0;
-            for (int k = tab.GetLength(0) - 1; k >= nombreGagant-1; k--)
+            for (int i = 0; i < tab.GetLength(1) - 5; i++)
+            for (int k = tab.GetLength(0) - 1; k >= nombreGagant - 1; k--)
             {
+
+            } }
+
+            /*
+                if (tab[indice, i ] != 0)
                 for (int l = 0; l < tab.GetLength(1) - nombreGagant-1; l++)
-                {
+            {
 
 
                     if (tab[k, l] != 0)
@@ -194,20 +203,7 @@ namespace S1._01
                 }
             }
 
-            return false;
-
-        }
-
-        public bool LIGNE(int[,] tab, int[]point)
-        {
-
-            int indice = point[0] + 1;
-            int compte = 0;
-            for (int i = 0; i < tab.GetLength(1) - nombreGagant-1; i++)
-            {
-                if (tab[indice, i ] != 0)
-                {
-                    for (int j = 0; j < nombreGagant; j++)
+                    for (int j = 0; j < 6; j++)
                     {
                         if (tab[indice, i + j ] == tab[indice, i])
                         {
@@ -222,14 +218,85 @@ namespace S1._01
                 }
                 compte = 0;
             }
+            }
+           
             return false;
-            
 
 
 
         }
-        
-        public int colonneoccupe(int[,] tab,int indicej)
+
+        public bool Diagmonte(int[,] tab, int[] point)
+            int i = 0;
+            for (int k = tab.GetLength(0) - 1; k >= nombreGagant - 1; k--)
+            for (int i = 0; i < tab.GetLength(1) - nombreGagant-1; i++)
+            int compte = 0;
+            for (int i = 0; i < tab.GetLength(1) - 5; i++)
+            {
+
+
+
+
+                    if (tab[k, l] != 0)
+                    for (int j = 0; j < nombreGagant-1; j++)
+                {
+                    for (int j = 0; j < 5; j++)
+                    {
+
+
+
+                        compte = 0;
+                        i = 0;
+                        while (i < nombreGagant && tab[k, l] == tab[k - i, l + i])
+                        {
+                            i++;
+                            compte++;
+                        }
+                        if (compte == nombreGagant)
+                        {
+                            return true; 
+                        }
+                    }
+
+
+
+
+                }
+            }
+
+            return false;
+        }
+        public bool Diagdescend(int[,] tab, int[] point)
+        {
+            int compte = 0;
+            int i = 0;
+            for (int k = tab.GetLength(0) - 1; k >= nombreGagant - 1; k--)
+            {
+                for (int l = nombreGagant - 1; l < tab.GetLength(1); l++)
+                {
+                    if (tab[k, l] != 0)
+                    {
+                        compte = 0;
+                        i = 0;
+                        while (i < nombreGagant && tab[k, l] == tab[k - i, l - i])
+                        {
+                            i++;
+                            compte++;
+                        }
+                        if (compte == nombreGagant)
+                        {
+                            return true; 
+                        }
+                    }
+                }
+            }
+
+
+
+            return false;
+        }
+
+            public int colonneoccupe(int[,] tab,int indicej)
         {
             int indice = 0;
             for (int i = 0; i < tab.GetLength(0); i++)
@@ -247,64 +314,6 @@ namespace S1._01
             indice -= 1;
             return indice;
 
-        }
-        public int[] défense(int[,] tab, int[] point, int tourjoueur)
-        {
-            int[] nvpoint = new int[] {0,0};
-            int[] potentiel= new int[] {tab.GetLength(1)};
-            int x = 0;
-            int y = 0;
-            /*
-            compteur = 0;
-            
-            for (int i = 0; i < grille.GetLength(1); i++)
-            {
-                if (tab[point[0], point[1]] == tab[point[0], point[1] +i ])
-                {
-                    compteur += 1;
-                }
-                else
-                {
-                    if (tab[point[0], i + 1] == 0 && colonneoccupe(tab, tab[point[0], i + 1]) == point[0])
-                    {
-                        potentiel.Append(i);
-                    }
-                }
-                if (tab[point[0], point[1]] == tab[point[0], point[1] - i])
-                {
-                    compteur += 1;
-                }
-                else
-                {
-                    if (tab[point[0], i - 1] == 0 && colonneoccupe(tab, tab[point[0], i - 1]) == point[0])
-                    {
-                        potentiel.Append(i);
-                    }
-                }
-            }
-            if (compteur > 3)
-            {
-                if (potentiel.Length > 0)
-                {
-                    for (int i = 0; i < potentiel.Length; i++)
-                    {
-
-                        for(int j =potentiel[i]];j< (nombreGagant - compteur);j++)
-                        {
-                            if (tab[point[0], potentiel[i]+j] == tab[point[0], point[1]])
-                            {
-                                nvpoint[0] =point[0];
-                                nvpoint[1] = potentiel[i]];
-                            }
-                        }
-                    }
-
-
-                }
-            }
-            */
-            
-            return nvpoint;
         }
 
 
@@ -439,7 +448,7 @@ namespace S1._01
         }
 
            
-            private void Timer_Tick(object sender, EventArgs e)
+        private void Timer_Tick(object sender, EventArgs e)
         {
             TimeSpan elapsed = DateTime.Now - startTime;
             UpdateTimerDisplay(elapsed);
