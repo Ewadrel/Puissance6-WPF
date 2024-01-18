@@ -114,17 +114,17 @@ namespace S1._01
         public bool Colonne(int[,] tab, int[]point)
         {
             int compte = 0;
-            for (int i = 0; i < tab.GetLength(0) - nombreGagant-1; i++)
+            for (int i = 0; i < tab.GetLength(0) - 5; i++)
             {
                 if(tab[i , point[1]]!=0)
                 {
-                    for (int j = 0; j < nombreGagant; j++)
+                    for (int j = 0; j < 6; j++)
                     {
                         if (tab[i + j, point[1]] == tab[i, point[1]])
                         {
                             compte++;
                         }
-                        if (compte == nombreGagant)
+                        if (compte == 6)
                         {
                             return true;
                         }
@@ -151,7 +151,7 @@ namespace S1._01
 
                         compte = 0;
                         i = 0;
-                        while (i < nombreGagant && tab[k, l] == tab[k - i, l + i])
+                        while (i < 6 && tab[k, l] == tab[k - i, l + i])
                         {
                             i++;
                             compte++;
@@ -203,11 +203,11 @@ namespace S1._01
 
             int indice = point[0] + 1;
             int compte = 0;
-            for (int i = 0; i < tab.GetLength(1) - nombreGagant-1; i++)
+            for (int i = 0; i < tab.GetLength(1) -5; i++)
             {
                 if (tab[indice, i ] != 0)
                 {
-                    for (int j = 0; j < nombreGagant; j++)
+                    for (int j = 0; j < 6; j++)
                     {
                         if (tab[indice, i + j ] == tab[indice, i])
                         {
