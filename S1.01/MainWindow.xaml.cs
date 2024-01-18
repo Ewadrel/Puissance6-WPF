@@ -82,11 +82,10 @@ namespace S1._01
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += Timer_Tick;
 
+            startTime = DateTime.Now;
             // Démarrer le chronomètre dès que la fenêtre est chargée
-            Loaded += MainWindow_Ouverte;
+            timer.Start();
 
-            // Arrêter le chronomètre lorsque la fenêtre est fermée
-            Activated += Victoire_Ouverte;
         }
 
 
@@ -363,7 +362,12 @@ namespace S1._01
                         victoire.gagne.Text = "Joueur 2";
                     }
                     else { victoire.gagne.Text = "IA"; }
-                    bool victory = (bool)victoire.ShowDialog();
+
+                    victoire.ShowDialog();
+                    timer.Stop();
+
+
+                    //bool victory = (bool)victoire.ShowDialog();
                 }
             }
 
@@ -395,19 +399,12 @@ namespace S1._01
         {
             txtChrono.Text = elapsed.ToString(@"hh\:mm\:ss");
         }
-        private void MainWindow_Ouverte(object sender, RoutedEventArgs e)
-        {
-            // Enregistrez le moment où la page est chargée
-            startTime = DateTime.Now;
 
-            // Démarrer le chronomètre
-            timer.Start();
-        }
-        private void Victoire_Ouverte(object sender, EventArgs e)
+       /* private void Victoire_Ouverte(object sender, EventArgs e)
         {
             // Arrêter le chronomètre lorsque la page est fermée
             timer.Stop();
-        }
+        }*/
     }
 }
 
