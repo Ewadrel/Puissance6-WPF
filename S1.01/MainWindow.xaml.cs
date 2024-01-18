@@ -207,13 +207,13 @@ namespace S1._01
             {
                 if (tab[indice, i ] != 0)
                 {
-                    for (int j = 0; j < nombreGagant-1; j++)
+                    for (int j = 0; j < nombreGagant; j++)
                     {
                         if (tab[indice, i + j ] == tab[indice, i])
                         {
                             compte++;
                         }
-                        if (compte == 5)
+                        if (compte == 6)
                         {
                             return true;
                         }
@@ -223,6 +223,7 @@ namespace S1._01
                 compte = 0;
             }
             return false;
+            
 
 
 
@@ -246,6 +247,64 @@ namespace S1._01
             indice -= 1;
             return indice;
 
+        }
+        public int[] défense(int[,] tab, int[] point, int tourjoueur)
+        {
+            int[] nvpoint = new int[] {0,0};
+            int[] potentiel= new int[] {tab.GetLength(1)};
+            int x = 0;
+            int y = 0;
+            /*
+            compteur = 0;
+            
+            for (int i = 0; i < grille.GetLength(1); i++)
+            {
+                if (tab[point[0], point[1]] == tab[point[0], point[1] +i ])
+                {
+                    compteur += 1;
+                }
+                else
+                {
+                    if (tab[point[0], i + 1] == 0 && colonneoccupe(tab, tab[point[0], i + 1]) == point[0])
+                    {
+                        potentiel.Append(i);
+                    }
+                }
+                if (tab[point[0], point[1]] == tab[point[0], point[1] - i])
+                {
+                    compteur += 1;
+                }
+                else
+                {
+                    if (tab[point[0], i - 1] == 0 && colonneoccupe(tab, tab[point[0], i - 1]) == point[0])
+                    {
+                        potentiel.Append(i);
+                    }
+                }
+            }
+            if (compteur > 3)
+            {
+                if (potentiel.Length > 0)
+                {
+                    for (int i = 0; i < potentiel.Length; i++)
+                    {
+
+                        for(int j =potentiel[i]];j< (nombreGagant - compteur);j++)
+                        {
+                            if (tab[point[0], potentiel[i]+j] == tab[point[0], point[1]])
+                            {
+                                nvpoint[0] =point[0];
+                                nvpoint[1] = potentiel[i]];
+                            }
+                        }
+                    }
+
+
+                }
+            }
+            */
+            
+            return nvpoint;
         }
 
 
