@@ -34,7 +34,6 @@ namespace S1._01
         private bool testecolonne = false;
         private bool testedigonale = false;
 
-        //private string CHOIXJETON = ChoixDuJeton(1);
         private ImageBrush jeton1 = new ImageBrush();
         private ImageBrush jeton2 = new ImageBrush();
         private ImageBrush jeton3 = new ImageBrush();
@@ -47,9 +46,9 @@ namespace S1._01
         public int nombreJoueur;
         private DispatcherTimer timer;
         private DateTime startTime;
+        private Random random = new Random();
 
 
-        //variable pour le tour du joueur
         public MainWindow()
         {
             InitializeComponent();
@@ -85,7 +84,8 @@ namespace S1._01
             startTime = DateTime.Now;
             // Démarrer le chronomètre dès que la fenêtre est chargée
             timer.Start();
-
+            Score2.Visibility = Visibility.Collapsed;
+            Score2_Copy.Visibility = Visibility.Collapsed;
         }
 
 
@@ -331,6 +331,7 @@ namespace S1._01
                         {
                             jeton.Fill = jeton3;
                         }
+                        tourDuJoueur = 1;
                         break;
                 }
 
@@ -345,7 +346,17 @@ namespace S1._01
                 compteur += 1;
                 if (nombreJoueur == 1)
                 {
-                    //Appel du bot
+                Score2.Visibility = Visibility.Visible;
+                    if ( tourDuJoueur % 2 == 0)
+                    {
+                        int randomColumn;
+
+                            randomColumn = random.Next(0, 6);
+                    }
+                }
+                else
+                {
+                Score2_Copy.Visibility = Visibility.Visible;
                 }
                 //detection coup gagnant
                 int[] point = new int[] { colonneoccupe(grille, indice), indice };
@@ -363,10 +374,9 @@ namespace S1._01
                     }
                     else { victoire.gagne.Text = "IA"; }
 
-                    victoire.ShowDialog();
                     timer.Stop();
-
-
+                    victoire.ShowDialog();
+                   
                     //bool victory = (bool)victoire.ShowDialog();
                 }
             }
@@ -399,12 +409,10 @@ namespace S1._01
         {
             txtChrono.Text = elapsed.ToString(@"hh\:mm\:ss");
         }
-
-       /* private void Victoire_Ouverte(object sender, EventArgs e)
+        private void ScoreJoueur1()
         {
-            // Arrêter le chronomètre lorsque la page est fermée
-            timer.Stop();
-        }*/
+            //Score1 = 
+        }
     }
 }
 

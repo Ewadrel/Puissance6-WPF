@@ -8,41 +8,73 @@
     Title="choix"
     Width="1142"
     Height="1000"
-    mc:Ignorable="d"
-    WindowStartupLocation="CenterScreen">
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
     <Grid>
         <Canvas Margin="0,10,0,-10">
             <Button
-            Width="198"
-            Height="268"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Background="#FF947BC3"
-            BorderBrush="Black"
-            Content=""
-            Foreground="#FF947BC3"
-            OpacityMask="#FF947BC3" Canvas.Left="472" Canvas.Top="492" Click="Button_Click_1" />
+                Canvas.Left="472"
+                Canvas.Top="492"
+                Width="198"
+                Height="268"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Background="#FF947BC3"
+                BorderBrush="Black"
+                Click="Button_Click_1"
+                Content=""
+                Foreground="#FF947BC3"
+                OpacityMask="#FF947BC3" />
             <Button
-            Width="198"
-            Height="268"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            Background="#FFEF9595"
-            BorderBrush="Black"
-            Content="" Canvas.Left="827" Canvas.Top="492" Click="Button_Click_2" />
-            <Button x:Name="boutonVert"
-            Width="198"
-            Height="268"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Background="#FF7DC88C"
-            BorderBrush="Black"
-            Content="" Canvas.Left="117" Canvas.Top="492" RenderTransformOrigin="-1.733,0.626" Click="Button_Click" Foreground="#00000000" />
-            <TextBlock Canvas.Left="242" TextWrapping="Wrap" Text="Choisissez votre couleur" Canvas.Top="66" Height="232" Width="658" Background="Black" Foreground="White" FontSize="75" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Center"/>
-            <Label x:Name="Choixcouleur"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            Content="" Canvas.Left="242" Canvas.Top="66" Height="232" Width="659" BorderBrush="White" BorderThickness="5"/>
+                Canvas.Left="827"
+                Canvas.Top="492"
+                Width="198"
+                Height="268"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Background="#FFEF9595"
+                BorderBrush="Black"
+                Click="Button_Click_2"
+                Content="" />
+            <Button
+                x:Name="boutonVert"
+                Canvas.Left="117"
+                Canvas.Top="492"
+                Width="198"
+                Height="268"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Background="#FF7DC88C"
+                BorderBrush="Black"
+                Click="Button_Click"
+                Content=""
+                Foreground="#00000000"
+                RenderTransformOrigin="-1.733,0.626" />
+            <TextBlock
+                Canvas.Left="242"
+                Canvas.Top="66"
+                Width="658"
+                Height="232"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Background="Black"
+                FontSize="75"
+                FontWeight="Bold"
+                Foreground="White"
+                Text="Choisissez votre couleur"
+                TextAlignment="Center"
+                TextWrapping="Wrap" />
+            <Label
+                x:Name="Choixcouleur"
+                Canvas.Left="242"
+                Canvas.Top="66"
+                Width="659"
+                Height="232"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                BorderBrush="White"
+                BorderThickness="5"
+                Content="" />
             <Canvas.Background>
                 <ImageBrush ImageSource="/fond.jpeg" />
             </Canvas.Background>
