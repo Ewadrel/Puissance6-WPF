@@ -19,9 +19,78 @@
             Width="1142"
             Height="1000"
             HorizontalAlignment="Center"
+            VerticalAlignment="Top" />
+        <TextBlock
+            Name="txtChrono"
+            Canvas.Left="1169"
+            Canvas.Top="459"
+            Width="200"
+            HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            />
-        <TextBlock Name="txtChrono" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="50"
-        Width="200" Canvas.Left="1169" Canvas.Top="459" Foreground="White"/>
+            FontSize="50"
+            Foreground="White"
+            RenderTransformOrigin="0.5,0.5"
+            TextAlignment="Center">
+            <TextBlock.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStop Offset="1" />
+                    <GradientStop Offset="0.5" Color="Black" />
+                    <GradientStop Offset="0" Color="Transparent" />
+                    <GradientStop Offset="0.25" Color="#8B000000" />
+                    <GradientStop Offset="0.75" Color="#7D000000" />
+                </LinearGradientBrush>
+            </TextBlock.Background>
+        </TextBlock>
+        <TextBlock
+            Name="Score1"
+            Canvas.Left="1169"
+            Canvas.Top="159"
+            Width="200"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            FontSize="40"
+            Foreground="White"
+            Text="Joueur 1 : "
+            TextAlignment="Center" />
+        <TextBlock
+            Name="txtScore1"
+            Canvas.Left="1169"
+            Canvas.Top="259"
+            Width="200"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            FontSize="50"
+            Foreground="White"
+            TextAlignment="Center" />
+        <TextBlock
+            Name="Score2"
+            Canvas.Left="1169"
+            Canvas.Top="659"
+            Width="200"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            FontSize="40"
+            Foreground="White"
+            Text="IA : "
+            TextAlignment="Center" />
+        <TextBlock
+            Name="txtScore2"
+            Canvas.Left="1169"
+            Canvas.Top="759"
+            Width="200"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            FontSize="50"
+            Foreground="White"
+            TextAlignment="Center" />
+        <TextBlock
+            x:Name="Score2_Copy"
+            Canvas.Left="1169"
+            Canvas.Top="659"
+            Width="200"
+            FontSize="40"
+            Foreground="White"
+            Text="Joueur 2 : "
+            TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
     </Canvas>
 </Window>
