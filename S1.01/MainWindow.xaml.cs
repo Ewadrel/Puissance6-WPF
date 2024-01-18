@@ -29,6 +29,7 @@ namespace S1._01
         private readonly double[] COORDONNEX = { 10, 134, 258, 382, 506, 630, 754, 878, 1002 };
         private readonly double[] COORDONNEY = { 3, 124, 245, 366, 487, 608, 729, 850 };
         private int[,] grille = new int[9, 9];
+        private int nombreGagant = 6;
         private bool testeligne = false;
         private bool testecolonne = false;
         private bool testedigonale = false;
@@ -135,18 +136,46 @@ namespace S1._01
             return false;
 
         }
-        public bool Diag(int[,] tab, int[] point)
+
+        public bool LIGNE(int[,] tab, int[] point)
+        {
+
+
+            int indice = point[0] + 1;
+            int compte = 0;
+            for (int i = 0; i < tab.GetLength(1) - 5; i++)
+            {
+                if (tab[indice, i] != 0)
+                {
+                    for (int j = 0; j < 6; j++)
+                    {
+                        if (tab[indice, i + j] == tab[indice, i])
+                        {
+                            compte++;
+                        }
+                        if (compte == 6)
+                        {
+                            return true;
+                        }
+                    }
+
+                }
+                compte = 0;
+            }
+            return false;
+
+
+
+
+        }
+        public bool Diagmonte(int[,] tab, int[] point)
         {
             int compte = 0;
-            if (point[0] < 6 || point[1]>tab.GetLength(1)-5)
+            int i = 0;
+            for (int k = tab.GetLength(0) - 1; k >= nombreGagant - 1; k--)
             {
-
-            } }
-
-            
-                if (tab[indice, i ] != 0)
-                for (int l = 0; l < tab.GetLength(1) - nombreGagant-1; l++)
-            {
+                for (int l = 0; l < tab.GetLength(1) - nombreGagant - 1; l++)
+                {
 
 
                     if (tab[k, l] != 0)
@@ -161,114 +190,21 @@ namespace S1._01
                         }
                         if (compte == nombreGagant)
                         {
-                             return true;;
-                        }
-                    }
-
-
-                }
-            }
-            
-            return false;
-
-        }
-        public bool Diagdescend(int[,] tab, int[] point)
-        {
-            int compte = 0;
-            int i = 0;
-            for (int k = tab.GetLength(0) - 1; k >= nombreGagant-1; k--)
-            {
-                for (int l = nombreGagant-1; l < tab.GetLength(1); l++)
-                {
-                    if (tab[k, l] != 0)
-                    {
-                        compte = 0;
-                        i = 0;
-                        while (i < nombreGagant && tab[k, l] == tab[k - i, l - i])
-                        {
-                            i++;
-                            compte++;
-                        }
-                        if (compte == nombreGagant)
-                        {
                             return true; ;
                         }
                     }
-                }
-            }
-
-        public bool LIGNE(int[,] tab, int[]point)
-        {
-
-            int indice = point[0] + 1;
-            int compte = 0;
-            for (int i = 0; i < tab.GetLength(1) -5; i++)
-            {
-                if (tab[indice, i ] != 0)
-                {
-                    for (int j = 0; j < 6; j++)
-                    {
-                        if (tab[indice, i + j ] == tab[indice, i])
-                        {
-                            compte++;
-                        }
-                        if (compte == 6)
-                        {
-                            return true;
-                        }
-                    }
-
-                }
-                compte = 0;
-            }
-            }
-           
-            return false;
-
-
-
-        }
-
-        public bool Diagmonte(int[,] tab, int[] point)
-            int i = 0;
-            for (int k = tab.GetLength(0) - 1; k >= nombreGagant - 1; k--)
-            for (int i = 0; i < tab.GetLength(1) - nombreGagant-1; i++)
-            int compte = 0;
-            for (int i = 0; i < tab.GetLength(1) - 5; i++)
-            {
-
-
-
-
-                    if (tab[k, l] != 0)
-                    for (int j = 0; j < nombreGagant-1; j++)
-                {
-                    for (int j = 0; j < 5; j++)
-                    {
-
-
-
-                        compte = 0;
-                        i = 0;
-                        while (i < nombreGagant && tab[k, l] == tab[k - i, l + i])
-                        {
-                            i++;
-                            compte++;
-                        }
-                        if (compte == nombreGagant)
-                        {
-                            return true; 
-                        }
-                    }
-
-
 
 
                 }
             }
 
             return false;
+
         }
+
+
+
+
         public bool Diagdescend(int[,] tab, int[] point)
         {
             int compte = 0;
@@ -288,18 +224,17 @@ namespace S1._01
                         }
                         if (compte == nombreGagant)
                         {
-                            return true; 
+                            return true; ;
                         }
                     }
                 }
             }
 
-
-
             return false;
+
         }
 
-            public int colonneoccupe(int[,] tab,int indicej)
+        public int colonneoccupe(int[,] tab, int indicej)
         {
             int indice = 0;
             for (int i = 0; i < tab.GetLength(0); i++)
@@ -310,7 +245,7 @@ namespace S1._01
                 }
 
             }
-            if (indice==0)
+            if (indice == 0)
             {
                 indice += 1;
             }
@@ -322,28 +257,28 @@ namespace S1._01
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            
+
             // trouver l'indice des colonnes de grille 
             position = e.GetPosition(plateau);
             double x = position.X;
             int indice = 0;
             for (int i = 0; i < COORDONNEX.Length; i++)
             {
-                if ( COORDONNEX[i]  < x)
+                if (COORDONNEX[i] < x)
                 {
                     indice = i;
-                    
+
                 }
 
             }
             //dernière ligne du tableau occupé
-            if (grille[1,indice]!=0)
-            { 
-                MessageBox.Show("coup impossible"); 
+            if (grille[1, indice] != 0)
+            {
+                MessageBox.Show("coup impossible");
             }
             else
             {
-               //création du jeton
+                //création du jeton
                 Rectangle jeton = new Rectangle();
                 jeton.Width = 110;
                 jeton.Height = 110;
@@ -399,7 +334,7 @@ namespace S1._01
                         }
                         break;
                 }
-                
+
                 //jeton derriere la plateau
                 Canvas.SetZIndex(jeton, 0);
                 //ajoue du pion dans le tableau
@@ -414,9 +349,9 @@ namespace S1._01
                     //Appel du bot
                 }
                 //detection coup gagnant
-                int[]point = new int[] { colonneoccupe(grille, indice), indice};
-                
-                if (LIGNE(grille,point) ==true|| Colonne(grille, point) == true)
+                int[] point = new int[] { colonneoccupe(grille, indice), indice };
+
+                if (LIGNE(grille, point) == true || Colonne(grille, point) == true || Diagmonte(grille, point) == true || Diagdescend(grille, point) == true)
                 {
                     Victoire victoire = new Victoire();
                     if (tourDuJoueur == 1)
@@ -431,18 +366,18 @@ namespace S1._01
                     bool victory = (bool)victoire.ShowDialog();
                 }
             }
-            
+
 
             //affiche la grille
-            for (int i=0; i < grille.GetLength(0); i++) 
+            for (int i = 0; i < grille.GetLength(0); i++)
             {
-                for( int j=0; j < grille.GetLength(1); j++)
+                for (int j = 0; j < grille.GetLength(1); j++)
                 {
                     Console.Write(grille[i, j]);
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine(colonneoccupe(grille, indice)) ;
+            Console.WriteLine(colonneoccupe(grille, indice));
             Console.WriteLine(indice);
 
 
@@ -450,7 +385,7 @@ namespace S1._01
 
         }
 
-           
+
         private void Timer_Tick(object sender, EventArgs e)
         {
             TimeSpan elapsed = DateTime.Now - startTime;
@@ -473,6 +408,6 @@ namespace S1._01
             // Arrêter le chronomètre lorsque la page est fermée
             timer.Stop();
         }
-    }   
+    }
 }
 
