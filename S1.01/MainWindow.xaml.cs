@@ -34,6 +34,7 @@ namespace S1._01
         private bool testecolonne = false;
         private bool testedigonale = false;
 
+        private ImageBrush jetonIA = new ImageBrush();
         private ImageBrush jeton1 = new ImageBrush();
         private ImageBrush jeton2 = new ImageBrush();
         private ImageBrush jeton3 = new ImageBrush();
@@ -68,6 +69,7 @@ namespace S1._01
             }
 
             fond.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/puissance4x9x8.png"));
+            jetonIA.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/bleu (IA).png"));
             jeton1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/violet.png"));
             jeton2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/vert.png"));
             jeton3.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/rose.png"));
@@ -86,6 +88,14 @@ namespace S1._01
             timer.Start();
             Score2.Visibility = Visibility.Collapsed;
             Score2_Copy.Visibility = Visibility.Collapsed;
+            if (nombreJoueur == 1)
+            {
+                Score2.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Score2_Copy.Visibility = Visibility.Visible;
+            }
         }
 
 
@@ -256,7 +266,7 @@ namespace S1._01
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
+            
             // trouver l'indice des colonnes de grille 
             position = e.GetPosition(plateau);
             double x = position.X;
@@ -281,9 +291,18 @@ namespace S1._01
                 Rectangle jeton = new Rectangle();
                 jeton.Width = 110;
                 jeton.Height = 110;
-
+                if (nombreJoueur == 1)
+                {
+                    if (jeton.Fill == jeton1 || jeton.Fill == jeton2 || jeton.Fill == jeton3)
+                    {
+                        int randomColumn;
+                        randomColumn = random.Next(0, grille.GetLength(0));
+                        jeton.Fill = jetonIA;
+                    }
+                }
                 switch (nombreJoueur)
                 {
+
                     case 2:
                         if (compteur % 2 == 0)
                         {
@@ -334,7 +353,7 @@ namespace S1._01
                         tourDuJoueur = 1;
                         break;
                 }
-
+                
                 //jeton derriere la plateau
                 Canvas.SetZIndex(jeton, 0);
                 //ajoue du pion dans le tableau
@@ -344,20 +363,6 @@ namespace S1._01
                 Canvas.SetLeft(jeton, COORDONNEX[indice]);
                 main.Children.Add(jeton);
                 compteur += 1;
-                if (nombreJoueur == 1)
-                {
-                Score2.Visibility = Visibility.Visible;
-                    if ( tourDuJoueur % 2 == 0)
-                    {
-                        int randomColumn;
-
-                            randomColumn = random.Next(0, 6);
-                    }
-                }
-                else
-                {
-                Score2_Copy.Visibility = Visibility.Visible;
-                }
                 //detection coup gagnant
                 int[] point = new int[] { colonneoccupe(grille, indice), indice };
 
