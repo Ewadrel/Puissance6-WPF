@@ -55,6 +55,7 @@
             TextAlignment="Center" />
         <TextBlock
             Name="txtScore1"
+            Text="{Binding Score10}"
             Canvas.Left="1169"
             Canvas.Top="259"
             Width="200"
@@ -76,6 +77,7 @@
             TextAlignment="Center" />
         <TextBlock
             Name="txtScore2"
+            Text="{Binding Score20}"
             Canvas.Left="1169"
             Canvas.Top="759"
             Width="200"

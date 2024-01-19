@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 
 using System.Text;
@@ -14,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using static System.Formats.Asn1.AsnWriter;
 using static System.Net.WebRequestMethods;
 
 namespace S1._01
@@ -33,6 +35,9 @@ namespace S1._01
         private bool testeligne = false;
         private bool testecolonne = false;
         private bool testedigonale = false;
+        private int score1 = 0;
+        private int score2 = 0;
+
 
         private ImageBrush jetonIA = new ImageBrush();
         private ImageBrush jeton1 = new ImageBrush();
@@ -49,6 +54,23 @@ namespace S1._01
         private DateTime startTime;
         private Random random = new Random();
 
+        public int Score10
+        {
+            get { return score1; }
+            set
+            {
+                score1 = value;
+            }
+        }
+
+        public int Score20
+        {
+            get { return score2; }
+            set
+            {
+                score2 = value;
+            }
+        }
 
         public MainWindow()
         {
@@ -263,10 +285,89 @@ namespace S1._01
 
         }
 
+        static bool EstTableauRempli(int[,] grille)
+        {
+            int lignes = grille.GetLength(0);
+            int trousParLigne = grille.GetLength(1);
 
+            for (int i = 0; i < lignes; i++)
+            {
+                for (int j = 0; j < trousParLigne; j++)
+                {
+                    if (grille[i, j] == 0)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        static bool DetecterFormeTroisDeux(int[,] grille)
+        {
+            int compte = 0;
+            int lignes = grille.GetLength(0);
+            int trousParLigne = grille.GetLength(1);
+
+            // Parcourir chaque ligne et colonne pour détecter une forme (3,2)
+            for (int i = 0; i < lignes - 2; i++)
+            {
+                for (int j = 0; j < trousParLigne - 1; j++)
+                {
+                    if (grille[i, j] != 0 &&
+                        grille[i, j + 1] != 0 &&
+                        grille[i + 1, j] != 0 &&
+                        grille[i + 1, j + 1] != 0 &&
+                        grille[i + 2, j] != 0 &&
+                        grille[i + 2, j + 1] != 0)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+        static bool DetecterFormeDeuxTrois(int[,] grille)
+        {
+            int lignes = grille.GetLength(0);
+            int trousParLigne = grille.GetLength(1);
+
+            // Parcourir chaque ligne et colonne pour détecter une forme (2,3)
+            for (int i = 0; i < lignes - 1; i++)
+            {
+                for (int j = 0; j < trousParLigne - 2; j++)
+                {
+                    if (grille[i, j] != 0 &&
+                        grille[i, j + 1] != 0 &&
+                        grille[i, j + 2] != 0 &&
+                        grille[i + 1, j] != 0 &&
+                        grille[i + 1, j + 1] != 0 &&
+                        grille[i + 1, j + 2] != 0)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            
+            // trouver l'indice des lignes de grille 
+
+            double y = 9;
+            int indice1 = 0;
+            for (int i = 0; i < COORDONNEY.Length; i++)
+            {
+                if (COORDONNEY[i] < y)
+                {
+                    indice1 = i;
+
+                }
+
+            }
             // trouver l'indice des colonnes de grille 
             position = e.GetPosition(plateau);
             double x = position.X;
@@ -353,7 +454,7 @@ namespace S1._01
                         tourDuJoueur = 1;
                         break;
                 }
-                
+
                 //jeton derriere la plateau
                 Canvas.SetZIndex(jeton, 0);
                 //ajoue du pion dans le tableau
@@ -381,9 +482,14 @@ namespace S1._01
 
                     timer.Stop();
                     victoire.ShowDialog();
-                   
-                    //bool victory = (bool)victoire.ShowDialog();
                 }
+                /* else if (EstTableauRempli(grille) == true)
+                 {
+                     Victoire victoire = new Victoire();
+                     timer.Stop();
+                     victoire.ShowDialog();
+                 }*/
+
             }
 
 
@@ -414,9 +520,25 @@ namespace S1._01
         {
             txtChrono.Text = elapsed.ToString(@"hh\:mm\:ss");
         }
-        private void ScoreJoueur1()
+
+        private void MettreAJourScore(int points, int tourDuJoueur)
         {
-            //Score1 = 
+
+            if (tourDuJoueur == 1)
+            {
+                Score10 += points;
+            }
+            else
+
+                Score20 += points;
+        }
+        private void SimulerDetectionForme()
+        {
+            // Exemple : Vous pouvez appeler cette méthode pour simuler la détection de la forme (2,3)
+            if (DetecterFormeDeuxTrois(grille) == true)
+            {
+                MettreAJourScore(10, tourDuJoueur); // Ajouter 10 points
+            }
         }
     }
 }
