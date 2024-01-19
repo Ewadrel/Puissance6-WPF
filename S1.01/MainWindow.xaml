@@ -54,17 +54,6 @@
             Text="Joueur 1 : "
             TextAlignment="Center" />
         <TextBlock
-            Name="txtScore1"
-            Text="{Binding Score10}"
-            Canvas.Left="1169"
-            Canvas.Top="259"
-            Width="200"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            FontSize="50"
-            Foreground="White"
-            TextAlignment="Center" />
-        <TextBlock
             Name="Score2"
             Canvas.Left="1169"
             Canvas.Top="659"
@@ -76,17 +65,6 @@
             Text="IA : "
             TextAlignment="Center" />
         <TextBlock
-            Name="txtScore2"
-            Text="{Binding Score20}"
-            Canvas.Left="1169"
-            Canvas.Top="759"
-            Width="200"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            FontSize="50"
-            Foreground="White"
-            TextAlignment="Center" />
-        <TextBlock
             x:Name="Score2_Copy"
             Canvas.Left="1169"
             Canvas.Top="659"
@@ -95,5 +73,11 @@
             Foreground="White"
             Text="Joueur 2 : "
             TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
-    </Canvas>
+        <Rectangle x:Name="violetjeton1" Height="100" Canvas.Left="1219" Canvas.Top="259" Width="100" Fill="#FF947BC3"/>
+        <Rectangle x:Name="violetjeton2" Height="100" Canvas.Left="1219" Canvas.Top="759" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top" Fill="#FF947BC3"/>
+        <Rectangle x:Name="vertjeton1" Height="100" Canvas.Left="1219" Canvas.Top="259" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="#FF7DC88B"/>
+        <Rectangle x:Name="vertjeton2" Height="100" Canvas.Left="1219" Canvas.Top="759" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="#FF7DC88C"/>
+        <Rectangle x:Name="rosejeton1" Height="100" Canvas.Left="1219" Canvas.Top="259" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="#FFEF9595"/>
+        <Rectangle x:Name="rosejeton2" Height="100" Canvas.Left="1219" Canvas.Top="759" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="#FFEF9595"/>
+        </Canvas>
 </Window>

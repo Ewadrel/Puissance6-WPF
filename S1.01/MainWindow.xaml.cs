@@ -38,7 +38,6 @@ namespace S1._01
         private int score1 = 0;
         private int score2 = 0;
 
-
         private ImageBrush jetonIA = new ImageBrush();
         private ImageBrush jeton1 = new ImageBrush();
         private ImageBrush jeton2 = new ImageBrush();
@@ -53,24 +52,6 @@ namespace S1._01
         private DispatcherTimer timer;
         private DateTime startTime;
         private Random random = new Random();
-
-        public int Score10
-        {
-            get { return score1; }
-            set
-            {
-                score1 = value;
-            }
-        }
-
-        public int Score20
-        {
-            get { return score2; }
-            set
-            {
-                score2 = value;
-            }
-        }
 
         public MainWindow()
         {
@@ -110,6 +91,13 @@ namespace S1._01
             timer.Start();
             Score2.Visibility = Visibility.Collapsed;
             Score2_Copy.Visibility = Visibility.Collapsed;
+            violetjeton1.Visibility = Visibility.Collapsed;
+            violetjeton2.Visibility = Visibility.Collapsed;
+            vertjeton1.Visibility = Visibility.Collapsed;
+            vertjeton2.Visibility = Visibility.Collapsed;
+            rosejeton1.Visibility = Visibility.Collapsed;
+            rosejeton2.Visibility = Visibility.Collapsed;
+
             if (nombreJoueur == 1)
             {
                 Score2.Visibility = Visibility.Visible;
@@ -121,7 +109,7 @@ namespace S1._01
         }
 
 
-        public int[] PointBonus(int[,] tab)
+        /*public int[] PointBonus(int[,] tab)
         {
             int[] bonus = { 0, 0 };
             for (int i = 0; i < tab.GetLength(0) - 2; i++)
@@ -140,7 +128,7 @@ namespace S1._01
             }
 
             return bonus;
-        }
+        }*/
 
         public bool Colonne(int[,] tab, int[] point)
         {
@@ -194,10 +182,6 @@ namespace S1._01
                 compte = 0;
             }
             return false;
-
-
-
-
         }
         public bool Diagmonte(int[,] tab, int[] point)
         {
@@ -285,24 +269,6 @@ namespace S1._01
 
         }
 
-        static bool EstTableauRempli(int[,] grille)
-        {
-            int lignes = grille.GetLength(0);
-            int trousParLigne = grille.GetLength(1);
-
-            for (int i = 0; i < lignes; i++)
-            {
-                for (int j = 0; j < trousParLigne; j++)
-                {
-                    if (grille[i, j] == 0)
-                    {
-                        return false;
-                    }
-                }
-            }
-
-            return true;
-        }
 
         static bool DetecterFormeTroisDeux(int[,] grille)
         {
@@ -353,6 +319,23 @@ namespace S1._01
 
             return false;
         }
+        private bool GrillePleine()
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    if (grille[i, j] == 0)
+                    {
+                        // Si une cellule est vide, la grille n'est pas pleine
+                        return false;
+                    }
+                }
+            }
+
+            // Si on atteint ce point, toutes les cellules sont pleines
+            return true;
+        }
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             // trouver l'indice des lignes de grille 
@@ -384,10 +367,18 @@ namespace S1._01
             //dernière ligne du tableau occupé
             if (grille[1, indice] != 0)
             {
+                if (grille[indice1,indice] != 0)
+                {
+                    Victoire victoire = new Victoire();
+                    timer.Stop();
+                    victoire.ShowDialog();
+                }
                 MessageBox.Show("coup impossible");
             }
             else
             {
+                Rectangle couleurjeton1 = new Rectangle();
+                Rectangle couleurjeton2 = new Rectangle();
                 //création du jeton
                 Rectangle jeton = new Rectangle();
                 jeton.Width = 110;
@@ -409,14 +400,20 @@ namespace S1._01
                         {
                             if (couleurJoueur[compteur % 2] == "violet")
                             {
+                                
+                                violetjeton1.Visibility = Visibility.Visible;
                                 jeton.Fill = jeton1;
                             }
                             else if (couleurJoueur[compteur % 2] == "vert")
                             {
+                                
+                                vertjeton1.Visibility = Visibility.Visible;
                                 jeton.Fill = jeton2;
                             }
                             else
                             {
+                                
+                                rosejeton1.Visibility = Visibility.Visible;
                                 jeton.Fill = jeton3;
                             }
                             tourDuJoueur = 1;
@@ -425,14 +422,20 @@ namespace S1._01
                         {
                             if (couleurJoueur[compteur % 2] == "violet")
                             {
+                                
+                                violetjeton2.Visibility = Visibility.Visible;
                                 jeton.Fill = jeton1;
                             }
                             else if (couleurJoueur[compteur % 2] == "vert")
                             {
+                                
+                                vertjeton2.Visibility = Visibility.Visible;
                                 jeton.Fill = jeton2;
                             }
                             else
                             {
+                                
+                                rosejeton2.Visibility = Visibility.Visible;
                                 jeton.Fill = jeton3;
                             }
                             tourDuJoueur = 2;
@@ -441,14 +444,20 @@ namespace S1._01
                     case 1:
                         if (couleurJoueur[0] == "violet")
                         {
+                            
+                            violetjeton1.Visibility = Visibility.Visible;
                             jeton.Fill = jeton1;
                         }
                         else if (couleurJoueur[0] == "vert")
                         {
+                            
+                            vertjeton1.Visibility = Visibility.Visible;
                             jeton.Fill = jeton2;
                         }
                         else
                         {
+                            
+                            rosejeton1.Visibility = Visibility.Visible;
                             jeton.Fill = jeton3;
                         }
                         tourDuJoueur = 1;
@@ -467,7 +476,7 @@ namespace S1._01
                 //detection coup gagnant
                 int[] point = new int[] { colonneoccupe(grille, indice), indice };
 
-                if (LIGNE(grille, point) == true || Colonne(grille, point) == true || Diagmonte(grille, point) == true || Diagdescend(grille, point) == true)
+                if (LIGNE(grille, point) == true /*|| DetecterFormeDeuxTrois(grille) == true || DetecterFormeTroisDeux(grille) == true*/|| Colonne(grille, point) == true || Diagmonte(grille, point) == true || Diagdescend(grille, point) == true)
                 {
                     Victoire victoire = new Victoire();
                     if (tourDuJoueur == 1)
@@ -483,12 +492,7 @@ namespace S1._01
                     timer.Stop();
                     victoire.ShowDialog();
                 }
-                /* else if (EstTableauRempli(grille) == true)
-                 {
-                     Victoire victoire = new Victoire();
-                     timer.Stop();
-                     victoire.ShowDialog();
-                 }*/
+               
 
             }
 
@@ -519,26 +523,6 @@ namespace S1._01
         private void UpdateTimerDisplay(TimeSpan elapsed)
         {
             txtChrono.Text = elapsed.ToString(@"hh\:mm\:ss");
-        }
-
-        private void MettreAJourScore(int points, int tourDuJoueur)
-        {
-
-            if (tourDuJoueur == 1)
-            {
-                Score10 += points;
-            }
-            else
-
-                Score20 += points;
-        }
-        private void SimulerDetectionForme()
-        {
-            // Exemple : Vous pouvez appeler cette méthode pour simuler la détection de la forme (2,3)
-            if (DetecterFormeDeuxTrois(grille) == true)
-            {
-                MettreAJourScore(10, tourDuJoueur); // Ajouter 10 points
-            }
         }
     }
 }
