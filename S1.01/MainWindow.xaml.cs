@@ -45,7 +45,7 @@ namespace S1._01
         private ImageBrush fond = new ImageBrush();
         private ImageBrush fm = new ImageBrush();
         private bool TourJoueur1 = true, joueur;
-        private int VALBONUS = 3;
+        private int VALBONUS = 1;
 
         public string[] couleurJoueur;
         public int nombreJoueur;
@@ -118,11 +118,11 @@ namespace S1._01
             {
                 for (int j = 1;j<tab.GetLength(1)-1;j++)
                 {
-                    if (tab[i, j] == 1 && tab[i + 1, j - 1] == 1 && tab[i + 1, j + 1] == 1 && tab[i + 2, j] == 1)
+                    if (tab[i, j] == 1 && tab[i + 1, j - 1] == 1 && tab[i + 1, j + 1] == 1 && tab[i + 2, j] == 1 && tab[i + 1, j ]==1)
                     {
                         bonus[0] += VALBONUS;
                     }
-                    if (tab[i, j] == 2 && tab[i + 1, j - 1] == 2 && tab[i + 1, j + 1] == 2 && tab[i + 2, j] == 2)
+                    if (tab[i, j] == 2 && tab[i + 1, j - 1] == 2 && tab[i + 1, j + 1] == 2 && tab[i + 2, j] == 2 && tab[i + 1, j] == 2)
                     {
                         bonus[1] += VALBONUS;
                     }
@@ -273,7 +273,7 @@ namespace S1._01
             return indice;
 
         }
-
+        /*
 
         static bool DetecterFormeTroisDeux(int[,] grille)
         {
@@ -300,6 +300,7 @@ namespace S1._01
 
             return false;
         }
+        
         static bool DetecterFormeDeuxTrois(int[,] grille)
         {
             int lignes = grille.GetLength(0);
@@ -324,6 +325,7 @@ namespace S1._01
 
             return false;
         }
+        */
         private bool GrillePleine()
         {
             
