@@ -45,7 +45,7 @@
         <TextBlock
             Name="Score1"
             Canvas.Left="1169"
-            Canvas.Top="159"
+            Canvas.Top="119"
             Width="200"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
@@ -57,9 +57,9 @@
         <TextBlock
             Name="Score2"
             Canvas.Left="1169"
-            Canvas.Top="659"
+            Canvas.Top="548"
             Width="200"
-            HorizontalAlignment="Left"
+            HorizontalAlignment="Center"
             VerticalAlignment="Top"
             FontSize="40"
             Foreground="White"
@@ -68,19 +68,21 @@
         <TextBlock
             x:Name="Score2_Copy"
             Canvas.Left="1169"
-            Canvas.Top="659"
+            Canvas.Top="548"
             Width="200"
             FontSize="40"
             Foreground="White"
             Text="Joueur 2 : "
-            TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <Rectangle x:Name="violetjeton1" Height="100" Canvas.Left="1219" Canvas.Top="259" Width="100" Fill="#FF947BC3"/>
-        <Rectangle x:Name="violetjeton2" Height="100" Canvas.Left="1219" Canvas.Top="759" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top" Fill="#FF947BC3"/>
-        <Rectangle x:Name="vertjeton1" Height="100" Canvas.Left="1219" Canvas.Top="259" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="#FF7DC88B"/>
-        <Rectangle x:Name="vertjeton2" Height="100" Canvas.Left="1219" Canvas.Top="759" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="#FF7DC88C"/>
-        <Rectangle x:Name="rosejeton1" Height="100" Canvas.Left="1219" Canvas.Top="259" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="#FFEF9595"/>
-        <Rectangle x:Name="rosejeton2" Height="100" Canvas.Left="1219" Canvas.Top="759" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="#FFEF9595"/>
-        <TextBlock x:Name="bonusJ1" Canvas.Left="1219" TextWrapping="Wrap" Text=" " Canvas.Top="384" Height="45" Width="100" Foreground="White" Background="Black"/>
-        <TextBlock x:Name="bonusJ2" Canvas.Left="1219" TextWrapping="Wrap" Text=" " Canvas.Top="910" Height="29" Width="100" Foreground="White" Background="Black" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" />
+        <Rectangle x:Name="violetjeton1" Height="70" Canvas.Left="1234" Canvas.Top="229" Width="70" Fill="#FF947BC3"/>
+        <Rectangle x:Name="violetjeton2" Height="70" Canvas.Left="1234" Canvas.Top="650" Width="70" HorizontalAlignment="Center" VerticalAlignment="Top" Fill="#FF947BC3"/>
+        <Rectangle x:Name="vertjeton1" Height="70" Canvas.Left="1234" Canvas.Top="229" Width="70" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="#FF7DC88B"/>
+        <Rectangle x:Name="vertjeton2" Height="70" Canvas.Left="1234" Canvas.Top="650" Width="70" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="#FF7DC88C"/>
+        <Rectangle x:Name="rosejeton1" Height="70" Canvas.Left="1234" Canvas.Top="229" Width="70" HorizontalAlignment="Left" VerticalAlignment="Center" Fill="#FFEF9595"/>
+        <Rectangle x:Name="rosejeton2" Height="70" Canvas.Left="1234" Canvas.Top="650" Width="70" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="#FFEF9595"/>
+        <TextBlock x:Name="bonusJ1" Canvas.Left="1219" TextWrapping="Wrap" Text=" " Canvas.Top="384" Height="45" Width="100" Foreground="White" Background="Black" FontSize="16"/>
+        <TextBlock x:Name="bonusJ2" Canvas.Left="1219" TextWrapping="Wrap" Text=" " Canvas.Top="797" Height="45" Width="100" Foreground="White" Background="Black" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="Bonus:" Canvas.Left="1226" Canvas.Top="314" Foreground="White" FontSize="16" Height="35" Width="86"/>
+        <Label Content="Bonus:" Canvas.Left="1226" Canvas.Top="757" Foreground="White" FontSize="16" Height="35" Width="86" HorizontalAlignment="Left" VerticalAlignment="Top"/>
     </Canvas>
 </Window>
