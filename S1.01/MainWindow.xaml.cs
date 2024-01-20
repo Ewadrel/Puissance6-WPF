@@ -106,15 +106,17 @@ namespace S1._01
             {
                 Score2_Copy.Visibility = Visibility.Visible;
             }
+            
         }
+        
 
 
-        /*public int[] PointBonus(int[,] tab)
+        public int[] PointBonus(int[,] tab)
         {
             int[] bonus = { 0, 0 };
-            for (int i = 0; i < tab.GetLength(0) - 2; i++)
+            for (int i = 0;i<tab.GetLength(0)-2;i++)
             {
-                for (int j = 1; j < tab.GetLength(1) - 1; j++)
+                for (int j = 1;j<tab.GetLength(1)-1;j++)
                 {
                     if (tab[i, j] == 1 && tab[i + 1, j - 1] == 1 && tab[i + 1, j + 1] == 1 && tab[i + 2, j] == 1)
                     {
@@ -126,9 +128,12 @@ namespace S1._01
                     }
                 }
             }
+            
+                
+            
 
             return bonus;
-        }*/
+        }
 
         public bool Colonne(int[,] tab, int[] point)
         {
@@ -475,8 +480,16 @@ namespace S1._01
                 compteur += 1;
                 //detection coup gagnant
                 int[] point = new int[] { colonneoccupe(grille, indice), indice };
+                int[] Pi = PointBonus(grille);
+                
+                if (Pi[0] != 0 || Pi[1]!=0)
+                {
+                    bonusJ1.Text = Pi[0].ToString();
+                    bonusJ2.Text = Pi[1].ToString();
+                }
+                
 
-                if (LIGNE(grille, point) == true /*|| DetecterFormeDeuxTrois(grille) == true || DetecterFormeTroisDeux(grille) == true*/|| Colonne(grille, point) == true || Diagmonte(grille, point) == true || Diagdescend(grille, point) == true)
+                if (LIGNE(grille, point) == true || Colonne(grille, point) == true || Diagmonte(grille, point) == true || Diagdescend(grille, point) == true)
                 {
                     Victoire victoire = new Victoire();
                     if (tourDuJoueur == 1)

@@ -53,6 +53,7 @@
             Foreground="White"
             Text="Joueur 1 : "
             TextAlignment="Center" />
+
         <TextBlock
             Name="Score2"
             Canvas.Left="1169"
@@ -79,5 +80,7 @@
         <Rectangle x:Name="vertjeton2" Height="100" Canvas.Left="1219" Canvas.Top="759" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="#FF7DC88C"/>
         <Rectangle x:Name="rosejeton1" Height="100" Canvas.Left="1219" Canvas.Top="259" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="#FFEF9595"/>
         <Rectangle x:Name="rosejeton2" Height="100" Canvas.Left="1219" Canvas.Top="759" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="#FFEF9595"/>
-        </Canvas>
+        <TextBlock x:Name="bonusJ1" Canvas.Left="1219" TextWrapping="Wrap" Text=" " Canvas.Top="384" Height="45" Width="100" Foreground="White" Background="Black"/>
+        <TextBlock x:Name="bonusJ2" Canvas.Left="1219" TextWrapping="Wrap" Text=" " Canvas.Top="910" Height="29" Width="100" Foreground="White" Background="Black" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+    </Canvas>
 </Window>
