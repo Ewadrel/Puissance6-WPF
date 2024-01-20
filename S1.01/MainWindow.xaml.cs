@@ -344,19 +344,7 @@ namespace S1._01
         }
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            // trouver l'indice des lignes de grille 
-
-            double y = 9;
-            int indice1 = 0;
-            for (int i = 0; i < COORDONNEY.Length; i++)
-            {
-                if (COORDONNEY[i] < y)
-                {
-                    indice1 = i;
-
-                }
-
-            }
+            
             // trouver l'indice des colonnes de grille 
             position = e.GetPosition(plateau);
             double x = position.X;
@@ -373,12 +361,7 @@ namespace S1._01
             //dernière ligne du tableau occupé
             if (grille[1, indice] != 0)
             {
-                if (grille[indice1,indice] != 0)
-                {
-                    Victoire victoire = new Victoire();
-                    timer.Stop();
-                    victoire.ShowDialog();
-                }
+
                 MessageBox.Show("coup impossible");
             }
             else
@@ -389,18 +372,33 @@ namespace S1._01
                 Rectangle jeton = new Rectangle();
                 jeton.Width = 110;
                 jeton.Height = 110;
-                if (nombreJoueur == 1)
-                {
-                    if (jeton.Fill == jeton1 || jeton.Fill == jeton2 || jeton.Fill == jeton3)
-                    {
-                        int randomColumn;
-                        randomColumn = random.Next(0, grille.GetLength(0));
-                        jeton.Fill = jetonIA;
-                    }
-                }
+                
                 switch (nombreJoueur)
                 {
+                    case 1:
+                        if (compteur % 2 == 0)
+                        {
+                            if (couleurJoueur[compteur % 2] == "violet")
+                            {
 
+                                violetjeton1.Visibility = Visibility.Visible;
+                                jeton.Fill = jeton1;
+                            }
+                            else if (couleurJoueur[compteur % 2] == "vert")
+                            {
+
+                                vertjeton1.Visibility = Visibility.Visible;
+                                jeton.Fill = jeton2;
+                            }
+                            else
+                            {
+
+                                rosejeton1.Visibility = Visibility.Visible;
+                                jeton.Fill = jeton3;
+                            }
+                            tourDuJoueur = 1;
+                        }
+                        break;
                     case 2:
                         if (compteur % 2 == 0)
                         {
@@ -447,28 +445,10 @@ namespace S1._01
                             tourDuJoueur = 2;
                         }
                         break;
-                    case 1:
-                        if (couleurJoueur[0] == "violet")
-                        {
-                            
-                            violetjeton1.Visibility = Visibility.Visible;
-                            jeton.Fill = jeton1;
-                        }
-                        else if (couleurJoueur[0] == "vert")
-                        {
-                            
-                            vertjeton1.Visibility = Visibility.Visible;
-                            jeton.Fill = jeton2;
-                        }
-                        else
-                        {
-                            
-                            rosejeton1.Visibility = Visibility.Visible;
-                            jeton.Fill = jeton3;
-                        }
-                        tourDuJoueur = 1;
-                        break;
+                       
+                  
                 }
+                
 
                 //jeton derriere la plateau
                 Canvas.SetZIndex(jeton, 0);
@@ -487,6 +467,31 @@ namespace S1._01
                 {
                     bonusJ1.Text = Pi[0].ToString();
                     bonusJ2.Text = Pi[1].ToString();
+                }
+                if(nombreJoueur==1)
+                {
+                    if (compteur % 2 == 1)
+                    {
+                        jeton.Fill = jetonIA;
+                        //jeton derriere la plateau
+                        Canvas.SetZIndex(jeton, 0);
+                        //ajoue du pion dans le tableau
+                        grille[colonneoccupe(grille, 0), 0] = 2;
+                        //ajoue du pion dans le canvas
+                        Canvas.SetTop(jeton, COORDONNEY[colonneoccupe(grille, 0)]);
+                        Canvas.SetLeft(jeton, COORDONNEX[0]);
+                        
+                        compteur += 1;
+                        //detection coup gagnant
+                        int[] point1 = new int[] { colonneoccupe(grille, 0), 0 };
+
+
+                        if (Pi[0] != 0 || Pi[1] != 0)
+                        {
+                            bonusJ1.Text = Pi[0].ToString();
+                            bonusJ2.Text = Pi[1].ToString();
+                        }
+                    }
                 }
                 if (GrillePleine()==true) 
                 {
