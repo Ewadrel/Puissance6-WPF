@@ -326,17 +326,16 @@ namespace S1._01
         }
         private bool GrillePleine()
         {
-            for (int i = 0; i < 9; i++)
+            
+            for (int j = 0; j < 8; j++)
             {
-                for (int j = 0; j < 8; j++)
+                if (grille[1, j] == 0)
                 {
-                    if (grille[i, j] == 0)
-                    {
-                        // Si une cellule est vide, la grille n'est pas pleine
-                        return false;
-                    }
+                    // Si une cellule est vide, la grille n'est pas pleine
+                    return false;
                 }
             }
+            
 
             // Si on atteint ce point, toutes les cellules sont pleines
             return true;
@@ -486,6 +485,22 @@ namespace S1._01
                 {
                     bonusJ1.Text = Pi[0].ToString();
                     bonusJ2.Text = Pi[1].ToString();
+                }
+                if (GrillePleine()==true) 
+                {
+                    Victoire victoire = new Victoire();
+                    if (Pi[0] > Pi[1])
+                    {
+                        victoire.gagne.Text = "Joueur 1";
+                    }
+                    else
+                    { 
+                        victoire.gagne.Text = "Joueur 2";
+                    }
+                    
+
+                    timer.Stop();
+                    victoire.ShowDialog();
                 }
                 
 
