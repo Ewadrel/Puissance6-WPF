@@ -52,7 +52,7 @@ namespace S1._01
         private DispatcherTimer timer;
         private DateTime startTime;
         private Random random = new Random();
-
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -61,20 +61,27 @@ namespace S1._01
             bool resultatjouer = (bool)jouer.ShowDialog();
             if (resultatjouer == true)
             {
+                
+                Nbrjoueur nbrjoueur1 = new Nbrjoueur();
+                joueur = (bool)nbrjoueur1.ShowDialog();
+                if (joueur == true || joueur == false)
+                {
+                    couleurJoueur = new string[nombreJoueur];
+                    Window1 window1 = new Window1();
+                    bool couleur = (bool)window1.ShowDialog();
+                }
+                
+                
+                
+            }
+            if (resultatjouer == false)
+            {
                 règles_du_jeu règlesdu = new règles_du_jeu();
                 bool règles = (bool)règlesdu.ShowDialog();
                 if (règles == true)
                 {
-                    Nbrjoueur nbrjoueur1 = new Nbrjoueur();
-                    joueur = (bool)nbrjoueur1.ShowDialog();
-                    if (joueur == true || joueur == false)
-                    {
-                        couleurJoueur = new string[nombreJoueur];
-                        Window1 window1 = new Window1();
-                        bool couleur = (bool)window1.ShowDialog();
-                    }
+                    
                 }
-                
             }
             FondMusique.Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + "/img/mus.mp3");
             FondMusique.Volume = 0.25; // Réglez le volume entre 0 et 1
@@ -299,11 +306,33 @@ namespace S1._01
             return true;
         }
 
-        public int PlaceIA(int[,] tab)
+        public int PlaceIA(int[,] tab,int[]point)
         {
-            int indice = 0;
+            //int indice = 0;
+            
+            int compt = 0;
+            int i = point[0];
 
-            return indice;
+            while (i < tab.GetLength(0) - 1 && grille[point[0], point[1]] == grille[i, point[1]])
+            {
+                compt += 1;
+                i++;
+                if (compt > 3)
+                {
+                    return point[1];
+                }
+                
+                    
+            }
+        
+                
+            
+             return point[1] + 1;   
+            
+            
+            
+            
+           // return point[1] + 1;
         }
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -434,7 +463,7 @@ namespace S1._01
                 int[] pointia = new int[] { 11, 11 };
                 if (nombreJoueur==1)
                 {
-                    int ligne= PlaceIA(grille);
+                    int ligne= PlaceIA(grille,point);
                     jetonia.Fill = jetonIA;
                     Canvas.SetZIndex(jetonia, 0);
                     grille[colonneoccupe(grille, ligne), ligne] = tourDuJoueur + 1;

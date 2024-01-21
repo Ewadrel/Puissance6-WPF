@@ -19,6 +19,7 @@ namespace S1._01
     /// </summary>
     public partial class Jouer : Window
     {
+        
         private ImageBrush titre = new ImageBrush();
         public Jouer()
         {
@@ -39,7 +40,7 @@ namespace S1._01
 
         private void boutonrègle_Click(object sender, RoutedEventArgs e)
         {
-            
+            this.DialogResult = false;
         }
     }
 }
