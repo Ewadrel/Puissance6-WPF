@@ -36,5 +36,10 @@ namespace S1._01
         {
             this.DialogResult = true;
         }
+
+        private void boutonrègle_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

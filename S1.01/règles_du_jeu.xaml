@@ -7,13 +7,13 @@
         mc:Ignorable="d"
         Title="règles_du_jeu" Height="1000" Width="1142"
         WindowStartupLocation="CenterScreen">
-        
-        
+
+
 
     <Grid>
         <Canvas >
             <TextBlock x:Name="titre_règles" Canvas.Left="273" TextWrapping="Wrap" Text="Règles du jeu" Canvas.Top="104" HorizontalAlignment="Center" VerticalAlignment="Top" Width="596" Height="157" FontSize="75" FontWeight="Bold" TextAlignment="Center"/>
-            <TextBlock x:Name="règles" Canvas.Left="273" TextWrapping="Wrap" Text="les règles " Canvas.Top="266" HorizontalAlignment="Left" VerticalAlignment="Top" Width="596" Height="157" FontWeight="Bold" TextAlignment="Center" FontSize="24"/>
+            <TextBlock x:Name="règles" Canvas.Left="214" TextWrapping="Wrap" Canvas.Top="266" HorizontalAlignment="Left" VerticalAlignment="Center" Width="714" Height="332" FontWeight="Bold" TextAlignment="Center" FontSize="24"><Run Language="fr-fr" Text="D"/><Run Text="ans ce jeux le but est d'aligner 6 jeton"/><Run Language="fr-fr" Text="s"/><Run Text=" de la même couleur."/><LineBreak/><Run Text="Vous pouvez les aligner sur une colonne une ligne ou même sur les diagonales."/><LineBreak/><Run Language="fr-fr" Text="A"/><Run Text="ttention s"/><Run Language="fr-fr" Text="i"/><Run Text=" vous arriver à compléter tout le plateau"/><Run Language="fr-fr" Text=" sens qu'aucun des joueurs n'est réussi à aligner 6 jetons la victoire reviens au joueur comptabilisant le plus de point bonus"/><LineBreak/><Run Language="fr-fr" Text="Comment obtenir des points bonus ?"/><LineBreak/><Run Language="fr-fr" Text="un joueur reçois un point bonus dès lors qui forme avec ses jeton un + constitué de 5 jetons."/></TextBlock>
             <Button x:Name="bouton_règles" Content="J'ai compris" Canvas.Left="469" Canvas.Top="710" Height="65" Width="204" Background="Black" BorderBrush="White" FontSize="24" Foreground="White" FontWeight="Bold" Click="Button_Click" HorizontalAlignment="Center" VerticalAlignment="Top"/>
             <Canvas.Background>
                 <ImageBrush ImageSource="/fond.jpeg" />

@@ -25,6 +25,14 @@
                 BorderThickness="5"
                 Content="JOUER" FontWeight="Bold" FontSize="75" Foreground="White" Click="boutonjouer_Click" />
             <Rectangle x:Name="titre1" Height="250" Canvas.Left="249" Canvas.Top="161" Width="644" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Button x:Name="boutonrègle" Content="Règles de jeu" Canvas.Left="488" Canvas.Top="492" Foreground="White" BorderBrush="Black" Background="Black" Height="69" Width="166" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Click="boutonrègle_Click">
+                <Button.OpacityMask>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="Black" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.OpacityMask>
+            </Button>
             <Canvas.Background>
                 <ImageBrush ImageSource="/fond.jpeg" />
             </Canvas.Background>
