@@ -290,6 +290,13 @@ namespace S1._01
             // Si on atteint ce point, toutes les cellules sont pleines
             return true;
         }
+
+        public int PlaceIA(int[,] tab)
+        {
+            int indice = 0;
+
+            return indice;
+        }
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             
@@ -415,17 +422,11 @@ namespace S1._01
                 compteur += 1;
                 //detection coup gagnant
                 int[] point = new int[] { colonneoccupe(grille, indice), indice };
-                int[] Pi = PointBonus(grille);
                 
-                if (Pi[0] != 0 || Pi[1]!=0)
-                {
-                    bonusJ1.Text = Pi[0].ToString();
-                    bonusJ2.Text = Pi[1].ToString();
-                }
                 int[] pointia = new int[] { 11, 11 };
                 if (nombreJoueur==1)
                 {
-                    int ligne= 0;
+                    int ligne= PlaceIA(grille);
                     jetonia.Fill = jetonIA;
                     Canvas.SetZIndex(jetonia, 0);
                     grille[colonneoccupe(grille, ligne), ligne] = tourDuJoueur + 1;
@@ -440,6 +441,14 @@ namespace S1._01
                    
                     
                 }
+                int[] Pi = PointBonus(grille);
+
+                if (Pi[0] != 0 || Pi[1] != 0)
+                {
+                    bonusJ1.Text = Pi[0].ToString();
+                    bonusJ2.Text = Pi[1].ToString();
+                }
+
                 if (GrillePleine()==true) 
                 {
                     Victoire victoire = new Victoire();
