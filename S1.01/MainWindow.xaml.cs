@@ -76,7 +76,9 @@ namespace S1._01
                 }
                 
             }
-
+            FondMusique.Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + "/img/mus.mp3");
+            FondMusique.Volume = 0.25; // Réglez le volume entre 0 et 1
+            FondMusique.MediaEnded += (sender, e) => FondMusique.Position = TimeSpan.Zero; // Répétez la musique une fois terminée
             fond.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/puissance4x9x8.png"));
             jetonIA.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/bleu (IA).png"));
             jeton1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/violet.png"));
