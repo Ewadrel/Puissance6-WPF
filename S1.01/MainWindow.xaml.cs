@@ -61,14 +61,20 @@ namespace S1._01
             bool resultatjouer = (bool)jouer.ShowDialog();
             if (resultatjouer == true)
             {
-                Nbrjoueur nbrjoueur1 = new Nbrjoueur();
-                joueur = (bool)nbrjoueur1.ShowDialog();
-                if (joueur == true || joueur == false)
+                règles_du_jeu règlesdu = new règles_du_jeu();
+                bool règles = (bool)règlesdu.ShowDialog();
+                if (règles == true)
                 {
-                    couleurJoueur = new string[nombreJoueur];
-                    Window1 window1 = new Window1();
-                    bool couleur = (bool)window1.ShowDialog();
+                    Nbrjoueur nbrjoueur1 = new Nbrjoueur();
+                    joueur = (bool)nbrjoueur1.ShowDialog();
+                    if (joueur == true || joueur == false)
+                    {
+                        couleurJoueur = new string[nombreJoueur];
+                        Window1 window1 = new Window1();
+                        bool couleur = (bool)window1.ShowDialog();
+                    }
                 }
+                
             }
 
             fond.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/puissance4x9x8.png"));
@@ -441,6 +447,7 @@ namespace S1._01
                    
                     
                 }
+                
                 int[] Pi = PointBonus(grille);
 
                 if (Pi[0] != 0 || Pi[1] != 0)
@@ -448,7 +455,7 @@ namespace S1._01
                     bonusJ1.Text = Pi[0].ToString();
                     bonusJ2.Text = Pi[1].ToString();
                 }
-
+                
                 if (GrillePleine()==true) 
                 {
                     Victoire victoire = new Victoire();
@@ -465,12 +472,30 @@ namespace S1._01
                     timer.Stop();
                     victoire.ShowDialog();
                 }
-                int victorieux = 0;
+
+                //int victorieux = 0;
 
                 if (LIGNE(grille, point) == true || Colonne(grille, point) == true || Diagmonte(grille, point) == true || Diagdescend(grille, point) == true)
                 {
-                    victorieux = 1;
+                    Victoire victoire = new Victoire();
+                    if (nombreJoueur == 2)
+                    {
+                        if (tourDuJoueur == 1)
+                        {
+                            victoire.gagne.Text = "Joueur 1";
+                        }
+                        else
+                        {
+                            victoire.gagne.Text = "Joueur 2";
+                        }
+                    }
+                    timer.Stop();
+                    victoire.ShowDialog();
                 }
+                /*
+                  
+               
+                    victorieux = 1;
                 if    (LIGNE(grille, pointia) == true || Colonne(grille, pointia) == true || Diagmonte(grille, pointia) == true || Diagdescend(grille, pointia) == true)
                 { 
                     victorieux = 2; 
@@ -500,17 +525,17 @@ namespace S1._01
                         {
                             victoire.gagne.Text = "IA";
                         }
-                    }
+                */
                     
                     
+                   
 
-                    timer.Stop();
-                    victoire.ShowDialog();
-                }
+                    
+                
                
-
+              
             }
-
+            
 
             //affiche la grille
             for (int i = 0; i < grille.GetLength(0); i++)
