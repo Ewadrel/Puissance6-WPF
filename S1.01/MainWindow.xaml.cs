@@ -473,9 +473,21 @@ namespace S1._01
                     victoire.ShowDialog();
                 }
 
-                //int victorieux = 0;
+                int victorieux = 0;
 
                 if (LIGNE(grille, point) == true || Colonne(grille, point) == true || Diagmonte(grille, point) == true || Diagdescend(grille, point) == true)
+                {
+                    victorieux = 1;
+                }
+                if (nombreJoueur==1)
+                {
+                    if (LIGNE(grille, pointia) == true || Colonne(grille, pointia) == true || Diagmonte(grille, pointia) == true || Diagdescend(grille, pointia) == true)
+                    {
+                        victorieux = 2;
+                    }
+                }
+                
+                if (victorieux != 0)
                 {
                     Victoire victoire = new Victoire();
                     if (nombreJoueur == 2)
@@ -488,52 +500,32 @@ namespace S1._01
                         {
                             victoire.gagne.Text = "Joueur 2";
                         }
-                    }
-                    timer.Stop();
-                    victoire.ShowDialog();
-                }
-                /*
-                  
-               
-                    victorieux = 1;
-                if    (LIGNE(grille, pointia) == true || Colonne(grille, pointia) == true || Diagmonte(grille, pointia) == true || Diagdescend(grille, pointia) == true)
-                { 
-                    victorieux = 2; 
-                } 
-                if (victorieux!=0) 
-                {
-                    
-                    Victoire victoire = new Victoire();
-                    if(nombreJoueur==2) 
-                    {
-                        if (tourDuJoueur == 1)
-                        {
-                            victoire.gagne.Text = "Joueur 1";
-                        }
-                        else
-                        {
-                            victoire.gagne.Text = "Joueur 2";
-                        }
+
                     }
                     else
                     {
                         if (victorieux == 1)
                         {
-                            victoire.gagne.Text = "Joueur 2";
+                            victoire.gagne.Text = "Joueur 1";
                         }
                         else
                         {
                             victoire.gagne.Text = "IA";
                         }
-                */
-                    
-                    
+                    }
+                        timer.Stop();
+                    victoire.ShowDialog();
+                }
                    
-
-                    
                 
-               
-              
+
+
+
+
+
+
+
+
             }
             
 
