@@ -273,59 +273,7 @@ namespace S1._01
             return indice;
 
         }
-        /*
-
-        static bool DetecterFormeTroisDeux(int[,] grille)
-        {
-            int compte = 0;
-            int lignes = grille.GetLength(0);
-            int trousParLigne = grille.GetLength(1);
-
-            // Parcourir chaque ligne et colonne pour détecter une forme (3,2)
-            for (int i = 0; i < lignes - 2; i++)
-            {
-                for (int j = 0; j < trousParLigne - 1; j++)
-                {
-                    if (grille[i, j] != 0 &&
-                        grille[i, j + 1] != 0 &&
-                        grille[i + 1, j] != 0 &&
-                        grille[i + 1, j + 1] != 0 &&
-                        grille[i + 2, j] != 0 &&
-                        grille[i + 2, j + 1] != 0)
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            return false;
-        }
-        
-        static bool DetecterFormeDeuxTrois(int[,] grille)
-        {
-            int lignes = grille.GetLength(0);
-            int trousParLigne = grille.GetLength(1);
-
-            // Parcourir chaque ligne et colonne pour détecter une forme (2,3)
-            for (int i = 0; i < lignes - 1; i++)
-            {
-                for (int j = 0; j < trousParLigne - 2; j++)
-                {
-                    if (grille[i, j] != 0 &&
-                        grille[i, j + 1] != 0 &&
-                        grille[i, j + 2] != 0 &&
-                        grille[i + 1, j] != 0 &&
-                        grille[i + 1, j + 1] != 0 &&
-                        grille[i + 1, j + 2] != 0)
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            return false;
-        }
-        */
+       
         private bool GrillePleine()
         {
             
@@ -372,32 +320,37 @@ namespace S1._01
                 Rectangle jeton = new Rectangle();
                 jeton.Width = 110;
                 jeton.Height = 110;
-                
+                Rectangle jetonia = new Rectangle();
+                jetonia.Width = 110;
+                jetonia.Height = 110;
+
                 switch (nombreJoueur)
                 {
                     case 1:
-                        if (compteur % 2 == 0)
+                        
+                        if (couleurJoueur[compteur % 2] == "violet")
                         {
-                            if (couleurJoueur[compteur % 2] == "violet")
-                            {
 
-                                violetjeton1.Visibility = Visibility.Visible;
-                                jeton.Fill = jeton1;
-                            }
-                            else if (couleurJoueur[compteur % 2] == "vert")
-                            {
-
-                                vertjeton1.Visibility = Visibility.Visible;
-                                jeton.Fill = jeton2;
-                            }
-                            else
-                            {
-
-                                rosejeton1.Visibility = Visibility.Visible;
-                                jeton.Fill = jeton3;
-                            }
-                            tourDuJoueur = 1;
+                            violetjeton1.Visibility = Visibility.Visible;
+                            jeton.Fill = jeton1;
                         }
+                        else if (couleurJoueur[compteur % 2] == "vert")
+                        {
+
+                            vertjeton1.Visibility = Visibility.Visible;
+                            jeton.Fill = jeton2;
+                        }
+                        else
+                        {
+
+                            rosejeton1.Visibility = Visibility.Visible;
+                            jeton.Fill = jeton3;
+                        }
+                        tourDuJoueur = 1;
+                        
+                        
+                        
+                        
                         break;
                     case 2:
                         if (compteur % 2 == 0)
@@ -452,6 +405,7 @@ namespace S1._01
 
                 //jeton derriere la plateau
                 Canvas.SetZIndex(jeton, 0);
+                
                 //ajoue du pion dans le tableau
                 grille[colonneoccupe(grille, indice), indice] = tourDuJoueur;
                 //ajoue du pion dans le canvas
@@ -468,30 +422,23 @@ namespace S1._01
                     bonusJ1.Text = Pi[0].ToString();
                     bonusJ2.Text = Pi[1].ToString();
                 }
-                if(nombreJoueur==1)
+                int[] pointia = new int[] { 11, 11 };
+                if (nombreJoueur==1)
                 {
-                    if (compteur % 2 == 1)
-                    {
-                        jeton.Fill = jetonIA;
-                        //jeton derriere la plateau
-                        Canvas.SetZIndex(jeton, 0);
-                        //ajoue du pion dans le tableau
-                        grille[colonneoccupe(grille, 0), 0] = 2;
-                        //ajoue du pion dans le canvas
-                        Canvas.SetTop(jeton, COORDONNEY[colonneoccupe(grille, 0)]);
-                        Canvas.SetLeft(jeton, COORDONNEX[0]);
-                        
-                        compteur += 1;
-                        //detection coup gagnant
-                        int[] point1 = new int[] { colonneoccupe(grille, 0), 0 };
+                    int ligne= 0;
+                    jetonia.Fill = jetonIA;
+                    Canvas.SetZIndex(jetonia, 0);
+                    grille[colonneoccupe(grille, ligne), ligne] = tourDuJoueur + 1;
+                    Canvas.SetTop(jetonia, COORDONNEY[colonneoccupe(grille, ligne)]);
+                    Canvas.SetLeft(jetonia, COORDONNEX[ligne]);
+                    main.Children.Add(jetonia);    
+                    compteur += 1;
+                       
+                    pointia = new int[] { colonneoccupe(grille, ligne), ligne };
 
 
-                        if (Pi[0] != 0 || Pi[1] != 0)
-                        {
-                            bonusJ1.Text = Pi[0].ToString();
-                            bonusJ2.Text = Pi[1].ToString();
-                        }
-                    }
+                   
+                    
                 }
                 if (GrillePleine()==true) 
                 {
@@ -509,20 +456,44 @@ namespace S1._01
                     timer.Stop();
                     victoire.ShowDialog();
                 }
-                
+                int victorieux = 0;
 
                 if (LIGNE(grille, point) == true || Colonne(grille, point) == true || Diagmonte(grille, point) == true || Diagdescend(grille, point) == true)
                 {
+                    victorieux = 1;
+                }
+                if    (LIGNE(grille, pointia) == true || Colonne(grille, pointia) == true || Diagmonte(grille, pointia) == true || Diagdescend(grille, pointia) == true)
+                { 
+                    victorieux = 2; 
+                } 
+                if (victorieux!=0) 
+                {
+                    
                     Victoire victoire = new Victoire();
-                    if (tourDuJoueur == 1)
+                    if(nombreJoueur==2) 
                     {
-                        victoire.gagne.Text = "Joueur 1";
+                        if (tourDuJoueur == 1)
+                        {
+                            victoire.gagne.Text = "Joueur 1";
+                        }
+                        else
+                        {
+                            victoire.gagne.Text = "Joueur 2";
+                        }
                     }
-                    else if (tourDuJoueur == 2)
+                    else
                     {
-                        victoire.gagne.Text = "Joueur 2";
+                        if (victorieux == 1)
+                        {
+                            victoire.gagne.Text = "Joueur 2";
+                        }
+                        else
+                        {
+                            victoire.gagne.Text = "IA";
+                        }
                     }
-                    else { victoire.gagne.Text = "IA"; }
+                    
+                    
 
                     timer.Stop();
                     victoire.ShowDialog();
@@ -543,6 +514,7 @@ namespace S1._01
             }
             Console.WriteLine(colonneoccupe(grille, indice));
             Console.WriteLine(indice);
+            
 
 
 
