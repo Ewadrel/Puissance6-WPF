@@ -10,7 +10,14 @@
 
   <ItemGroup>
     <None Remove="fond.jpeg" />
+    <None Remove="img\mus.mp3" />
     <None Remove="rose.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="img\mus.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

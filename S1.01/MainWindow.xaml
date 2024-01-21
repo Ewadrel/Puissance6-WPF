@@ -84,5 +84,6 @@
         <TextBlock x:Name="bonusJ2" Canvas.Left="1219" TextWrapping="Wrap" Text=" " Canvas.Top="797" Height="45" Width="100" Foreground="White" Background="Black" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="Bonus:" Canvas.Left="1226" Canvas.Top="314" Foreground="White" FontSize="16" Height="35" Width="86"/>
         <Label Content="Bonus:" Canvas.Left="1226" Canvas.Top="757" Foreground="White" FontSize="16" Height="35" Width="86" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <MediaElement x:Name="FondMusique"/>
     </Canvas>
 </Window>
