@@ -310,24 +310,49 @@ namespace S1._01
         {
             //int indice = 0;
             
-            int compt = 0;
+            int comptc = 0;
             int i = point[0];
 
             while (i < tab.GetLength(0) - 1 && grille[point[0], point[1]] == grille[i, point[1]])
             {
-                compt += 1;
+                comptc += 1;
                 i++;
-                if (compt > 3)
+                if (comptc > 3)
                 {
                     return point[1];
                 }
                 
                     
             }
-        
-                
-            
-             return point[1] + 1;   
+            int comptld = 0;
+            int j = point[1];
+            while (j < tab.GetLength(1) - 1 && grille[point[0], point[1]] == grille[point[1],j])
+            {
+                comptld+= 1;
+                j++;
+
+            }
+            j = point[1];
+            int comptlg = 0;
+            while (j >= 0 && grille[point[0], point[1]] == grille[point[1], j])
+            {
+                comptlg += 1;
+                j--;
+            }
+            if (point[0] < tab.GetLength(0) - 1)
+            {
+                if tab[point[0] - 1, point[j] + comptld] != 0)
+                {
+
+                }
+            }
+           
+            if (comptlg > 3)
+            {
+                return point[1];
+            }
+
+            return point[1] + 1;   
             
             
             
