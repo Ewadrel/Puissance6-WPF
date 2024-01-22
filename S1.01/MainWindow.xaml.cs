@@ -336,55 +336,82 @@ namespace S1._01
 
         public int PlaceIA(int[,] tab,int[]point)
         {
-            
-            int comptc = 0;
-            int i = point[0];
+            int indice = point[0] + 1;
+            //_____________________colonnes
 
-            while (i < tab.GetLength(0) - 1 && grille[point[0], point[1]] == grille[i, point[1]])
+            int comptc = 0;
+            int i = indice;
+
+            while (i < tab.GetLength(0)  && grille[indice, point[1]] == grille[i, point[1]])
             {
                 comptc += 1;
                 i++;
+                // si le joueur aligne plus de 3 jetons sur une colonne le jeton de l'ordinateur vien couper cette suite 
                 if (comptc > 3)
                 {
                     return point[1];
                 }     
             }
+
+
+            //----------------------lignes
+            /*
             int comptld = 0;
             int j = point[1];
-            while (j < tab.GetLength(1) - 1 && grille[point[0], point[1]] == grille[point[1],j])
+            while (j < tab.GetLength(1) - 1 && grille[indice, point[1]] == grille[point[1],j])
             {
                 comptld+= 1;
                 j++;
 
             }
-            j = point[1];
+
+            
+            j = point[1]-1;
             int comptlg = 0;
-            while (j >= 0 && grille[point[0], point[1]] == grille[point[1], j])
+            while (j >= 0 && grille[indice, point[1]] == grille[point[1], j])
             {
                 comptlg += 1;
                 j--;
             }
-            if (point[0] < tab.GetLength(0) - 1)
+            if (comptlg+comptld > 3) 
             {
-                if tab[point[0] - 1, point[j] + comptld] != 0)
+                
+                if (indice < tab.GetLength(0) - 2)
                 {
-
+                    if (tab[indice + 1, point[j] + comptld] != 0 && tab[indice, point[j] + comptld] == 0)
+                    {
+                        return point[j] + comptld;
+                    }
+                    if (tab[indice + 1, point[j] - comptlg-1] != 0 && tab[indice, point[j] - comptlg-1] == 0) 
+                    { 
+                        return point[j] - comptlg-1; 
+                    }
+                }
+                else 
+                {
+                    //return point[j] + comptld;
+                    if ( tab[indice, point[j] + comptld ] == 0)
+                    {
+                        return point[j] + comptld;
+                    }
+                    if (tab[indice, point[j] - comptlg-1] == 0)
+                    {
+                        return point[j] - comptlg - 1;
+                    }
                 }
             }
-           
-            if (comptlg > 3)
-            {
-                return point[1];
-            }
+            */
+
+
 
             return point[1] + 1;   
             
             
             
             
-           // return point[1] + 1;
-        }
-             return point[1] + 1;   
+           
+        
+              
         }
 
         //__________________BOUTON GAUCHE SOURIS______________________
@@ -587,6 +614,18 @@ namespace S1._01
                     victoire.ShowDialog();
                 }
             } 
+            for(int i = 0;i<grille.GetLength(0);i++)
+            {
+                for(int j = 0;j<grille.GetLength(1);j++)
+                {
+                    Console.Write(grille[i,j]);
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+            Console.WriteLine(colonneoccupe(grille, indice));
+            Console.WriteLine(indice);
+            Console.WriteLine();
         }
 
         //__________________DEFINITION TIMER______________________
