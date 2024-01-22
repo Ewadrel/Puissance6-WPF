@@ -201,17 +201,17 @@ namespace S1._01
 
             int indice = point[0] + 1;
             int compte = 0;
-            for (int i = 0; i < tab.GetLength(1) - 5; i++)
+            for (int i = 0; i < tab.GetLength(1) - (nombreGagant-1); i++)
             {
                 if (tab[indice, i] != 0)
                 {
-                    for (int j = 0; j < 6; j++)
+                    for (int j = 0; j < nombreGagant; j++)
                     {
                         if (tab[indice, i + j] == tab[indice, i])
                         {
                             compte++;
                         }
-                        if (compte == 6)
+                        if (compte == nombreGagant)
                         {
                             return true;
                         }
@@ -415,11 +415,18 @@ namespace S1._01
                     }
                 }
             }
-           
-
-
-
-
+            for(int w= tab.GetLength(0)-1;w>1;w--)
+            {
+                for (int k = 0; k < tab.GetLength(1); k++)
+                {
+                    if (tab[w, k] == 2 && tab[w-1, k]==0)
+                    {
+                        return w;
+                    }
+                }
+            }
+             
+            
             return 0 ;   
             
             
