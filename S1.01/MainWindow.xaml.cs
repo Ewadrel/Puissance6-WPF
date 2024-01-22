@@ -20,23 +20,43 @@ using static System.Net.WebRequestMethods;
 
 namespace S1._01
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+    
     public partial class MainWindow : Window
     {
-        private int compteur = 0;
-        private int tourDuJoueur = 1;
+
+        //__________________POSITION______________________
+
         Point position = new Point(0, 0);
+
+        //__________________DOUBLE______________________
+
         private readonly double[] COORDONNEX = { 10, 134, 258, 382, 506, 630, 754, 878, 1002 };
         private readonly double[] COORDONNEY = { 3, 124, 245, 366, 487, 608, 729, 850 };
-        private int[,] grille = new int[9, 9];
-        private int nombreGagant = 6;
+
+        //__________________BOOL______________________
+
         private bool testeligne = false;
         private bool testecolonne = false;
         private bool testedigonale = false;
+        private bool TourJoueur1 = true;
+        private bool joueur ;
+
+        //__________________INT______________________
+
+        private int[,] grille = new int[9, 9];
+        private int nombreGagant = 6;
         private int score1 = 0;
         private int score2 = 0;
+        private int VALBONUS = 1;
+        public int nombreJoueur;
+        private int compteur = 0;
+        private int tourDuJoueur = 1;
+
+        //__________________STRING______________________
+
+        public string[] couleurJoueur;
+
+        //__________________IMAGES______________________
 
         private ImageBrush jetonIA = new ImageBrush();
         private ImageBrush jeton1 = new ImageBrush();
@@ -44,24 +64,40 @@ namespace S1._01
         private ImageBrush jeton3 = new ImageBrush();
         private ImageBrush fond = new ImageBrush();
         private ImageBrush fm = new ImageBrush();
-        private bool TourJoueur1 = true, joueur;
-        private int VALBONUS = 1;
 
-        public string[] couleurJoueur;
-        public int nombreJoueur;
+        //__________________TIMER______________________
+
         private DispatcherTimer timer;
         private DateTime startTime;
-        private Random random = new Random();
         
         public MainWindow()
         {
             InitializeComponent();
 
+            //__________________FONCTIONNEMENT BOUTONS______________________
+
             Jouer jouer = new Jouer();
             bool resultatjouer = (bool)jouer.ShowDialog();
-            if (resultatjouer == true)
+            if (resultatjouer == false)
             {
-                
+                règles_du_jeu règlesdu = new règles_du_jeu();
+                bool règles = (bool)règlesdu.ShowDialog();
+                if (règles == true)
+                {
+                    Jouer jouer2 = new Jouer();
+                    bool resultatjouer2 = (bool)jouer2.ShowDialog();
+                    Nbrjoueur nbrjoueur1 = new Nbrjoueur();
+                    joueur = (bool)nbrjoueur1.ShowDialog();
+                    if (joueur == true || joueur == false)
+                    {
+                        couleurJoueur = new string[nombreJoueur];
+                        Window1 window1 = new Window1();
+                        bool couleur = (bool)window1.ShowDialog();
+                    }
+                }
+            }
+            if ( resultatjouer == true) 
+            {
                 Nbrjoueur nbrjoueur1 = new Nbrjoueur();
                 joueur = (bool)nbrjoueur1.ShowDialog();
                 if (joueur == true || joueur == false)
@@ -70,22 +106,15 @@ namespace S1._01
                     Window1 window1 = new Window1();
                     bool couleur = (bool)window1.ShowDialog();
                 }
-                
-                
-                
             }
-            if (resultatjouer == false)
-            {
-                règles_du_jeu règlesdu = new règles_du_jeu();
-                bool règles = (bool)règlesdu.ShowDialog();
-                if (règles == true)
-                {
-                    
-                }
-            }
+            //__________________MUSIQUE______________________
+
             FondMusique.Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + "/img/mus.mp3");
             FondMusique.Volume = 0.25; // Réglez le volume entre 0 et 1
             FondMusique.MediaEnded += (sender, e) => FondMusique.Position = TimeSpan.Zero; // Répétez la musique une fois terminée
+
+            //__________________IMAGES______________________
+
             fond.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/puissance4x9x8.png"));
             jetonIA.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/bleu (IA).png"));
             jeton1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "img/violet.png"));
@@ -97,13 +126,16 @@ namespace S1._01
             plateau.Fill = fond;
             Canvas.SetZIndex(plateau, 1);
 
+            //__________________TIMER______________________
+
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += Timer_Tick;
-
             startTime = DateTime.Now;
-            // Démarrer le chronomètre dès que la fenêtre est chargée
             timer.Start();
+
+            //__________________TEXTBLOCK______________________
+
             Score2.Visibility = Visibility.Collapsed;
             Score2_Copy.Visibility = Visibility.Collapsed;
             violetjeton1.Visibility = Visibility.Collapsed;
@@ -121,10 +153,10 @@ namespace S1._01
             {
                 Score2_Copy.Visibility = Visibility.Visible;
             }
-            
         }
-        
 
+
+        //__________________POINTBONUS______________________
 
         public int[] PointBonus(int[,] tab)
         {
@@ -143,12 +175,10 @@ namespace S1._01
                     }
                 }
             }
-            
-                
-            
-
             return bonus;
         }
+
+        //__________________COLONNES______________________
 
         public bool Colonne(int[,] tab, int[] point)
         {
@@ -173,8 +203,9 @@ namespace S1._01
                 compte = 0;
             }
             return false;
-
         }
+
+        //__________________LIGNES______________________
 
         public bool LIGNE(int[,] tab, int[] point)
         {
@@ -197,12 +228,14 @@ namespace S1._01
                             return true;
                         }
                     }
-
                 }
                 compte = 0;
             }
             return false;
         }
+
+        //__________________DIAGONALE MONTANTE______________________
+
         public bool Diagmonte(int[,] tab, int[] point)
         {
             int compte = 0;
@@ -211,11 +244,8 @@ namespace S1._01
             {
                 for (int l = 0; l < tab.GetLength(1) - 4; l++)
                 {
-
-
                     if (tab[k, l] != 0)
                     {
-
                         compte = 0;
                         i = 0;
                         while (i < 6 && tab[k, l] == tab[k - i, l + i])
@@ -232,13 +262,10 @@ namespace S1._01
 
                 }
             }
-
             return false;
-
         }
 
-
-
+        //__________________DIAGONALE DESCENDANTE______________________
 
         public bool Diagdescend(int[,] tab, int[] point)
         {
@@ -264,10 +291,10 @@ namespace S1._01
                     }
                 }
             }
-
             return false;
-
         }
+
+        //__________________COLONNE OCCUPEE______________________
 
         public int colonneoccupe(int[,] tab, int indicej)
         {
@@ -278,7 +305,6 @@ namespace S1._01
                 {
                     indice += 1;
                 }
-
             }
             if (indice == 0)
             {
@@ -286,9 +312,10 @@ namespace S1._01
             }
             indice -= 1;
             return indice;
-
         }
-       
+
+        //__________________GRILLE PLEINE______________________
+
         private bool GrillePleine()
         {
             
@@ -300,15 +327,15 @@ namespace S1._01
                     return false;
                 }
             }
-            
 
             // Si on atteint ce point, toutes les cellules sont pleines
             return true;
         }
 
+        //__________________IA______________________
+
         public int PlaceIA(int[,] tab,int[]point)
         {
-            //int indice = 0;
             
             int compt = 0;
             int i = point[0];
@@ -320,20 +347,13 @@ namespace S1._01
                 if (compt > 3)
                 {
                     return point[1];
-                }
-                
-                    
+                }     
             }
-        
-                
-            
              return point[1] + 1;   
-            
-            
-            
-            
-           // return point[1] + 1;
         }
+
+        //__________________BOUTON GAUCHE SOURIS______________________
+
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             
@@ -348,7 +368,6 @@ namespace S1._01
                     indice = i;
 
                 }
-
             }
             //dernière ligne du tableau occupé
             if (grille[1, indice] != 0)
@@ -369,51 +388,43 @@ namespace S1._01
                 jetonia.Height = 110;
 
                 switch (nombreJoueur)
-                {
+                {//__________________COULEUR JETONS______________________
+
                     case 1:
                         
                         if (couleurJoueur[compteur % 2] == "violet")
                         {
-
                             violetjeton1.Visibility = Visibility.Visible;
                             jeton.Fill = jeton1;
                         }
                         else if (couleurJoueur[compteur % 2] == "vert")
                         {
-
                             vertjeton1.Visibility = Visibility.Visible;
                             jeton.Fill = jeton2;
                         }
                         else
                         {
-
                             rosejeton1.Visibility = Visibility.Visible;
                             jeton.Fill = jeton3;
                         }
                         tourDuJoueur = 1;
-                        
-                        
-                        
-                        
+
                         break;
                     case 2:
                         if (compteur % 2 == 0)
                         {
                             if (couleurJoueur[compteur % 2] == "violet")
                             {
-                                
                                 violetjeton1.Visibility = Visibility.Visible;
                                 jeton.Fill = jeton1;
                             }
                             else if (couleurJoueur[compteur % 2] == "vert")
                             {
-                                
                                 vertjeton1.Visibility = Visibility.Visible;
                                 jeton.Fill = jeton2;
                             }
                             else
                             {
-                                
                                 rosejeton1.Visibility = Visibility.Visible;
                                 jeton.Fill = jeton3;
                             }
@@ -423,27 +434,22 @@ namespace S1._01
                         {
                             if (couleurJoueur[compteur % 2] == "violet")
                             {
-                                
                                 violetjeton2.Visibility = Visibility.Visible;
                                 jeton.Fill = jeton1;
                             }
                             else if (couleurJoueur[compteur % 2] == "vert")
                             {
-                                
                                 vertjeton2.Visibility = Visibility.Visible;
                                 jeton.Fill = jeton2;
                             }
                             else
                             {
-                                
                                 rosejeton2.Visibility = Visibility.Visible;
                                 jeton.Fill = jeton3;
                             }
                             tourDuJoueur = 2;
                         }
                         break;
-                       
-                  
                 }
                 
 
@@ -459,7 +465,9 @@ namespace S1._01
                 compteur += 1;
                 //detection coup gagnant
                 int[] point = new int[] { colonneoccupe(grille, indice), indice };
-                
+
+                //__________________IA______________________
+
                 int[] pointia = new int[] { 11, 11 };
                 if (nombreJoueur==1)
                 {
@@ -473,10 +481,6 @@ namespace S1._01
                     compteur += 1;
                        
                     pointia = new int[] { colonneoccupe(grille, ligne), ligne };
-
-
-                   
-                    
                 }
                 
                 int[] Pi = PointBonus(grille);
@@ -498,11 +502,12 @@ namespace S1._01
                     { 
                         victoire.gagne.Text = "Joueur 2";
                     }
-                    
-
                     timer.Stop();
                     victoire.ShowDialog();
                 }
+
+
+                //__________________DEFINTION GAGNANT______________________
 
                 int victorieux = 0;
 
@@ -531,7 +536,6 @@ namespace S1._01
                         {
                             victoire.gagne.Text = "Joueur 2";
                         }
-
                     }
                     else
                     {
@@ -547,37 +551,10 @@ namespace S1._01
                         timer.Stop();
                     victoire.ShowDialog();
                 }
-                   
-                
-
-
-
-
-
-
-
-
-            }
-            
-
-            //affiche la grille
-            for (int i = 0; i < grille.GetLength(0); i++)
-            {
-                for (int j = 0; j < grille.GetLength(1); j++)
-                {
-                    Console.Write(grille[i, j]);
-                }
-                Console.WriteLine();
-            }
-            Console.WriteLine(colonneoccupe(grille, indice));
-            Console.WriteLine(indice);
-            
-
-
-
-
+            } 
         }
 
+        //__________________DEFINITION TIMER______________________
 
         private void Timer_Tick(object sender, EventArgs e)
         {
