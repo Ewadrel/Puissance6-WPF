@@ -21,7 +21,7 @@ using static System.Net.WebRequestMethods;
 namespace S1._01
 {
     
-    public partial class MainWindow : Window
+    public partial class MainWindow     : Window
     {
 
         //__________________POSITION______________________
@@ -82,19 +82,7 @@ namespace S1._01
             {
                 règles_du_jeu règlesdu = new règles_du_jeu();
                 bool règles = (bool)règlesdu.ShowDialog();
-                if (règles == true)
-                {
-                    Jouer jouer2 = new Jouer();
-                    bool resultatjouer2 = (bool)jouer2.ShowDialog();
-                    Nbrjoueur nbrjoueur1 = new Nbrjoueur();
-                    joueur = (bool)nbrjoueur1.ShowDialog();
-                    if (joueur == true || joueur == false)
-                    {
-                        couleurJoueur = new string[nombreJoueur];
-                        Window1 window1 = new Window1();
-                        bool couleur = (bool)window1.ShowDialog();
-                    }
-                }
+                
             }
             if ( resultatjouer == true) 
             {
@@ -642,18 +630,6 @@ namespace S1._01
                     victoire.ShowDialog();
                 }
             } 
-            for(int i = 0;i<grille.GetLength(0);i++)
-            {
-                for(int j = 0;j<grille.GetLength(1);j++)
-                {
-                    Console.Write(grille[i,j]);
-                }
-                Console.WriteLine();
-            }
-            Console.WriteLine();
-            Console.WriteLine(colonneoccupe(grille, indice));
-            Console.WriteLine(indice);
-            Console.WriteLine();
         }
 
         //__________________DEFINITION TIMER______________________

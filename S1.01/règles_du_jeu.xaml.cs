@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,8 +25,16 @@ namespace S1._01
             InitializeComponent();
         }
 
+        public void ReinitialiseJeu()
+        {
+            string cheminApplication = Process.GetCurrentProcess().MainModule.FileName;
+            Process.Start(cheminApplication);
+            Application.Current.Shutdown();
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            ReinitialiseJeu();
             this.DialogResult = true;
         }
     }
