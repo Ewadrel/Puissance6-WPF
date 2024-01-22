@@ -354,11 +354,12 @@ namespace S1._01
             }
 
 
+
             //----------------------lignes
-            /*
+            
             int comptld = 0;
             int j = point[1];
-            while (j < tab.GetLength(1) - 1 && grille[indice, point[1]] == grille[point[1],j])
+            while (j < tab.GetLength(1) - 1 && grille[indice, point[1]] == grille[indice,j])
             {
                 comptld+= 1;
                 j++;
@@ -368,43 +369,70 @@ namespace S1._01
             
             j = point[1]-1;
             int comptlg = 0;
-            while (j >= 0 && grille[indice, point[1]] == grille[point[1], j])
+            while (j >= 0 && grille[indice, point[1]] == grille[indice, j])
             {
                 comptlg += 1;
                 j--;
             }
             if (comptlg+comptld > 3) 
             {
+
                 
-                if (indice < tab.GetLength(0) - 2)
+                if (indice < tab.GetLength(0) - 1)
                 {
-                    if (tab[indice + 1, point[j] + comptld] != 0 && tab[indice, point[j] + comptld] == 0)
+                    if (tab[indice + 1, point[1] + comptld] != 0 && tab[indice, point[1] + comptld] == 0)
                     {
-                        return point[j] + comptld;
+                        return point[1] + comptld;
                     }
-                    if (tab[indice + 1, point[j] - comptlg-1] != 0 && tab[indice, point[j] - comptlg-1] == 0) 
+                    if (tab[indice + 1, point[1] - comptlg-1] != 0 && tab[indice, point[1] - comptlg-1] == 0) 
                     { 
-                        return point[j] - comptlg-1; 
+                        return point[1] - comptlg-1; 
                     }
                 }
                 else 
                 {
-                    //return point[j] + comptld;
-                    if ( tab[indice, point[j] + comptld ] == 0)
+                    
+                    if ( tab[indice, point[1] + comptld ] == 0)
                     {
-                        return point[j] + comptld;
+                        return point[1] + comptld;
                     }
-                    if (tab[indice, point[j] - comptlg-1] == 0)
+                    if (tab[indice, point[1] - comptlg-1] == 0)
                     {
-                        return point[j] - comptlg - 1;
+                        return point[1] - comptlg - 1;
                     }
                 }
             }
-            */
+
+
+            //-----------------diag
+            int compte = 0;
+            int n = 0;
+            for (int k = tab.GetLength(0) - 1; k >= nombreGagant - 1; k--)
+            {
+                for (int l = nombreGagant - 1; l < tab.GetLength(1); l++)
+                {
+                    if (tab[k, l] != 0)
+                    {
+                        compte = 0;
+                        n = 0;
+                        while (n < nombreGagant && tab[k, l] == tab[k - n, l - n])
+                        {
+                            n++;
+                            compte++;
+                        }
+                        if (compte >3 && tab[k - (n+1), l - (n + 1)] ==0 && tab[k - n , l - (n + 1)]!=0)
+                        {
+                            return l - (n + 1);
+                        }
+                    }
+                }
+            }
+           
 
 
 
-            return point[1] + 1;   
+
+            return 0 ;   
             
             
             
