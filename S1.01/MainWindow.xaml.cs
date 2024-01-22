@@ -427,11 +427,18 @@ namespace S1._01
                     }
                 }
             }
-           
-
-
+            for(int w= tab.GetLength(0)-1;w>1;w--)
+            {
+                for (int k = 0; k < tab.GetLength(1); k++)
+                {
+                    if (tab[w, k] == 2 && tab[w-1, k]==0)
+                    {
+                        return w;
+                    }
+                }
+            }
+             
             
-
             return 0 ;   
             
             
